@@ -8,3 +8,4 @@ In this repository, we have a collection of known smart contract attack vectors,
 - [Integer Overflow and Underflow](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/overflow-underflow.md)
 - [Reentrancy](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/reentrancy.md)
 - [Timestamp Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/timestamp-dependence.md)
+- [DoS with (Unexpected) revert](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/dos-revert.md)
