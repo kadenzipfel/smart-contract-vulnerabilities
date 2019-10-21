@@ -1,6 +1,6 @@
 # Smart Contract Attack Vectors
 
-In this repository, we have a collection of known smart contract attack vectors, along with examples and prevention methods.
+The goal of this repository is to create the most clear and concise collection of smart contract attack vectors, to improve overall ecosystem security.
 
 ## Attacks
 
