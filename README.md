@@ -9,3 +9,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Reentrancy](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/reentrancy.md)
 - [Timestamp Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/timestamp-dependence.md)
 - [DoS with (Unexpected) revert](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/dos-revert.md)
+- [DoS with Block Gas Limit](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/dos-gas-limit.md)
