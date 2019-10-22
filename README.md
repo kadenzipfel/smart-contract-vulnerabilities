@@ -2,7 +2,7 @@
 
 The goal of this repository is to create the most clear and concise collection of smart contract attack vectors, to improve overall ecosystem security.
 
-## Attacks
+## Attacks & Vulnerabilities
 
 - [Front-Running AKA Transaction-Ordering Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/front-running.md)
 - [Integer Overflow and Underflow](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/overflow-underflow.md)
