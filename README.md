@@ -22,3 +22,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Uninitialized Storage Pointer](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/uninitialized-storage-pointer.md)
 - [Assert Violation](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/assert-violation.md)
 - [Use of Deprecated Functions](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/use-of-deprecated-functions.md)
+- [Delegatecall to Untrusted Callee](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/delegatecall-untrusted-callee.md)
