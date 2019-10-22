@@ -19,3 +19,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Unprotected Ether Withdrawal](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/unprotected-ether-withdrawal.md)
 - [Unprotected Selfdestruct Instruction](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/unprotected-selfdestruct.md)
 - [State Variable Default Visibility](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/state-variable-default-visibility.md)
+- [Uninitialized Storage Pointer](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/uninitialized-storage-pointer.md)
