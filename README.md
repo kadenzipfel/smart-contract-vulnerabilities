@@ -28,3 +28,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Incorrect Constructor Name](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/incorrect-constructor.md)
 - [Shadowing State Variables](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/shadowing-state-variables.md)
 - [Weak Sources of Randomness from Chain Attributes](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/weak-sources-randomness.md)
+- [Missing Protection against Signature Replay Attacks](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/missing-protection-signature-replay.md)
