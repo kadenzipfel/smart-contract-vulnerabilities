@@ -26,3 +26,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Authorization Through tx.origin](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/authorization-txorigin.md)
 - [Signature Malleability](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/signature-malleability.md)
 - [Incorrect Constructor Name](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/incorrect-constructor.md)
+- [Shadowing State Variables](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/shadowing-state-variables.md)
