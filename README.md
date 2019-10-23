@@ -31,3 +31,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Missing Protection against Signature Replay Attacks](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/missing-protection-signature-replay.md)
 - [Requirement Validation](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/requirement-violation.md)
 - [Write to Arbitrary Storage Location](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/arbitrary-storage-location.md)
+- [Incorrect Inheritance Order](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/incorrect-inheritance-order.md)
