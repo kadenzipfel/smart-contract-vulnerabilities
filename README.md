@@ -25,3 +25,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Delegatecall to Untrusted Callee](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/delegatecall-untrusted-callee.md)
 - [Authorization Through tx.origin](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/authorization-txorigin.md)
 - [Signature Malleability](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/signature-malleability.md)
+- [Incorrect Constructor Name](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/incorrect-constructor.md)
