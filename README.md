@@ -39,6 +39,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Presence of Unused Variables](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unused-variables.md)
 - [Unexpected Ether Balance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unexpected-ether-balance.md)
 - [Unencrypted Secrets](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unencrypted-secrets.md)
+- [Faulty Contract Detection](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/faulty-contract-detection.md)
 
 ## Further Reading
 
