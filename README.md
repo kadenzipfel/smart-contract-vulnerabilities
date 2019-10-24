@@ -44,3 +44,7 @@ The goal of this repository is to create the most clear and concise collection o
 - https://www.dasp.co/
 - https://consensys.github.io/smart-contract-best-practices/
 - https://github.com/sigp/solidity-security-blog
+
+## Contributions
+
+If you notice any mistakes, typos or missing attacks/vulnerabilities, please feel free to open an issue or pull request. All contributions are very much appreciated. 
