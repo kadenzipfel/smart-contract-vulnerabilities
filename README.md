@@ -35,3 +35,12 @@ The goal of this repository is to create the most clear and concise collection o
 - [Arbitrary Jump with Function Type Variable](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/arbitrary-jump-function-type.md)
 - [Presence of Unused Variables](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/unused-variables.md)
 - [Unexpected Ether Balance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/unexpected-ether-balance.md)
+
+## Further Reading
+
+- https://github.com/ethereum/wiki/wiki/Safety
+- https://swcregistry.io/
+- https://eprint.iacr.org/2016/1007.pdf
+- https://www.dasp.co/
+- https://consensys.github.io/smart-contract-best-practices/
+- https://github.com/sigp/solidity-security-blog
