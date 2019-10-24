@@ -33,3 +33,4 @@ The goal of this repository is to create the most clear and concise collection o
 - [Write to Arbitrary Storage Location](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/arbitrary-storage-location.md)
 - [Incorrect Inheritance Order](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/incorrect-inheritance-order.md)
 - [Arbitrary Jump with Function Type Variable](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/arbitrary-jump-function-type.md)
+- [Presence of Unused Variables](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/unused-variables.md)
