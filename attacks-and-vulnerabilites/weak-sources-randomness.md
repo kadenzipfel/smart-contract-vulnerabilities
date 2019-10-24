@@ -12,8 +12,8 @@ To avoid miner manipulation in random number generation, there are a few solutio
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-120
-https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
-https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract
-https://github.com/randao/randao
-https://etherscan.io/address/0xcac337492149bdb66b088bf5914bedfbf78ccc18
+- https://swcregistry.io/docs/SWC-120
+- https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
+- https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract
+- https://github.com/randao/randao
+- https://etherscan.io/address/0xcac337492149bdb66b088bf5914bedfbf78ccc18

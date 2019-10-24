@@ -9,5 +9,5 @@ To solve this issue, first consider whether the requirement condition is too str
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-123
-https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57
+- https://swcregistry.io/docs/SWC-123
+- https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57

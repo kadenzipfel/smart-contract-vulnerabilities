@@ -44,5 +44,6 @@ To prevent such attacks from occuring, it's important to carefully consider whet
 Example from: https://consensys.github.io/smart-contract-best-practices/known_attacks/
 
 ### Sources
-https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-block-gas-limit
-https://github.com/ethereum/wiki/wiki/Design-Rationale#gas-and-fees
+
+- https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-block-gas-limit
+- https://github.com/ethereum/wiki/wiki/Design-Rationale#gas-and-fees

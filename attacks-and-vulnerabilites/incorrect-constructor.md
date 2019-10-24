@@ -6,5 +6,5 @@ Now with modern versions of Solidity, you can define the constructor with the `c
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-118
-https://blog.sigmaprime.io/solidity-security.html#constructors
+- https://swcregistry.io/docs/SWC-118
+- https://blog.sigmaprime.io/solidity-security.html#constructors

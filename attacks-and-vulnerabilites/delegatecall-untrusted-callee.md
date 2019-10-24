@@ -6,7 +6,7 @@ Since `delegatecall` gives so much control over a contract, it's very important 
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-112
-https://solidity.readthedocs.io/en/latest/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries
-https://blog.sigmaprime.io/solidity-security.html#delegatecall
-https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall
+- https://swcregistry.io/docs/SWC-112
+- https://solidity.readthedocs.io/en/latest/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries
+- https://blog.sigmaprime.io/solidity-security.html#delegatecall
+- https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall

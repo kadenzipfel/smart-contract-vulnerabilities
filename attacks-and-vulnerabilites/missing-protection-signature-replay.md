@@ -10,5 +10,5 @@ To be extra safe with signature verification, follow these recommendations:
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-121
-https://medium.com/cypher-core/replay-attack-vulnerability-in-ethereum-smart-contracts-introduced-by-transferproxy-124bf3694e25
+- https://swcregistry.io/docs/SWC-121
+- https://medium.com/cypher-core/replay-attack-vulnerability-in-ethereum-smart-contracts-introduced-by-transferproxy-124bf3694e25

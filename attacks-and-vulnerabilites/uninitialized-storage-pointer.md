@@ -6,8 +6,8 @@ As of solidity `0.5.0`, uninitialized storage pointers are no longer an issue si
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-109
-https://github.com/sigp/solidity-security-blog#storage
-https://solidity.readthedocs.io/en/latest/types.html#data-location
-https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage
-https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-in-memory
+- https://swcregistry.io/docs/SWC-109
+- https://github.com/sigp/solidity-security-blog#storage
+- https://solidity.readthedocs.io/en/latest/types.html#data-location
+- https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage
+- https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-in-memory

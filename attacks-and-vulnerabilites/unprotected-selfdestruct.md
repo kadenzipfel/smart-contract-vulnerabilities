@@ -6,5 +6,5 @@ This attack was used in the [Parity Attack](https://www.parity.io/a-postmortem-o
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-106
-https://www.parity.io/a-postmortem-on-the-parity-multi-sig-library-self-destruct/
+- https://swcregistry.io/docs/SWC-106
+- https://www.parity.io/a-postmortem-on-the-parity-multi-sig-library-self-destruct/

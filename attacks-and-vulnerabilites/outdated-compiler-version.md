@@ -4,6 +4,6 @@ Developers often find bugs and vulnerabilities in existing software and make pat
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-102
-https://github.com/ethereum/solidity/releases
-https://etherscan.io/solcbuginfo
+- https://swcregistry.io/docs/SWC-102
+- https://github.com/ethereum/solidity/releases
+- https://etherscan.io/solcbuginfo

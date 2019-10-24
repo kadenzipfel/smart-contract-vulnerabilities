@@ -73,5 +73,5 @@ https://consensys.github.io/smart-contract-best-practices/recommendations/#favor
 
 ### Sources
 
-https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-unexpected-revert
-https://consensys.github.io/smart-contract-best-practices/recommendations/#favor-pull-over-push-for-external-calls
+- https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-unexpected-revert
+- https://consensys.github.io/smart-contract-best-practices/recommendations/#favor-pull-over-push-for-external-calls

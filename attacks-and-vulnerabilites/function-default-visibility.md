@@ -6,6 +6,6 @@ Many smart contract attacks are caused by a developer forgetting or forgoing to 
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-100
-https://consensys.github.io/smart-contract-best-practices/recommendations/#explicitly-mark-visibility-in-functions-and-state-variables
-https://github.com/sigp/solidity-security-blog#visibility
+- https://swcregistry.io/docs/SWC-100
+- https://consensys.github.io/smart-contract-best-practices/recommendations/#explicitly-mark-visibility-in-functions-and-state-variables
+- https://github.com/sigp/solidity-security-blog#visibility

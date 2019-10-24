@@ -6,5 +6,5 @@ To prevent this from occuring, we not only want to protect sensitive data stores
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-124
-https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte
+- https://swcregistry.io/docs/SWC-124
+- https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte

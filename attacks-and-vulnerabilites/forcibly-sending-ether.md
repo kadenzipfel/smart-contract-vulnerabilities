@@ -24,4 +24,4 @@ Another method is to precompute a contract's address and send Ether to the addre
 Example from: https://consensys.github.io/smart-contract-best-practices/known_attacks/#forcibly-sending-ether-to-a-contract
 
 ### Sources
-https://consensys.github.io/smart-contract-best-practices/known_attacks/#forcibly-sending-ether-to-a-contract
+- https://consensys.github.io/smart-contract-best-practices/known_attacks/#forcibly-sending-ether-to-a-contract

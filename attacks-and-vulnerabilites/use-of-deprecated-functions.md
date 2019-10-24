@@ -17,5 +17,5 @@ Here is a list of deprecated functions and alternatives. Many alternatives are s
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-111
-https://github.com/ethereum/solidity/releases
+- https://swcregistry.io/docs/SWC-111
+- https://github.com/ethereum/solidity/releases

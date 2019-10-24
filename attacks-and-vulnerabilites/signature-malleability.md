@@ -6,6 +6,6 @@ To avoid the problem of signature malleability, never use a signature in a signe
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-117
-https://eklitzke.org/bitcoin-transaction-malleability
-https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3
+- https://swcregistry.io/docs/SWC-117
+- https://eklitzke.org/bitcoin-transaction-malleability
+- https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3

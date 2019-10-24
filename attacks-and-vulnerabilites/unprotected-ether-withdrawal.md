@@ -4,5 +4,5 @@ Without adequate access controls, bad actors may be able to withdraw some or all
 
 ### Sources
 
-https://swcregistry.io/docs/SWC-105
-https://etherscan.io/address/0xe82719202e5965Cf5D9B6673B7503a3b92DE20be#code
+- https://swcregistry.io/docs/SWC-105
+- https://etherscan.io/address/0xe82719202e5965Cf5D9B6673B7503a3b92DE20be#code
