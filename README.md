@@ -38,6 +38,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Arbitrary Jump with Function Type Variable](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/arbitrary-jump-function-type.md)
 - [Presence of Unused Variables](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unused-variables.md)
 - [Unexpected Ether Balance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unexpected-ether-balance.md)
+- [Unencrypted Secrets](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unencrypted-secrets.md)
 
 ## Further Reading
 
