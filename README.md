@@ -40,6 +40,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Unexpected Ether Balance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unexpected-ether-balance.md)
 - [Unencrypted Secrets](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unencrypted-secrets.md)
 - [Faulty Contract Detection](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/faulty-contract-detection.md)
+- [Unclogged Blockchain Reliance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unclogged-blockchain-reliance.md)
 
 ## Further Reading
 
