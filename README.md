@@ -41,6 +41,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Unencrypted Secrets](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unencrypted-secrets.md)
 - [Faulty Contract Detection](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/faulty-contract-detection.md)
 - [Unclogged Blockchain Reliance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unclogged-blockchain-reliance.md)
+- [Inadherence to Standards](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/inadherence-to-standards.md)
 
 ## Further Reading
 
