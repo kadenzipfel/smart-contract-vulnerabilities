@@ -11,6 +11,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Forcibly Sending Ether to a Smart Contract](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/forcibly-sending-ether.md)
 - [Insufficient Gas Griefing](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/insufficient-gas-griefing.md)
 - [Reentrancy](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/reentrancy.md)
+- [Honeypot](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/honeypot.md)
 
 ## Vulnerabilities
 
