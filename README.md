@@ -57,3 +57,5 @@ The goal of this repository is to create the most clear and concise collection o
 ## Contributions
 
 If you notice any mistakes, typos or missing attacks/vulnerabilities, please feel free to open an issue or pull request. All contributions are very much appreciated. 
+
+Special thanks to [RobertMCForster](https://github.com/RobertMCForster) for many excellent contributions.
