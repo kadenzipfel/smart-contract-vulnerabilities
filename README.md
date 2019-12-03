@@ -5,7 +5,6 @@ The goal of this repository is to create the most clear and concise collection o
 ## Attacks
 
 - [Front-Running AKA Transaction-Ordering Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/front-running.md)
-- [Authorization Through tx.origin](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/authorization-txorigin.md)
 - [DoS with Block Gas Limit](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/dos-gas-limit.md)
 - [DoS with (Unexpected) revert](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/dos-revert.md)
 - [Forcibly Sending Ether to a Smart Contract](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/forcibly-sending-ether.md)
@@ -17,6 +16,7 @@ The goal of this repository is to create the most clear and concise collection o
 
 - [Integer Overflow and Underflow](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/overflow-underflow.md)
 - [Timestamp Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/timestamp-dependence.md)
+- [Authorization Through tx.origin](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/authorization-txorigin.md)
 - [Floating Pragma](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/floating-pragma.md)
 - [Function Default Visibility](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/function-default-visibility.md)
 - [Outdated Compiler Version](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/outdated-compiler-version.md)
