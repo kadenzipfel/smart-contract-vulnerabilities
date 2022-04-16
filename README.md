@@ -44,6 +44,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Unclogged Blockchain Reliance](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unclogged-blockchain-reliance.md)
 - [Inadherence to Standards](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/inadherence-to-standards.md)
 - [Unprotected Callback](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unprotected-callback.md)
+- [Asserting EOA from Code Size](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/asserting-eoa-from-code-size.md)
 
 ## Further Reading
 
