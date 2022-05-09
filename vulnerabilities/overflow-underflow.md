@@ -16,4 +16,4 @@ Likely the best available solution to overflow and underflow bugs is to use the 
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/known_attacks/#integer-overflow-and-underflow
+- https://consensys.github.io/smart-contract-best-practices/attacks/insecure-arithmetic/
