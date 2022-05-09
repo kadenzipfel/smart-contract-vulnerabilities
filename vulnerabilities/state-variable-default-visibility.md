@@ -5,4 +5,4 @@ It's common for developers to explicitly declare function visibility, but not so
 ### Sources
 
 - https://swcregistry.io/docs/SWC-108
-- https://consensys.github.io/smart-contract-best-practices/recommendations/#explicitly-mark-visibility-in-functions-and-state-variables
+- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/visibility/
