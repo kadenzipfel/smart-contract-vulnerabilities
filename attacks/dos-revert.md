@@ -68,10 +68,10 @@ contract auction {
 ```
 
 
-Examples from: https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-unexpected-revert
-https://consensys.github.io/smart-contract-best-practices/recommendations/#favor-pull-over-push-for-external-calls
+Examples from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
+https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-unexpected-revert
-- https://consensys.github.io/smart-contract-best-practices/recommendations/#favor-pull-over-push-for-external-calls
+- https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
+- https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
