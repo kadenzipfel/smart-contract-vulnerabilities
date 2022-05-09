@@ -52,5 +52,5 @@ Examples from: https://solidity.readthedocs.io/en/develop/security-consideration
 
 - https://swcregistry.io/docs/SWC-115
 - https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin
-- https://consensys.github.io/smart-contract-best-practices/recommendations/#avoid-using-txorigin
+- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/
 - https://github.com/sigp/solidity-security-blog#tx-origin
