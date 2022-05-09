@@ -9,4 +9,4 @@ In the case that you use low-level calls, be sure to check the return value to h
 ### Sources
 
 - https://swcregistry.io/docs/SWC-104
-- https://consensys.github.io/smart-contract-best-practices/recommendations/#handle-errors-in-external-calls
+- https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
