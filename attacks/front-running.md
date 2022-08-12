@@ -11,5 +11,5 @@ Since the solution to this problem varies on a per contract basis, it can be har
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/known_attacks/#front-running-aka-transaction-ordering-dependence
+- https://consensys.github.io/smart-contract-best-practices/attacks/frontrunning/
 - https://users.encs.concordia.ca/~clark/papers/2019_wtsc_front.pdf

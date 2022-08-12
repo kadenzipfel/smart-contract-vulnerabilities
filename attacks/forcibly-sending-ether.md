@@ -21,7 +21,7 @@ The first method is to call the `selfdestruct` method on a contract with the Vul
 
 Another method is to precompute a contract's address and send Ether to the address before the contract is even deployed. Surprisingly enough, this is possible.
 
-Example from: https://consensys.github.io/smart-contract-best-practices/known_attacks/#forcibly-sending-ether-to-a-contract
+Example from: https://consensys.github.io/smart-contract-best-practices/attacks/force-feeding/
 
 ### Sources
-- https://consensys.github.io/smart-contract-best-practices/known_attacks/#forcibly-sending-ether-to-a-contract
+- https://consensys.github.io/smart-contract-best-practices/attacks/force-feeding/
