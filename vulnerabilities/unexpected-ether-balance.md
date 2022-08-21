@@ -1,6 +1,6 @@
 ## Unexpected Ether Balance
 
-Since it is always possible to send Ether to a contract, see [Forcibly Sending Ether to a Smart Contract](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/forcibly-sending-ether.md), if a contract assumes a specific balance, it is vulnerable to attack. 
+Since it is always possible to send Ether to a contract, see [Forcibly Sending Ether to a Smart Contract](/attacks/forcibly-sending-ether.md), if a contract assumes a specific balance, it is vulnerable to attack.
 
 Say we have a contract that prevents all functions from executing if there is any Ether stored in the contract. If a malicious user decides to exploit this by forcibly sending Ether, they will cause a DoS, rendering the contract unusable. For this reason, it's important to never use strict equality checks for the balance of Ether in a contract.
 
