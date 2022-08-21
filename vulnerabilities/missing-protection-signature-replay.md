@@ -6,7 +6,7 @@ To be extra safe with signature verification, follow these recommendations:
 
 - Store every message hash processed by the contract, then check messages hashes against the existing ones before executing the function.
 - Include the address of the contract in the hash to ensure that the message is only used in a single contract.
-- Never generate the message hash including the signature. See [Signature Malleability](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks-and-vulnerabilites/signature-malleability.md)
+- Never generate the message hash including the signature. See [Signature Malleability](/vulnerabilities/signature-malleability.md)
 
 ### Sources
 
