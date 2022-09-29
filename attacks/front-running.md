@@ -1,6 +1,6 @@
 ## Front-Running AKA Transaction-Ordering Dependence
 
-The University of Concordia considers front-running to be, "a course of action where an entity benefits from prior access to privileged market information about upcoming transactions and trades." This knowledge of future events in a market can lead to exploitation.
+Front-running is, "a course of action where an entity benefits from prior access to privileged market information about upcoming transactions and trades." This knowledge of future events in a market can lead to exploitation.
 
 For example, knowing that a very large purchase of a specific token is going to occur, a bad actor can purchase that token in advance, and sell the token for a profit when the oversized buy order increases the price.
 
