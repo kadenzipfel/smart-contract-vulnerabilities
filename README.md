@@ -4,7 +4,6 @@ The goal of this repository is to create the most clear and concise collection o
 
 ## Attacks
 
-- [Front-Running AKA Transaction-Ordering Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/front-running.md)
 - [DoS with Block Gas Limit](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/dos-gas-limit.md)
 - [DoS with (Unexpected) revert](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/dos-revert.md)
 - [Forcibly Sending Ether to a Smart Contract](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/attacks/forcibly-sending-ether.md)
@@ -45,6 +44,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Inadherence to Standards](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/inadherence-to-standards.md)
 - [Unprotected Callback](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/unprotected-callback.md)
 - [Asserting EOA from Code Size](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/asserting-eoa-from-code-size.md)
+- [Transaction Ordering Dependence](https://github.com/KadenZipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/transaction-ordering-dependence.md)
 
 ## Further Reading
 
