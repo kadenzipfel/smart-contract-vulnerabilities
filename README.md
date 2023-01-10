@@ -2,15 +2,9 @@
 
 The goal of this repository is to create the most clear and concise collection of smart contract attack vectors, to improve overall ecosystem security.
 
-## Attacks
-
-- [Forcibly Sending Ether to a Smart Contract](/attacks/forcibly-sending-ether.md)
-- [Insufficient Gas Griefing](/attacks/insufficient-gas-griefing.md)
-- [Reentrancy](/attacks/reentrancy.md)
-- [Honeypot](/attacks/honeypot.md)
-
-## Vulnerabilities
-
+- [Forcibly Sending Ether to a Smart Contract](/vulnerabilities/forcibly-sending-ether.md)
+- [Insufficient Gas Griefing](/vulnerabilities/insufficient-gas-griefing.md)
+- [Reentrancy](/vulnerabilities/reentrancy.md)
 - [Integer Overflow and Underflow](/vulnerabilities/overflow-underflow.md)
 - [Timestamp Dependence](/vulnerabilities/timestamp-dependence.md)
 - [Authorization Through tx.origin](/vulnerabilities/authorization-txorigin.md)
