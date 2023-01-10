@@ -4,7 +4,6 @@ The goal of this repository is to create the most clear and concise collection o
 
 ## Attacks
 
-- [DoS with (Unexpected) revert](/attacks/dos-revert.md)
 - [Forcibly Sending Ether to a Smart Contract](/attacks/forcibly-sending-ether.md)
 - [Insufficient Gas Griefing](/attacks/insufficient-gas-griefing.md)
 - [Reentrancy](/attacks/reentrancy.md)
@@ -45,6 +44,7 @@ The goal of this repository is to create the most clear and concise collection o
 - [Asserting EOA from Code Size](/vulnerabilities/asserting-eoa-from-code-size.md)
 - [Transaction-Ordering Dependence](/vulnerabilities/transaction-ordering-dependence.md)
 - [DoS with Block Gas Limit](/vulnerabilities/dos-gas-limit.md)
+- [DoS with (Unexpected) revert](/vulnerabilities/dos-revert.md)
 
 ## Further Reading
 

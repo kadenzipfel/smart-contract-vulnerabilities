@@ -39,7 +39,7 @@ function refundAll() public {
 }
 ```
 
-An effective solution to this problem would be to use a pull payment system over the current push payment system. To do this, separate each payment into it's own transaction, and have the recipient call the function.
+An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into it's own transaction, and have the recipient call the function.
 
 ```
 contract auction {
