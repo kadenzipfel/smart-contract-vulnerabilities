@@ -7,4 +7,4 @@ The exception in which it is acceptable to use a floating pragma, is in the case
 ### Sources
 
 - https://swcregistry.io/docs/SWC-103
-- https://consensys.github.io/smart-contract-best-practices/recommendations/#lock-pragmas-to-specific-compiler-version
+- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/locking-pragmas/

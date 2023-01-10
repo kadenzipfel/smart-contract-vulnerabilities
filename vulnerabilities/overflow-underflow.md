@@ -11,9 +11,8 @@ Overflow and underflow bugs can occur when you exceed the maximum value (overflo
 
 Since smaller integer types like: `uint8`, `uint16`, etc. have smaller maximum values, it can be easier to cause an overflow, thus they should be used with greater caution.
 
-Likely the best available solution to overflow and underflow bugs is to use the [OpenZeppelin SafeMath library](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol) when performing mathematical operations.
-
+Likely the best available solution to overflow and underflow bugs is to use the [OpenZeppelin SafeMath library](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol) when performing mathematical operations.
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/known_attacks/#integer-overflow-and-underflow
+- https://consensys.github.io/smart-contract-best-practices/attacks/insecure-arithmetic/
