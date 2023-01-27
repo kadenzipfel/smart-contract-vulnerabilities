@@ -48,6 +48,25 @@
 - https://github.com/sigp/solidity-security-blog
 - https://solidity.readthedocs.io/en/latest/bugs.html
 
+## Smart Contract Security Audit Reports
+- [Chainsulting](https://github.com/chainsulting/Smart-Contract-Security-Audits)
+- [Code4rena Audit Reports](https://code4rena.com/reports)
+- [Consensys Audit Reports](https://consensys.net/diligence/audits/)
+- [QuillAudits Audit Reports](https://github.com/Quillhash/QuillAudit_Reports)
+- [Spearbit Audit Reports](https://github.com/spearbit/portfolio/tree/master/pdfs)
+- [iskdrews](https://github.com/iskdrews/awesome-solidity-security)
+- [Sherlock](https://github.com/sherlock-protocol/sherlock-reports)
+- [Avastars Smart Contract Audit Public Report](https://github.com/nicholashc/AvastarsAudit/)
+- [KubixSquare audit](https://github.com/KubixSquare/AuditReports)
+- [lemonade-audits](https://github.com/jigstack-dev/lemonade-audits)
+- [Techrate](https://github.com/TechRate/Smart-Contract-Audits)
+- [interfinetwork](https://github.com/interfinetwork/smart-contract-audits)
+- [Decentraland audit](https://github.com/decentraland/smart-contract-audits)
+- [Tech-Audit](https://github.com/Tech-Audit/Smart-Contract-Audits)
+- [Sifchain](https://drive.google.com/drive/folders/1kkjdpNuRmTjaiIKA6CQISavCvj4Awpbc)
+- [Complete List of Security Audit Reports](https://github.com/0xNazgul/Blockchain-Security-Audit-List)
+
+
 ## Contributions
 
 Submit a PR!
