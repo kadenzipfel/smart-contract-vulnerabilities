@@ -1,5 +1,9 @@
 ## DoS with (Unexpected) revert
 
+A DoS (Denial of Service) may be caused when logic is unable to be executed as a result of an unexpected revert. This can happen for a number of reasons and it's important to consider all the ways in which your logic may revert. The examples listed below are *non-exhaustive*.
+
+### Reverting funds transfer
+
 DoS (Denial of Service) attacks can occur in functions when you try to send funds to a user and the functionality relies on that fund transfer being successful. 
 
 This can be problematic in the case that the funds are sent to a smart contract created by a bad actor, since they can simply create a fallback function that reverts all payments. 
@@ -70,6 +74,18 @@ contract auction {
 
 Examples from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
 https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
+
+### Over/Underflow
+
+Prior to SafeMath usage, whether built-in in solidity >=0.8.0 or using a library, [over/underflows](./overflow-underflow.md) would result in rolling over to the minimum/maxium value. Now that checked math is commonplace, it's important to recognize that the effect of checked under/overflows is a revert, which may DoS important logic. 
+
+Regardless of usage of checked math, it's necessary to ensure that any valid input will not result in an over/underflow. Take extra care when working with smaller integers e.g. `int8`/`uint8`, `int16`/`uint16`, `int24`/`uint24`, etc..
+
+### Unexpected Balance
+
+It's important to take caution in enforcing expected contract balances of tokens or Ether as those balances may be increased by an attacker to cause an unexpected revert. This is easily possible with ERC20 tokens by simply `transfer`ring to the contract, but is also possible with Ether by [Forcibly sending Ether to a contract](./forcibly-sending-ether.md).
+
+Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert. 
 
 ### Sources
 
