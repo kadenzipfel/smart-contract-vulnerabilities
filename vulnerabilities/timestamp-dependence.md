@@ -1,6 +1,8 @@
 ## Timestamp Dependence
 
-The timestamp of a block, accessed by `now` or `block.timestamp` can be manipulated by a miner. There are three considerations you should take into account when using a timestamp to execute a contract function.
+**NOTE: This vulnerability no longer affects Ethereum mainnet as of the Proof of Stake merge. [Read more](https://ethereum.stackexchange.com/a/140818)**
+
+The timestamp of a block, accessed by `block.timestamp` or alias `now` can be manipulated by a miner. There are three considerations you should take into account when using a timestamp to execute a contract function.
 
 ### Timestamp Manipulation
 
@@ -8,7 +10,7 @@ If a timestamp is used in an attempt to generate randomness, a miner can post a 
 
 For example, a lottery application may use the block timestamp to pick a random bidder in a group. A miner may enter the lottery then modify the timestamp to a value that gives them better odds at winning the lottery.
 
-Timestamps should thus not be used to create randomness. See [Weak Sources of Randomness for Chain Attributes](./weak-sources-randomness.md).
+Timestamps should thus not be used to create randomness. See [Weak Sources of Randomness for Chain Attributes](weak-sources-randomness.md).
 
 ### The 15-second Rule
 
