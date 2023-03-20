@@ -1,8 +1,6 @@
- ## Insufficient Gas Griefing
+## Insufficient Gas Griefing
 
-Griefing is a type of attack often performed in video games, where a malicious user plays a game in an unintended way to bother other players, also known as trolling. This type of attack is also used to prevent transactions from being performed as intended.
-
-This attack can be done on contracts which accept data and use it in a sub-call on another contract. This method is often used in multisignature wallets as well as transaction relayers. If the sub-call fails, either the whole transaction is reverted, or execution is continued.
+Insufficient gas griefing can be done on contracts which accept data and use it in a sub-call on another contract. This method is often used in multisignature wallets as well as transaction relayers. If the sub-call fails, either the whole transaction is reverted, or execution is continued.
 
 Let's consider a simple relayer contract as an example. As shown below, the relayer contract allows someone to make and sign a transaction, without having to execute the transaction. Often this is used when a user can't pay for the gas associated with the transaction.
 
