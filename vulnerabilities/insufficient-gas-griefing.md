@@ -1,4 +1,4 @@
-## Insufficient Gas Griefing
+ ## Insufficient Gas Griefing
 
 Griefing is a type of attack often performed in video games, where a malicious user plays a game in an unintended way to bother other players, also known as trolling. This type of attack is also used to prevent transactions from being performed as intended.
 
