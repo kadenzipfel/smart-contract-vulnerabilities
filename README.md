@@ -35,6 +35,7 @@
 - [Transaction-Ordering Dependence](/vulnerabilities/transaction-ordering-dependence.md)
 - [DoS with Block Gas Limit](/vulnerabilities/dos-gas-limit.md)
 - [DoS with (Unexpected) revert](/vulnerabilities/dos-revert.md)
+- [Unexpected `ecrecover` null address](./vulnerabilities/unexpected-ecrecover-null-address.md)
 
 ## Further Reading
 
