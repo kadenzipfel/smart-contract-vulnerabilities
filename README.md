@@ -23,7 +23,6 @@
 - [Requirement Validation](/vulnerabilities/requirement-violation.md)
 - [Write to Arbitrary Storage Location](/vulnerabilities/arbitrary-storage-location.md)
 - [Incorrect Inheritance Order](/vulnerabilities/incorrect-inheritance-order.md)
-- [Arbitrary Jump with Function Type Variable](/vulnerabilities/arbitrary-jump-function-type.md)
 - [Presence of Unused Variables](/vulnerabilities/unused-variables.md)
 - [Unencrypted Secrets](/vulnerabilities/unencrypted-secrets.md)
 - [Inadherence to Standards](/vulnerabilities/inadherence-to-standards.md)
