@@ -4,6 +4,8 @@ Only authorized addresses should have access to write to sensitive storage locat
 
 To prevent this from occuring, we not only want to protect sensitive data stores with authorization requirements, but we also want to ensure that writes to one data structure cannot inadvertently overwrite entries of another data structure.
 
+For an example, try [Ethernaut - Alien Codex](https://ethernaut.openzeppelin.com/level/19). If it's too hard, see [this walkthrough (SPOILER)](https://github.com/theNvN/ethernaut-openzeppelin-hacks/blob/main/level_19_Alien-Codex.md).
+
 ### Sources
 
 - https://swcregistry.io/docs/SWC-124
