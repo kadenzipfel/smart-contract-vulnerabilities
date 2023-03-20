@@ -36,6 +36,7 @@ Some examples:
 Note that the curves are always symmetrical about the x-axis
 
 The curve used by Ethereum is secp256k1, which looks like:
+
 ![secp256k1](./img/secp256k1.png)
 
 Now that we understand the basics of elliptic curve cryptography, we can dig into how signature malleability actually works on Ethereum. 
