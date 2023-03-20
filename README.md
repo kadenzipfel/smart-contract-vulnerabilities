@@ -7,12 +7,10 @@
 - [Timestamp Dependence](/vulnerabilities/timestamp-dependence.md)
 - [Authorization Through tx.origin](/vulnerabilities/authorization-txorigin.md)
 - [Floating Pragma](/vulnerabilities/floating-pragma.md)
-- [Function Default Visibility](/vulnerabilities/function-default-visibility.md)
 - [Outdated Compiler Version](/vulnerabilities/outdated-compiler-version.md)
 - [Unchecked Call Return Value](/vulnerabilities/unchecked-call-return-value.md)
 - [Unprotected Ether Withdrawal](/vulnerabilities/unprotected-ether-withdrawal.md)
 - [Unprotected Selfdestruct Instruction](/vulnerabilities/unprotected-selfdestruct.md)
-- [State Variable Default Visibility](/vulnerabilities/state-variable-default-visibility.md)
 - [Uninitialized Storage Pointer](/vulnerabilities/uninitialized-storage-pointer.md)
 - [Assert Violation](/vulnerabilities/assert-violation.md)
 - [Use of Deprecated Functions](/vulnerabilities/use-of-deprecated-functions.md)
@@ -36,6 +34,7 @@
 - [DoS with Block Gas Limit](/vulnerabilities/dos-gas-limit.md)
 - [DoS with (Unexpected) revert](/vulnerabilities/dos-revert.md)
 - [Unexpected `ecrecover` null address](./vulnerabilities/unexpected-ecrecover-null-address.md)
+- [Default Visibility](./vulnerabilities/default-visibility.md)
 
 ## Further Reading
 
