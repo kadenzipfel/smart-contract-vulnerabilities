@@ -26,7 +26,6 @@
 - [Arbitrary Jump with Function Type Variable](/vulnerabilities/arbitrary-jump-function-type.md)
 - [Presence of Unused Variables](/vulnerabilities/unused-variables.md)
 - [Unencrypted Secrets](/vulnerabilities/unencrypted-secrets.md)
-- [Faulty Contract Detection](/vulnerabilities/faulty-contract-detection.md)
 - [Inadherence to Standards](/vulnerabilities/inadherence-to-standards.md)
 - [Unprotected Callback](/vulnerabilities/unprotected-callback.md)
 - [Asserting EOA from Code Size](/vulnerabilities/asserting-eoa-from-code-size.md)
