@@ -1,6 +1,6 @@
 ## Reentrancy
 
-Reentrancy is an attack that can occur when a bug in a contract function can allow a function interaction to proceed multiple times when it should otherwise be prohibited. This can be used to drain funds from a smart contract if used maliciously. In fact, reentrancy was the attack vector used in the DAO hack.
+Reentrancy is an attack that can occur when a bug in a contract may allow a malicious contract to reenter the contract unexpectedly during execution of the original function. This can be used to drain funds from a smart contract if used maliciously. In fact, reentrancy was the attack vector used in the DAO hack.
 
 ### Single function reentrancy
 
@@ -10,7 +10,8 @@ A single function reentrancy attack occurs when a vulnerable function is the sam
 // INSECURE
 function withdraw() external {
     uint256 amount = balances[msg.sender];
-    require(msg.sender.call.value(amount)());
+    (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
+    require(success);
     balances[msg.sender] = 0;
 }
 ```
@@ -32,7 +33,8 @@ function transfer(address to, uint amount) external {
 
 function withdraw() external {
   uint256 amount = balances[msg.sender];
-  require(msg.sender.call.value(amount)());
+  (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
+  require(success);
   balances[msg.sender] = 0;
 }
 ```
@@ -41,17 +43,7 @@ In this example, a hacker can exploit this contract by having a fallback functio
 
 ### Reentrancy prevention
 
-When transfering funds in a smart contract, use `send` or `transfer` instead of `call`. The problem with using `call` is that unlike the other functions, it doesn't have a gas limit of 2300. This means that `call` can be used in external function calls which can be used to perform reentrancy attacks.
-
-Another solid prevention method is to **mark untrusted functions**. 
-
-```
-function untrustedWithdraw() public {
-  uint256 amount = balances[msg.sender];
-  require(msg.sender.call.value(amount)());
-  balances[msg.sender] = 0;
-}
-```
+The simplest reentrancy prevention mechanism is to use a [`ReentrancyGuard`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol), which allows you to add a modifier, e.g. `nonReentrant`, to functions which may otherwise be vulnerable.
 
 In addition, for optimum security use the **checks-effects-interactions pattern**. This is a simple rule of thumb for ordering smart contract functions.
 
@@ -61,13 +53,14 @@ Next, the *effects* of the contract should be performed, i.e. state modification
 
 Finally, we can perform *interactions* with other smart contracts, e.g. external function calls.
 
-This structure is effective against reentrancy because the modified state of the contract will prevent bad actors from performing malicious interactions.
+This structure is effective against reentrancy because when an attacker reenters the function, the state changes have already been made. For example:
 
 ```
 function withdraw() external {
   uint256 amount = balances[msg.sender];
   balances[msg.sender] = 0;
-  require(msg.sender.call.value(amount)());
+  (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
+  require(success);
 }
 ```
 
