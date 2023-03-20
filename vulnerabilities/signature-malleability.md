@@ -30,6 +30,7 @@ where
 $4a^3 + 27b^2 \not= 0$ (to avoid singular points)
 
 Some examples:
+
 ![Elliptic Curves](./img/elliptic-curves.png)
 
 Note that the curves are always symmetrical about the x-axis
