@@ -30,12 +30,12 @@ where
 $4a^3 + 27b^2 \not= 0$ (to avoid singular points)
 
 Some examples:
-![[./img/elliptic-curves.png]]
+![Elliptic Curves](./img/elliptic-curves.png)
 
 Note that the curves are always symmetrical about the x-axis
 
 The curve used by Ethereum is secp256k1, which looks like:
-![[./img/secp256k1.png]]
+![secp256k1](./img/secp256k1.png)
 
 Now that we understand the basics of elliptic curve cryptography, we can dig into how signature malleability actually works on Ethereum. 
 
