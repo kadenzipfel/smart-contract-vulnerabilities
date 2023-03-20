@@ -7,7 +7,7 @@ Reentrancy is an attack that can occur when a bug in a contract may allow a mali
 A single function reentrancy attack occurs when a vulnerable function is the same function that an attacker is trying to recursively call.
 
 ```
-// INSECURE
+// UNSECURE
 function withdraw() external {
     uint256 amount = balances[msg.sender];
     (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
@@ -23,7 +23,7 @@ Here we can see that the balance is only modified after the funds have been tran
 A cross-function reentrancy attack is a more complex version of the same process. Cross-function reentrancy occurs when a vulnerable function shares state with a function that an attacker can exploit.
 
 ```
-// INSECURE
+// UNSECURE
 function transfer(address to, uint amount) external {
   if (balances[msg.sender] >= amount) {
     balances[to] += amount;
@@ -41,11 +41,40 @@ function withdraw() external {
 
 In this example, a hacker can exploit this contract by having a fallback function call `transfer()` to transfer spent funds before the balance is set to 0 in the `withdraw()` function.
 
+### Read-only Reentrancy
+
+Read-only reentrancy is a novel attack vector in which instead of reentering into the same contract in which state changes have yet to be made, an attacker reenters into another contract which reads from the state of the original contract.
+
+```
+// UNSECURE
+contract A {
+	// Has a reentrancy guard to prevent reentrancy
+	// but makes state change only after external call to sender
+	function withdraw() external nonReentrant {
+		uint256 amount = balances[msg.sender];
+		(bool success,) = msg.sender.call{value: balances[msg.sender]}("");
+		require(success);
+		balances[msg.sender] = 0;
+	}
+}
+
+contract B {
+	// Allows sender to claim equivalent B tokens for A tokens they hold
+	function claim() external nonReentrant {
+		require(!claimed[msg.sender]);
+		balances[msg.sender] = A.balances[msg.sender];
+		claimed[msg.sender] = true;
+	}
+}
+```
+
+As we can see in the above example, although both functions have a nonReentrant modifier, it is still possible for an attacker to call `B.claim` during the callback in `A.withdraw`, and since the attackers balance was not yet updated, execution succeeds.
+
 ### Reentrancy prevention
 
-The simplest reentrancy prevention mechanism is to use a [`ReentrancyGuard`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol), which allows you to add a modifier, e.g. `nonReentrant`, to functions which may otherwise be vulnerable.
+The simplest reentrancy prevention mechanism is to use a [`ReentrancyGuard`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol), which allows you to add a modifier, e.g. `nonReentrant`, to functions which may otherwise be vulnerable. Although effective against most forms of reentrancy, it's important to understand how read-only reentrancy may be used to get around this and to always use the **checks-effects-interactions pattern**.
 
-In addition, for optimum security use the **checks-effects-interactions pattern**. This is a simple rule of thumb for ordering smart contract functions.
+For optimum security, use the **checks-effects-interactions pattern**. This is a simple rule of thumb for ordering smart contract functions.
 
 The function should begin with *checks*, e.g. `require` and `assert` statements.
 
