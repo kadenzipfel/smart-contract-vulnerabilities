@@ -10,7 +10,7 @@ Take for example binance's original BNB token. It was marketed as an ERC20 token
 
 The main cause for concern with this improper implementation is that if it is used with a smart contract that expects an ERC-20 token, it will behave in unexpected ways. It could even get locked in the contract forever. 
 
-Although standards aren't always perfect, and may someday become antiquated, they foster the most secure smart contracts.
+Although standards aren't always perfect, and may someday become antiquated, they foster proper expectations to provide for secure smart contracts.
 
 Suggested by: [RobertMCForster](https://github.com/RobertMCForster)
 
