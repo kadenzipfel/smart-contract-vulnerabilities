@@ -1,6 +1,12 @@
 ## Unprotected Callback
 
-When writing or interacting with callback functions in solidity, it's important to ensure that they can't be used to perform unexpected effects.
+External calls allow the contract being called to execute arbitrary code. This can be used by attackers for things like [reentrancy](./reentrancy.md). It's important to identify any sources of external calls in your smart contract logic and ensure that they can't be used maliciously. Avoid external calls to untrusted callees, and if necessary ensure usage of [reentrancy protection mechanisms](./reentrancy.md#reentrancy-prevention)
+
+### ETH Transfers
+
+When Ether is transferred to a contract address, it will trigger the `receive` or `fallback` function, as implemented in the contract. An attacker can write any arbitrary logic into the `fallback` method, such that anytime the contract receives a transfer, that logic is executed. 
+
+### safeMint
 
 Take for example OpenZeppelin's `ERC721._safeMint` function:
 
