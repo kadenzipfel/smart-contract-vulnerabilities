@@ -9,8 +9,6 @@
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
 - [Unchecked Call Return Value](./vulnerabilities/unchecked-call-return-value.md)
-- [Unprotected Ether Withdrawal](./vulnerabilities/unprotected-ether-withdrawal.md)
-- [Unprotected Selfdestruct Instruction](./vulnerabilities/unprotected-selfdestruct.md)
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
 - [Assert Violation](./vulnerabilities/assert-violation.md)
 - [Use of Deprecated Functions](./vulnerabilities/use-of-deprecated-functions.md)
@@ -32,6 +30,7 @@
 - [DoS with (Unexpected) revert](./vulnerabilities/dos-revert.md)
 - [Unexpected `ecrecover` null address](../vulnerabilities/unexpected-ecrecover-null-address.md)
 - [Default Visibility](../vulnerabilities/default-visibility.md)
+- [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
 
 ## Further Reading
 
