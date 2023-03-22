@@ -24,7 +24,7 @@
 - [Write to Arbitrary Storage Location](./vulnerabilities/arbitrary-storage-location.md)
 - [Incorrect Inheritance Order](./vulnerabilities/incorrect-inheritance-order.md)
 - [Presence of Unused Variables](./vulnerabilities/unused-variables.md)
-- [Unencrypted Secrets](./vulnerabilities/unencrypted-secrets.md)
+- [Unencrypted Private Data On-Chain](./vulnerabilities/unencrypted-private-data-on-chain.md)
 - [Inadherence to Standards](./vulnerabilities/inadherence-to-standards.md)
 - [Asserting EOA from Code Size](./vulnerabilities/asserting-eoa-from-code-size.md)
 - [Transaction-Ordering Dependence](./vulnerabilities/transaction-ordering-dependence.md)
