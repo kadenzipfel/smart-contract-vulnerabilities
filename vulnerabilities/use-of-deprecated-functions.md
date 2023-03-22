@@ -1,8 +1,8 @@
 ## Use of Deprecated Functions
 
-As time goes by, functions in Solidity are deprecated and often replaced with better functions. It's important to not use deprecated functions, as it can lead to unexpected effects and compilation errors.
+As time goes by, functions and operators in Solidity are deprecated and often replaced. It's important to not use deprecated functions, as it can lead to unexpected effects and compilation errors.
 
-Here is a list of deprecated functions and alternatives. Many alternatives are simply aliases, and won't break current behaviour if used as a replacement for its deprecated counterpart.
+Here is a *non-exhaustive* list of deprecated functions and alternatives. Many alternatives are simply aliases, and won't break current behaviour if used as a replacement for its deprecated counterpart.
 
 | Deprecated              | Alternatives              |
 | :---------------------- | ------------------------: |
