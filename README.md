@@ -31,6 +31,7 @@
 - [Unexpected `ecrecover` null address](../vulnerabilities/unexpected-ecrecover-null-address.md)
 - [Default Visibility](../vulnerabilities/default-visibility.md)
 - [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
+- [Off-By-One](./vulnerabilities/off-by-one.md)
 
 ## Further Reading
 
