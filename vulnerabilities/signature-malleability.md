@@ -3,13 +3,11 @@
 It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, in some cases it is possible to modify the signature and maintain validity. One example of a system which can allow for a signature to be modified and remain valid is one in which the signature is included in a signed message hash which is used to prevent replays, e.g.
 
 ```
-// UNSECURE
-bytes32 txid = keccak256(abi.encodePacked(getTransferHash(_to, _value, _gasPrice, _nonce), _signature));
+// UNSECURE - Includes signature in signed message hash
+bytes32 txid = keccak256(abi.encodePacked(keccak256(abi.encodePacked(_to, _value, _gasPrice, _nonce)), _signature));
 require(!signatureUsed[txid]);
 
-address from = recoverTransferPreSigned(_signature, _to, _value, _gasPrice, _nonce);
-
-// Modify important state of signing account
+// Retrieve and modify important state of signing account
 ...
 
 signatureUsed[txid] = true;
@@ -51,12 +49,10 @@ To avoid this issue, it's imperative that signatures are not included in a signe
 
 ```
 // No longer includes signature
-bytes32 txid = getTransferHash(_to, _value, _gasPrice, _nonce);
+bytes32 txid = keccak256(abi.encodePacked(_to, _value, _gasPrice, _nonce));
 require(!signatureUsed[txid]);
 
-address from = recoverTransferPreSigned(_signature, _to, _value, _gasPrice, _nonce);
-
-// Modify important state of signing account
+// Retrieve and modify important state of signing account
 ...
 
 signatureUsed[txid] = true;
