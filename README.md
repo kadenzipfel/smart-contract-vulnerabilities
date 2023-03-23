@@ -32,6 +32,7 @@
 - [Default Visibility](../vulnerabilities/default-visibility.md)
 - [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
 - [Off-By-One](./vulnerabilities/off-by-one.md)
+- [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 
 ## Further Reading
 
