@@ -1,4 +1,4 @@
-## Asserting EOA from Code Size
+## Asserting contract from Code Size
 
 A common method for asserting whether a sender is a contract or EOA has been to check the code size of the sender. This check asserts that if the sender has a code size > 0 that it must be a contract and if not then it must be an EOA. For example:
 
