@@ -8,7 +8,7 @@
 - [Authorization Through tx.origin](./vulnerabilities/authorization-txorigin.md)
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
-- [Unchecked Call Return Value](./vulnerabilities/unchecked-call-return-value.md)
+- [Unsafe Low-Level Call](./vulnerabilities/unsafe-low-level-call.md)
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
 - [Assert Violation](./vulnerabilities/assert-violation.md)
 - [Use of Deprecated Functions](./vulnerabilities/use-of-deprecated-functions.md)
