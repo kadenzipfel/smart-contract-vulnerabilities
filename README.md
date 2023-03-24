@@ -24,7 +24,7 @@
 - [Presence of Unused Variables](./vulnerabilities/unused-variables.md)
 - [Unencrypted Private Data On-Chain](./vulnerabilities/unencrypted-private-data-on-chain.md)
 - [Inadherence to Standards](./vulnerabilities/inadherence-to-standards.md)
-- [Asserting Contract from Code Size](asserting-contract-from-code-size.md)
+- [Asserting Contract from Code Size](./asserting-contract-from-code-size.md)
 - [Transaction-Ordering Dependence](./vulnerabilities/transaction-ordering-dependence.md)
 - [DoS with Block Gas Limit](./vulnerabilities/dos-gas-limit.md)
 - [DoS with (Unexpected) revert](./vulnerabilities/dos-revert.md)
