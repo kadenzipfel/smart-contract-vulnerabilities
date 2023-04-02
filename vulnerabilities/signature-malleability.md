@@ -1,19 +1,18 @@
 ## Signature Malleability
 
-It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, in some cases it is possible to modify the signature and maintain validity. One example of a system which can allow for a signature to be modified and remain valid is one in which the signature is included in a signed message hash which is used to prevent replays, e.g.
+It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, it is possible to modify and signature and maintain validity. One example of a system which is vulnerable to signature malleability is one in which validation as to whether an action can be executed is determined based on whether the signature has been previously used.
 
 ```
-// UNSECURE - Includes signature in signed message hash
-bytes32 txid = keccak256(abi.encodePacked(keccak256(abi.encodePacked(_to, _value, _gasPrice, _nonce)), _signature));
-require(!signatureUsed[txid]);
+// UNSECURE
+require(!signatureUsed[signature]);
 
-// Retrieve and modify important state of signing account
+// Validate signer and perform state modifying logic
 ...
 
-signatureUsed[txid] = true;
+signatureUsed[signature] = true;
 ```
 
-In the above example, we can see that the `txid` is saved in a `signatureUsed` mapping after execution and validated to not exist in that mapping before execution. The problem with this is that if the resulting `txid` can be modified while maintaining valid inputs and a valid signature, the transaction can be repeated by an attacker.
+In the above example, we can see that the `signature` is saved in a `signatureUsed` mapping after execution and validated to not exist in that mapping before execution. The problem with this is that if the `signature` can be modified while maintaining valididty, the transaction can be repeated by an attacker.
 
 ### How it works
 
@@ -41,22 +40,12 @@ Now that we understand the basics of elliptic curve cryptography, we can dig int
 
 Ethereum uses [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as it's signature scheme. ECDSA signatures consist of a pair of numbers, $(r, s)$, with an integer order $n$. As a result of the x-axis symmetry, if $(r, s)$ is a valid signature, then so is $(r, -s$ mod $n)$. 
 
-It's possible to calculate this complementary signature without knowing the private key used to produce it in the first place, which gives an attacker the ability to produce a second valid signature, resulting in a different `txid`.
+It's possible to calculate this complementary signature without knowing the private key used to produce it in the first place, which gives an attacker the ability to produce a second valid signature.
 
 ### Mitigation
 
-To avoid this issue, it's imperative that signatures are not included in a signed message hash used to enforce that the signature is not replayed.
+To avoid this issue, it's imperative to recognize that validating that a signature is not reused is insufficient in enforcing that the transaction is not replayed.
 
-```
-// No longer includes signature
-bytes32 txid = keccak256(abi.encodePacked(_to, _value, _gasPrice, _nonce));
-require(!signatureUsed[txid]);
-
-// Retrieve and modify important state of signing account
-...
-
-signatureUsed[txid] = true;
-```
 
 ### Sources
 
