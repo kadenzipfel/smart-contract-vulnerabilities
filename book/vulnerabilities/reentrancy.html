@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Reentrancy - Smart Contract Vulnerabilities</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../vulnerabilities/forcibly-sending-ether.html"><strong aria-hidden="true">1.</strong> Forcibly Sending Ether to a Smart Contract</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/insufficient-gas-griefing.html"><strong aria-hidden="true">2.</strong> Insufficient Gas Griefing</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/reentrancy.html" class="active"><strong aria-hidden="true">3.</strong> Reentrancy</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/overflow-underflow.html"><strong aria-hidden="true">4.</strong> Integer Overflow and Underflow</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/timestamp-dependence.html"><strong aria-hidden="true">5.</strong> Timestamp Dependence</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/authorization-txorigin.html"><strong aria-hidden="true">6.</strong> Authorization Through tx.origin</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/floating-pragma.html"><strong aria-hidden="true">7.</strong> Floating Pragma</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/outdated-compiler-version.html"><strong aria-hidden="true">8.</strong> Outdated Compiler Version</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/unsafe-low-level-call.html"><strong aria-hidden="true">9.</strong> Unsafe Low-Level Call</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/uninitialized-storage-pointer.html"><strong aria-hidden="true">10.</strong> Uninitialized Storage Pointer</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/assert-violation.html"><strong aria-hidden="true">11.</strong> Assert Violation</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/use-of-deprecated-functions.html"><strong aria-hidden="true">12.</strong> Use of Deprecated Functions</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/delegatecall-untrusted-callee.html"><strong aria-hidden="true">13.</strong> Delegatecall to Untrusted Callee</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/signature-malleability.html"><strong aria-hidden="true">14.</strong> Signature Malleability</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/incorrect-constructor.html"><strong aria-hidden="true">15.</strong> Incorrect Constructor Name</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/shadowing-state-variables.html"><strong aria-hidden="true">16.</strong> Shadowing State Variables</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/weak-sources-randomness.html"><strong aria-hidden="true">17.</strong> Weak Sources of Randomness from Chain Attributes</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/missing-protection-signature-replay.html"><strong aria-hidden="true">18.</strong> Missing Protection against Signature Replay Attacks</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/requirement-violation.html"><strong aria-hidden="true">19.</strong> Requirement Validation</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/arbitrary-storage-location.html"><strong aria-hidden="true">20.</strong> Write to Arbitrary Storage Location</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/incorrect-inheritance-order.html"><strong aria-hidden="true">21.</strong> Incorrect Inheritance Order</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/unused-variables.html"><strong aria-hidden="true">22.</strong> Presence of Unused Variables</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/unencrypted-private-data-on-chain.html"><strong aria-hidden="true">23.</strong> Unencrypted Private Data On-Chain</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/inadherence-to-standards.html"><strong aria-hidden="true">24.</strong> Inadherence to Standards</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/asserting-contract-from-code-size.html"><strong aria-hidden="true">25.</strong> Asserting Contract from Code Size</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/transaction-ordering-dependence.html"><strong aria-hidden="true">26.</strong> Transaction-Ordering Dependence</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/dos-gas-limit.html"><strong aria-hidden="true">27.</strong> DoS with Block Gas Limit</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/dos-revert.html"><strong aria-hidden="true">28.</strong> DoS with (Unexpected) revert</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/unexpected-ecrecover-null-address.html"><strong aria-hidden="true">29.</strong> Unexpected ecrecover null address</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/default-visibility.html"><strong aria-hidden="true">30.</strong> Default Visibility</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/insufficient-access-control.html"><strong aria-hidden="true">31.</strong> Insufficient Access Control</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/off-by-one.html"><strong aria-hidden="true">32.</strong> Off-By-One</a></li><li class="chapter-item expanded "><a href="../vulnerabilities/lack-of-precision.html"><strong aria-hidden="true">33.</strong> Lack of Precision</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Smart Contract Vulnerabilities</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="reentrancy"><a class="header" href="#reentrancy">Reentrancy</a></h2>
+<p>Reentrancy is an attack that can occur when a bug in a contract may allow a malicious contract to reenter the contract unexpectedly during execution of the original function. This can be used to drain funds from a smart contract if used maliciously. Reentrancy is likely the single most impactful vulnerability in terms of total loss of funds by smart contract hacks, and should be considered accordingly. <a href="https://github.com/pcaversaccio/reentrancy-attacks">List of reentrancy attacks</a></p>
+<h3 id="external-calls"><a class="header" href="#external-calls">External calls</a></h3>
+<p>Reentrancy can be executed by the availability of an external call to an attacker controlled contract. External calls allow for the callee to execute arbitrary code. The existence of an external call may not always be obvious, so it's important to be aware of any way in which an external call may be executed in your smart contracts.</p>
+<h5 id="eth-transfers"><a class="header" href="#eth-transfers">ETH transfers</a></h5>
+<p>When Ether is transferred to a contract address, it will trigger the <code>receive</code> or <code>fallback</code> function, as implemented in the contract. An attacker can write any arbitrary logic into the <code>fallback</code> method, such that anytime the contract receives a transfer, that logic is executed. </p>
+<h5 id="safemint"><a class="header" href="#safemint"><code>safeMint</code></a></h5>
+<p>One example of a hard to spot external call is OpenZeppelin's <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L244"><code>ERC721._safeMint</code></a> &amp; <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L190"><code>ERC721._safeTransfer</code></a> functions.</p>
+<pre><code>/**
+  * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
+  * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
+  */
+function _safeMint(
+    address to,
+    uint256 tokenId,
+    bytes memory _data
+) internal virtual {
+    _mint(to, tokenId);
+    require(
+        _checkOnERC721Received(address(0), to, tokenId, _data),
+        &quot;ERC721: transfer to non ERC721Receiver implementer&quot;
+    );
+}
+</code></pre>
+<p>The function is titled <code>_safeMint</code> because it prevents tokens from being unintentionally minted to a contract by checking first whether that contract has implemented ERC721Receiver, i.e. marking itself as a willing recipient of NFTs. This all seems fine, but <code>_checkOnERC721Received</code> is an external call to the receiving contract, allowing arbitrary execution.</p>
+<h3 id="single-function-reentrancy"><a class="header" href="#single-function-reentrancy">Single function reentrancy</a></h3>
+<p>A single function reentrancy attack occurs when a vulnerable function is the same function that an attacker is trying to recursively call.</p>
+<pre><code>// UNSECURE
+function withdraw() external {
+    uint256 amount = balances[msg.sender];
+    (bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+    require(success);
+    balances[msg.sender] = 0;
+}
+</code></pre>
+<p>Here we can see that the balance is only modified after the funds have been transferred. This can allow a hacker to call the function many times before the balance is set to 0, effectively draining the smart contract.</p>
+<h3 id="cross-function-reentrancy"><a class="header" href="#cross-function-reentrancy">Cross-function reentrancy</a></h3>
+<p>A cross-function reentrancy attack is a more complex version of the same process. Cross-function reentrancy occurs when a vulnerable function shares state with a function that an attacker can exploit.</p>
+<pre><code>// UNSECURE
+function transfer(address to, uint amount) external {
+  if (balances[msg.sender] &gt;= amount) {
+    balances[to] += amount;
+    balances[msg.sender] -= amount;
+  }
+}
+
+function withdraw() external {
+  uint256 amount = balances[msg.sender];
+  (bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+  require(success);
+  balances[msg.sender] = 0;
+}
+</code></pre>
+<p>In this example, a hacker can exploit this contract by having a fallback function call <code>transfer()</code> to transfer spent funds before the balance is set to 0 in the <code>withdraw()</code> function.</p>
+<h3 id="read-only-reentrancy"><a class="header" href="#read-only-reentrancy">Read-only Reentrancy</a></h3>
+<p>Read-only reentrancy is a novel attack vector in which instead of reentering into the same contract in which state changes have yet to be made, an attacker reenters into another contract which reads from the state of the original contract.</p>
+<pre><code>// UNSECURE
+contract A {
+	// Has a reentrancy guard to prevent reentrancy
+	// but makes state change only after external call to sender
+	function withdraw() external nonReentrant {
+		uint256 amount = balances[msg.sender];
+		(bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+		require(success);
+		balances[msg.sender] = 0;
+	}
+}
+
+contract B {
+	// Allows sender to claim equivalent B tokens for A tokens they hold
+	function claim() external nonReentrant {
+		require(!claimed[msg.sender]);
+		balances[msg.sender] = A.balances[msg.sender];
+		claimed[msg.sender] = true;
+	}
+}
+</code></pre>
+<p>As we can see in the above example, although both functions have a nonReentrant modifier, it is still possible for an attacker to call <code>B.claim</code> during the callback in <code>A.withdraw</code>, and since the attackers balance was not yet updated, execution succeeds.</p>
+<h3 id="reentrancy-prevention"><a class="header" href="#reentrancy-prevention">Reentrancy prevention</a></h3>
+<p>The simplest reentrancy prevention mechanism is to use a <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol"><code>ReentrancyGuard</code></a>, which allows you to add a modifier, e.g. <code>nonReentrant</code>, to functions which may otherwise be vulnerable. Although effective against most forms of reentrancy, it's important to understand how read-only reentrancy may be used to get around this and to always use the <strong>checks-effects-interactions pattern</strong>.</p>
+<p>For optimum security, use the <strong>checks-effects-interactions pattern</strong>. This is a simple rule of thumb for ordering smart contract functions.</p>
+<p>The function should begin with <em>checks</em>, e.g. <code>require</code> and <code>assert</code> statements.</p>
+<p>Next, the <em>effects</em> of the contract should be performed, i.e. state modifications.</p>
+<p>Finally, we can perform <em>interactions</em> with other smart contracts, e.g. external function calls.</p>
+<p>This structure is effective against reentrancy because when an attacker reenters the function, the state changes have already been made. For example:</p>
+<pre><code>function withdraw() external {
+  uint256 amount = balances[msg.sender];
+  balances[msg.sender] = 0;
+  (bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+  require(success);
+}
+</code></pre>
+<p>Since the balance is set to 0 before any interactions are performed, if the contract is called recursively, there is nothing to send after the first transaction.</p>
+<p>Examples from: https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21</p>
+<h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
+<ul>
+<li>https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/</li>
+<li>https://medium.com/@gus_tavo_guim/reentrancy-attack-on-smart-contracts-how-to-identify-the-exploitable-and-an-example-of-an-attack-4470a2d8dfe4</li>
+<li>https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../vulnerabilities/insufficient-gas-griefing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../vulnerabilities/overflow-underflow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../vulnerabilities/insufficient-gas-griefing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../vulnerabilities/overflow-underflow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
