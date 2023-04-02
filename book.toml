@@ -1,6 +1,0 @@
-[book]
-authors = ["kadenzipfel"]
-language = "en"
-multilingual = false
-src = "src"
-title = "Smart Contract Vulnerabilities"
