@@ -1,6 +1,5 @@
 # Smart Contract Vulnerabilities
 
-- [Forcibly Sending Ether to a Smart Contract](./vulnerabilities/forcibly-sending-ether.md)
 - [Insufficient Gas Griefing](./vulnerabilities/insufficient-gas-griefing.md)
 - [Reentrancy](./vulnerabilities/reentrancy.md)
 - [Integer Overflow and Underflow](./vulnerabilities/overflow-underflow.md)
