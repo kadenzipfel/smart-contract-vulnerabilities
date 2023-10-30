@@ -33,15 +33,6 @@
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 
-## Further Reading
-
-- https://github.com/ethereum/wiki/wiki/Safety
-- https://swcregistry.io/
-- https://eprint.iacr.org/2016/1007.pdf
-- https://www.dasp.co/
-- https://consensys.github.io/smart-contract-best-practices/
-- https://github.com/sigp/solidity-security-blog
-- https://solidity.readthedocs.io/en/latest/bugs.html
 
 ## Contributions
 
