@@ -12,7 +12,7 @@ require(!signatureUsed[signature]);
 signatureUsed[signature] = true;
 ```
 
-In the above example, we can see that the `signature` is saved in a `signatureUsed` mapping after execution and validated to not exist in that mapping before execution. The problem with this is that if the `signature` can be modified while maintaining valididty, the transaction can be repeated by an attacker.
+In the above example, we can see that the `signature` is saved in a `signatureUsed` mapping after execution and validated to not exist in that mapping before execution. The problem with this is that if the `signature` can be modified while maintaining validity, the transaction can be repeated by an attacker.
 
 ### How it works
 
@@ -32,7 +32,7 @@ Some examples:
 
 Note that the curves are always symmetrical about the x-axis
 
-The curve used by Ethereum is secp256k1, which looks like:
+The curve used by Ethereum is secp256k1, which looks like this:
 
 ![secp256k1](./img/secp256k1.png)
 
