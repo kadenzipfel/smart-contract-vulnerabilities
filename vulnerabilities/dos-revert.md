@@ -29,7 +29,7 @@ contract Auction {
 
 As you can see in this example, if an attacker bids from a smart contract with a fallback function reverting all payments, they can never be refunded, and thus no one can ever make a higher bid.
 
-This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the funtion is reverted and no one is paid. 
+This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the function is reverted and no one is paid. 
 
 ```
 address[] private refundAddresses;
@@ -43,7 +43,7 @@ function refundAll() public {
 }
 ```
 
-An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into it's own transaction, and have the recipient call the function.
+An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.
 
 ```
 contract auction {
@@ -77,7 +77,7 @@ https://consensys.github.io/smart-contract-best-practices/development-recommenda
 
 ### Over/Underflow
 
-Prior to SafeMath usage, whether built-in in solidity >=0.8.0 or using a library, [over/underflows](./overflow-underflow.md) would result in rolling over to the minimum/maxium value. Now that checked math is commonplace, it's important to recognize that the effect of checked under/overflows is a revert, which may DoS important logic. 
+Prior to SafeMath usage, whether built-in in solidity >=0.8.0 or using a library, [over/underflows](./overflow-underflow.md) would result in rolling over to the minimum/maximum value. Now that checked math is commonplace, it's important to recognize that the effect of checked under/overflows is a revert, which may DoS important logic. 
 
 Regardless of usage of checked math, it's necessary to ensure that any valid input will not result in an over/underflow. Take extra care when working with smaller integers e.g. `int8`/`uint8`, `int16`/`uint16`, `int24`/`uint24`, etc..
 
