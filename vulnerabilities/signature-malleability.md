@@ -38,7 +38,7 @@ The curve used by Ethereum is secp256k1, which looks like this:
 
 Now that we understand the basics of elliptic curve cryptography, we can dig into how signature malleability actually works on Ethereum. 
 
-Ethereum uses [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as it's signature scheme. ECDSA signatures consist of a pair of numbers, $(r, s)$, with an integer order $n$. As a result of the x-axis symmetry, if $(r, s)$ is a valid signature, then so is $(r, -s$ mod $n)$. 
+Ethereum uses [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as its signature scheme. ECDSA signatures consist of a pair of numbers, $(r, s)$, with an integer order $n$. As a result of the x-axis symmetry, if $(r, s)$ is a valid signature, then so is $(r, -s$ mod $n)$. 
 
 It's possible to calculate this complementary signature without knowing the private key used to produce it in the first place, which gives an attacker the ability to produce a second valid signature.
 
