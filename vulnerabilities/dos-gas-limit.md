@@ -8,7 +8,7 @@ An example in which the block gas limit can be an issue is in executing logic in
 
 This situation can also lead to an attack. Say a bad actor decides to create a significant amount of addresses, with each address being paid a small amount of funds from the smart contract. If done effectively, the transaction can be blocked indefinitely, possibly even preventing further transactions from going through.
 
-An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into it's own transaction, and have the recipient call the function.
+An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.
 
 If, for some reason, you really need to loop through an array of unspecified length, at least expect it to potentially take multiple blocks, and allow it to be performed in multiple transactions - as seen in this example:
 
@@ -37,9 +37,9 @@ In some situations, your contract can be attacked with a block gas limit even if
 
 This attack is done by issuing several transactions at a very high gas price. If the gas price is high enough, and the transactions consume enough gas, they can fill entire blocks and prevent other transactions from being processed. 
 
-Ethereum transactions require the sender to pay gas to disincentivize spam attacks, but in some situations, there can be enough incentive to go through with such an attack. For example, a block stuffing attack was used on a gambling Dapp, Fomo3D. The app had a countdown timer, and users could win a jackpot by being the last to purchase a key, except everytime a user bought a key, the timer would be extended. An attacker bought a key then stuffed the next 13 blocks in a row so they could win the jackpot.
+Ethereum transactions require the sender to pay gas to disincentivize spam attacks, but in some situations, there can be enough incentive to go through with such an attack. For example, a block stuffing attack was used on a gambling Dapp, Fomo3D. The app had a countdown timer, and users could win a jackpot by being the last to purchase a key, except every time a user bought a key, the timer would be extended. An attacker bought a key then stuffed the next 13 blocks in a row so they could win the jackpot.
 
-To prevent such attacks from occuring, it's important to carefully consider whether it's safe to incorporate time-based actions in your application.
+To prevent such attacks from occurring, it's important to carefully consider whether it's safe to incorporate time-based actions in your application.
 
 Example from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
 
