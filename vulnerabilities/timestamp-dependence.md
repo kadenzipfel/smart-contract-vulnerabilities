@@ -14,7 +14,7 @@ Timestamps should thus not be used to create randomness. See [Weak Sources of Ra
 
 ### The 15-second Rule
 
-Ethereum's reference specification, the Yellow Paper, doesn't specify a limit as to how much blocks can change in time, it just has to be bigger than the timestamp of it's parent. This being said, popular protocol implementations reject blocks with timestamps greater than 15 seconds in the future, so as long as your time-dependent event can safely vary by 15 seconds, it may be safe to use a block timestamp.
+Ethereum's reference specification, the Yellow Paper, doesn't specify a limit as to how much blocks can change in time, it just has to be bigger than the timestamp of its parent. This being said, popular protocol implementations reject blocks with timestamps greater than 15 seconds in the future, so as long as your time-dependent event can safely vary by 15 seconds, it may be safe to use a block timestamp.
 
 ### Don't use `block.number` as a timestamp
 
