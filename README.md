@@ -34,6 +34,4 @@
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 
 
-## Contributions
-
-Submit a PR!
+Looking for a smart contract audit? Shoot me a message on [twitter](https://twitter.com/0xKaden).
