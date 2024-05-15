@@ -32,6 +32,3 @@
 - [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
-
-
-Looking for a smart contract audit? Shoot me a message on [twitter](https://twitter.com/0xKaden).
