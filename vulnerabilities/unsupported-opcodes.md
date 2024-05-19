@@ -16,12 +16,10 @@ More chain differences and opcode support can be found on: [evmdiff.com](https:/
 You can also check compatibility by running the following command assuming you have Foundry set up:
 
 ```bash
-cast call --block 176 --rpc-url $ARBITRUM_RPC_URL --create 0x5f
+cast call --rpc-url $ARBITRUM_RPC_URL --create 0x5f
 ```
 
 Getting a `0x` response from running the above command means the opcode is supported; an error indicates the opcode isn't supported on that chain.
-
-Picking an older block number and getting an error means that the opcode wasn't supported at that time. Pick a recent block number to avoid confusion
 
 ## CREATE and CREATE2 on zkSync Era
 On zkSync Era, contract deployment uses the hash of the bytecode and the `factoryDeps` field of EIP712 transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the `ContractDeployer` system contract.
