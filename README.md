@@ -8,6 +8,7 @@
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
 - [Unsafe Low-Level Call](./vulnerabilities/unsafe-low-level-call.md)
+- [Unchecked Return Value](./vulnerabilities/unchecked-return-values.md)
 - [Unsupported Opcodes](./vulnerabilities/unsupported-opcodes.md)
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
 - [Assert Violation](./vulnerabilities/assert-violation.md)
