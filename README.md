@@ -8,6 +8,7 @@
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
 - [Unsafe Low-Level Call](./vulnerabilities/unsafe-low-level-call.md)
+- [Unsupported Opcodes](./vulnerabilities/unsupported-opcodes.md)
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
 - [Assert Violation](./vulnerabilities/assert-violation.md)
 - [Use of Deprecated Functions](./vulnerabilities/use-of-deprecated-functions.md)
@@ -32,3 +33,4 @@
 - [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
+
