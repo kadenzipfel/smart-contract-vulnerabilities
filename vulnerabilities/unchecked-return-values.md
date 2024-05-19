@@ -52,8 +52,6 @@ A more serious version of this bug occurred in [King of the Ether](https://www.k
 
 To mitigate this vulnerability, developers should always check the return value of any call to an external contract. The `require()` function can be used to check if the call was successful and handle any errors that may occur.
 
-Additionally, developers are advised to use the `.transfer()` function instead of `.send()` to perform external calls as `.transfer()` will revert if the external transaction reverts.
-
 ### Sources
 
 [SigmaPrime blog post](https://blog.sigmaprime.io/solidity-security.html#unchecked-calls)
