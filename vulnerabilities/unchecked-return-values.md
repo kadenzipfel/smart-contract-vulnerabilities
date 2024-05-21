@@ -8,31 +8,32 @@ In Solidity, developers can perform external calls using methods like:
 2. `.call()`
 3. `.transfer()`
 
-`.transfer()` is commonly used to send ether to external accounts, however, the `.send()` function can also be used. For more versatile external calls, the `CALL` opcode can be directly employed in Solidity.
+`.transfer()` is commonly used to send ether to external accounts, however, the `.send()` function can also be used. For more versatile external calls, `.call()` can be used.
 
 Each of these methods has a different behavior when it comes to error handling. The `.call()` and `.send()` functions return a boolean indicating if the call succeeded or failed. Thus, these functions have a simple caveat: the transaction that executes these functions (`.call()` and `.send()`) WILL NOT revert if the external call fails. Instead, `.call()` and `.send()` will simply return the boolean value `false`.
 
-A common pitfall arises when the return value is not checked, as the developer expects a revert to occur when, in reality, the revert will not occur if not explicitly checked by the developer.
+A common pitfall arises when the return value is not checked, as the developer expects a revert to occur when, in reality, the revert will not occur if not explicitly checked by the smart contract.
 
 For example, if a contract uses `.send()` without checking its return value, transaction execution will continue even if the call fails, resulting in unexpected behavior. Take the below contract for example:
 
 ```solidity
+/// INSECURE
 contract Lotto {
 
-    bool public payedOut = false;
+    bool public paidOut = false;
     address public winner;
     uint256 public winAmount;
 
     /// extra functionality here
 
     function sendToWinner() public {
-        require(!payedOut);
+        require(!paidOut);
         winner.send(winAmount);
-        payedOut = true;
+        paidOut = true;
     }
 
     function withdrawLeftOver() public {
-        require(payedOut);  // requires `payedOut` to be true
+        require(paidOut);  // requires `paidOut` to be true
         msg.sender.send(this.balance);
     }
 }
@@ -42,7 +43,7 @@ The above contract represents a Lotto-like contract, where a winner receives `wi
 
 The bug exists where `.send()` is used without checking the response, i.e., `winner.send(winAmount)`.
 
-In this example, a winner whose transaction fails (either by running out of gas or being a contract that intentionally throws in the fallback function) will still allow `payedOut` to be set to true (regardless of whether ether was sent or not).
+In this example, a winner whose transaction fails (either by running out of gas or being a contract that intentionally throws in the fallback function) will still allow `paidOut` to be set to true (regardless of whether ether was sent or not).
 
 In this case, anyone can withdraw the winner's winnings using the `withdrawLeftOver()` function.
 
@@ -52,7 +53,36 @@ A more serious version of this bug occurred in [King of the Ether](https://www.k
 
 To mitigate this vulnerability, developers should always check the return value of any call to an external contract. The `require()` function can be used to check if the call was successful and handle any errors that may occur.
 
+A caveat developers should be wary of when using the `require()` function is unexpected reverts that can cause DoS. If the developer naively decides to check for for the success or failure of the external `.send()` call like so:
+
+```solidity
+/// INSECURE
+contract Lotto {
+
+    bool public paidOut = false;
+    address public winner;
+    uint256 public winAmount;
+
+    /// extra functionality here
+
+  function sendToWinner() public {
+        require(!paidOut);
+        require(winner.send(winAmount));    // naively check success of the external call
+        paidOut = true;
+    }
+
+  function withdrawLeftOver() public {
+        require(paidOut);  // requires `paidOut` to be true
+        msg.sender.send(this.balance);
+    }
+```
+
+An attacker interacting with the `Lotto` contract from their own malicious contract and calling the `sendToWinner` function, can just implement a fallback function that reverts all payments making `paidOut` not set to true!
+
+A detailed explanation of this caveat can be found [here](https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md)
+
 ### Sources
 
-[SigmaPrime blog post](https://blog.sigmaprime.io/solidity-security.html#unchecked-calls)
+- [SigmaPrime blog post](https://blog.sigmaprime.io/solidity-security.html#unchecked-calls)
+- [DoS revert](https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md)
 
