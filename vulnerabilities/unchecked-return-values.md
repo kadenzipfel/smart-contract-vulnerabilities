@@ -33,7 +33,7 @@ contract Lotto {
     }
 
     function withdrawLeftOver() public {
-        require(paidOut);  // requires `paidOut` to be true
+        require(paidOut);                // requires `paidOut` to be true
         msg.sender.send(this.balance);
     }
 }
@@ -67,12 +67,12 @@ contract Lotto {
 
   function sendToWinner() public {
         require(!paidOut);
-        require(winner.send(winAmount));    // naively check success of the external call
+        require(winner.send(winAmount));        // naively check success of the external call
         paidOut = true;
     }
 
   function withdrawLeftOver() public {
-        require(paidOut);  // requires `paidOut` to be true
+        require(paidOut);                       // requires `paidOut` to be true
         msg.sender.send(this.balance);
     }
 ```
