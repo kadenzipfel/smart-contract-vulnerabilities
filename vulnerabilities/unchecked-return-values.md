@@ -84,5 +84,5 @@ A detailed explanation of this caveat can be found [here](https://github.com/kad
 ### Sources
 
 - [SigmaPrime blog post](https://blog.sigmaprime.io/solidity-security.html#unchecked-calls)
-- [DoS with an unexpected revert]([https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md](https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md#dos-with-unexpected-revert))
+- [DoS with an unexpected revert](https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md#dos-with-unexpected-revert)
 
