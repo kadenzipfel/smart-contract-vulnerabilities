@@ -3,7 +3,7 @@ name: Deploy Main to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: write
