@@ -79,10 +79,10 @@ contract Lotto {
 
 An attacker interacting with the `Lotto` contract from their own malicious contract and calling the `sendToWinner` function, can just implement a fallback function that reverts all payments making `paidOut` not set to true!
 
-A detailed explanation of this caveat can be found [here](./vulnerabilities/dos-revert.md)
+A detailed explanation of this caveat can be found [here](../../vulnerabilities/dos-revert.md)
 
 ### Sources
 
 - [SigmaPrime blog post](https://blog.sigmaprime.io/solidity-security.html#unchecked-calls)
-- [DoS with an unexpected revert](./vulnerabilities/dos-revert.md)
+- [DoS with an unexpected revert](../../vulnerabilities/dos-revert.md)
 
