@@ -53,7 +53,7 @@ A more serious version of this bug occurred in [King of the Ether](https://www.k
 
 To mitigate this vulnerability, developers should always check the return value of any call to an external contract. The `require()` function can be used to check if the call was successful and handle any errors that may occur.
 
-A caveat developers should be wary of when using the `require()` function is unexpected reverts that can cause DoS. If the developer naively decides to check for for the success or failure of the external `.send()` call like so:
+A caveat developers should be wary of when using the `require()` function is unexpected reverts that can cause DoS. If the developer naively decides to check for the success or failure of the external `.send()` call like so:
 
 ```solidity
 /// INSECURE
@@ -84,5 +84,5 @@ A detailed explanation of this caveat can be found [here](https://github.com/kad
 ### Sources
 
 - [SigmaPrime blog post](https://blog.sigmaprime.io/solidity-security.html#unchecked-calls)
-- [DoS with an unexpected revert](https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md#dos-with-unexpected-revert)
+- [DoS with an unexpected revert](./vulnerabilities/dos-with-unexpected-revert)
 
