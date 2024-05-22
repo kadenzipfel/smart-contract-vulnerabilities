@@ -1,0 +1,63 @@
+name: Deploy Main to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v3
+
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Install mdBook
+      run: cargo install mdbook
+
+    - name: Prepare src directory
+      run: |
+        mkdir -p src/vulnerabilities
+        cp README.md src/SUMMARY.md
+        cp -r vulnerabilities/* src/vulnerabilities/
+        
+    - name: Build the book
+      run: mdbook build
+
+    - name: Checkout gh-pages branch
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Copy built book to gh-pages
+      run: |
+        rm -rf gh-pages/docs
+        mkdir -p gh-pages/docs
+        cp -r book/* gh-pages/docs/
+
+    - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd gh-pages
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        if [ -n "$(git status --porcelain)" ]; then
+          git add docs
+          git commit -m 'Deploy new changes'
+          git push origin gh-pages
+        else
+          echo "No changes to commit"
+        fi
