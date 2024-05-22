@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Smart Contract Vulnerabilities</title>
-        <meta name="robots" content="noindex" />
+        <title></title>
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,42 +62,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="vulnerabilities/insufficient-gas-griefing.html"><strong aria-hidden="true">1.</strong> Insufficient Gas Griefing</a></li><li class="chapter-item expanded "><a href="vulnerabilities/reentrancy.html"><strong aria-hidden="true">2.</strong> Reentrancy</a></li><li class="chapter-item expanded "><a href="vulnerabilities/overflow-underflow.html"><strong aria-hidden="true">3.</strong> Integer Overflow and Underflow</a></li><li class="chapter-item expanded "><a href="vulnerabilities/timestamp-dependence.html"><strong aria-hidden="true">4.</strong> Timestamp Dependence</a></li><li class="chapter-item expanded "><a href="vulnerabilities/authorization-txorigin.html"><strong aria-hidden="true">5.</strong> Authorization Through tx.origin</a></li><li class="chapter-item expanded "><a href="vulnerabilities/floating-pragma.html"><strong aria-hidden="true">6.</strong> Floating Pragma</a></li><li class="chapter-item expanded "><a href="vulnerabilities/outdated-compiler-version.html"><strong aria-hidden="true">7.</strong> Outdated Compiler Version</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unsafe-low-level-call.html"><strong aria-hidden="true">8.</strong> Unsafe Low-Level Call</a></li><li class="chapter-item expanded "><a href="vulnerabilities/uninitialized-storage-pointer.html"><strong aria-hidden="true">9.</strong> Uninitialized Storage Pointer</a></li><li class="chapter-item expanded "><a href="vulnerabilities/assert-violation.html"><strong aria-hidden="true">10.</strong> Assert Violation</a></li><li class="chapter-item expanded "><a href="vulnerabilities/use-of-deprecated-functions.html"><strong aria-hidden="true">11.</strong> Use of Deprecated Functions</a></li><li class="chapter-item expanded "><a href="vulnerabilities/delegatecall-untrusted-callee.html"><strong aria-hidden="true">12.</strong> Delegatecall to Untrusted Callee</a></li><li class="chapter-item expanded "><a href="vulnerabilities/signature-malleability.html"><strong aria-hidden="true">13.</strong> Signature Malleability</a></li><li class="chapter-item expanded "><a href="vulnerabilities/incorrect-constructor.html"><strong aria-hidden="true">14.</strong> Incorrect Constructor Name</a></li><li class="chapter-item expanded "><a href="vulnerabilities/shadowing-state-variables.html"><strong aria-hidden="true">15.</strong> Shadowing State Variables</a></li><li class="chapter-item expanded "><a href="vulnerabilities/weak-sources-randomness.html"><strong aria-hidden="true">16.</strong> Weak Sources of Randomness from Chain Attributes</a></li><li class="chapter-item expanded "><a href="vulnerabilities/missing-protection-signature-replay.html"><strong aria-hidden="true">17.</strong> Missing Protection against Signature Replay Attacks</a></li><li class="chapter-item expanded "><a href="vulnerabilities/requirement-violation.html"><strong aria-hidden="true">18.</strong> Requirement Validation</a></li><li class="chapter-item expanded "><a href="vulnerabilities/arbitrary-storage-location.html"><strong aria-hidden="true">19.</strong> Write to Arbitrary Storage Location</a></li><li class="chapter-item expanded "><a href="vulnerabilities/incorrect-inheritance-order.html"><strong aria-hidden="true">20.</strong> Incorrect Inheritance Order</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unused-variables.html"><strong aria-hidden="true">21.</strong> Presence of Unused Variables</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unencrypted-private-data-on-chain.html"><strong aria-hidden="true">22.</strong> Unencrypted Private Data On-Chain</a></li><li class="chapter-item expanded "><a href="vulnerabilities/inadherence-to-standards.html"><strong aria-hidden="true">23.</strong> Inadherence to Standards</a></li><li class="chapter-item expanded "><a href="vulnerabilities/asserting-contract-from-code-size.html"><strong aria-hidden="true">24.</strong> Asserting Contract from Code Size</a></li><li class="chapter-item expanded "><a href="vulnerabilities/transaction-ordering-dependence.html"><strong aria-hidden="true">25.</strong> Transaction-Ordering Dependence</a></li><li class="chapter-item expanded "><a href="vulnerabilities/dos-gas-limit.html"><strong aria-hidden="true">26.</strong> DoS with Block Gas Limit</a></li><li class="chapter-item expanded "><a href="vulnerabilities/dos-revert.html"><strong aria-hidden="true">27.</strong> DoS with (Unexpected) revert</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unexpected-ecrecover-null-address.html"><strong aria-hidden="true">28.</strong> Unexpected ecrecover null address</a></li><li class="chapter-item expanded "><a href="vulnerabilities/default-visibility.html"><strong aria-hidden="true">29.</strong> Default Visibility</a></li><li class="chapter-item expanded "><a href="vulnerabilities/insufficient-access-control.html"><strong aria-hidden="true">30.</strong> Insufficient Access Control</a></li><li class="chapter-item expanded "><a href="vulnerabilities/off-by-one.html"><strong aria-hidden="true">31.</strong> Off-By-One</a></li><li class="chapter-item expanded "><a href="vulnerabilities/lack-of-precision.html"><strong aria-hidden="true">32.</strong> Lack of Precision</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="vulnerabilities/insufficient-gas-griefing.html"><strong aria-hidden="true">1.</strong> Insufficient Gas Griefing</a></li><li class="chapter-item expanded "><a href="vulnerabilities/reentrancy.html"><strong aria-hidden="true">2.</strong> Reentrancy</a></li><li class="chapter-item expanded "><a href="vulnerabilities/overflow-underflow.html"><strong aria-hidden="true">3.</strong> Integer Overflow and Underflow</a></li><li class="chapter-item expanded "><a href="vulnerabilities/timestamp-dependence.html"><strong aria-hidden="true">4.</strong> Timestamp Dependence</a></li><li class="chapter-item expanded "><a href="vulnerabilities/authorization-txorigin.html"><strong aria-hidden="true">5.</strong> Authorization Through tx.origin</a></li><li class="chapter-item expanded "><a href="vulnerabilities/floating-pragma.html"><strong aria-hidden="true">6.</strong> Floating Pragma</a></li><li class="chapter-item expanded "><a href="vulnerabilities/outdated-compiler-version.html"><strong aria-hidden="true">7.</strong> Outdated Compiler Version</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unsafe-low-level-call.html"><strong aria-hidden="true">8.</strong> Unsafe Low-Level Call</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unchecked-return-values.html"><strong aria-hidden="true">9.</strong> Unchecked Return Value</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unsupported-opcodes.html"><strong aria-hidden="true">10.</strong> Unsupported Opcodes</a></li><li class="chapter-item expanded "><a href="vulnerabilities/uninitialized-storage-pointer.html"><strong aria-hidden="true">11.</strong> Uninitialized Storage Pointer</a></li><li class="chapter-item expanded "><a href="vulnerabilities/assert-violation.html"><strong aria-hidden="true">12.</strong> Assert Violation</a></li><li class="chapter-item expanded "><a href="vulnerabilities/use-of-deprecated-functions.html"><strong aria-hidden="true">13.</strong> Use of Deprecated Functions</a></li><li class="chapter-item expanded "><a href="vulnerabilities/delegatecall-untrusted-callee.html"><strong aria-hidden="true">14.</strong> Delegatecall to Untrusted Callee</a></li><li class="chapter-item expanded "><a href="vulnerabilities/signature-malleability.html"><strong aria-hidden="true">15.</strong> Signature Malleability</a></li><li class="chapter-item expanded "><a href="vulnerabilities/incorrect-constructor.html"><strong aria-hidden="true">16.</strong> Incorrect Constructor Name</a></li><li class="chapter-item expanded "><a href="vulnerabilities/shadowing-state-variables.html"><strong aria-hidden="true">17.</strong> Shadowing State Variables</a></li><li class="chapter-item expanded "><a href="vulnerabilities/weak-sources-randomness.html"><strong aria-hidden="true">18.</strong> Weak Sources of Randomness from Chain Attributes</a></li><li class="chapter-item expanded "><a href="vulnerabilities/missing-protection-signature-replay.html"><strong aria-hidden="true">19.</strong> Missing Protection against Signature Replay Attacks</a></li><li class="chapter-item expanded "><a href="vulnerabilities/requirement-violation.html"><strong aria-hidden="true">20.</strong> Requirement Validation</a></li><li class="chapter-item expanded "><a href="vulnerabilities/arbitrary-storage-location.html"><strong aria-hidden="true">21.</strong> Write to Arbitrary Storage Location</a></li><li class="chapter-item expanded "><a href="vulnerabilities/incorrect-inheritance-order.html"><strong aria-hidden="true">22.</strong> Incorrect Inheritance Order</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unused-variables.html"><strong aria-hidden="true">23.</strong> Presence of Unused Variables</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unencrypted-private-data-on-chain.html"><strong aria-hidden="true">24.</strong> Unencrypted Private Data On-Chain</a></li><li class="chapter-item expanded "><a href="vulnerabilities/inadherence-to-standards.html"><strong aria-hidden="true">25.</strong> Inadherence to Standards</a></li><li class="chapter-item expanded "><a href="vulnerabilities/asserting-contract-from-code-size.html"><strong aria-hidden="true">26.</strong> Asserting Contract from Code Size</a></li><li class="chapter-item expanded "><a href="vulnerabilities/transaction-ordering-dependence.html"><strong aria-hidden="true">27.</strong> Transaction-Ordering Dependence</a></li><li class="chapter-item expanded "><a href="vulnerabilities/dos-gas-limit.html"><strong aria-hidden="true">28.</strong> DoS with Block Gas Limit</a></li><li class="chapter-item expanded "><a href="vulnerabilities/dos-revert.html"><strong aria-hidden="true">29.</strong> DoS with (Unexpected) revert</a></li><li class="chapter-item expanded "><a href="vulnerabilities/unexpected-ecrecover-null-address.html"><strong aria-hidden="true">30.</strong> Unexpected ecrecover null address</a></li><li class="chapter-item expanded "><a href="vulnerabilities/default-visibility.html"><strong aria-hidden="true">31.</strong> Default Visibility</a></li><li class="chapter-item expanded "><a href="vulnerabilities/insufficient-access-control.html"><strong aria-hidden="true">32.</strong> Insufficient Access Control</a></li><li class="chapter-item expanded "><a href="vulnerabilities/off-by-one.html"><strong aria-hidden="true">33.</strong> Off-By-One</a></li><li class="chapter-item expanded "><a href="vulnerabilities/lack-of-precision.html"><strong aria-hidden="true">34.</strong> Lack of Precision</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -113,7 +142,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Smart Contract Vulnerabilities</h1>
+                    <h1 class="menu-title"></h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -153,9 +182,9 @@
 
     function relay(bytes _data) public {
         // replay protection; do not call the same transaction twice
-        require(executed[_data] == 0, &quot;Duplicate call&quot;);
+        require(executed[_data] == 0, "Duplicate call");
         executed[_data] = true;
-        innerContract.call(bytes4(keccak256(&quot;execute(bytes)&quot;)), _data);
+        innerContract.call(bytes4(keccak256("execute(bytes)")), _data);
     }
 }
 </code></pre>
@@ -181,7 +210,7 @@ contract Executor {
 <h3 id="external-calls"><a class="header" href="#external-calls">External calls</a></h3>
 <p>Reentrancy can be executed by the availability of an external call to an attacker controlled contract. External calls allow for the callee to execute arbitrary code. The existence of an external call may not always be obvious, so it's important to be aware of any way in which an external call may be executed in your smart contracts.</p>
 <h5 id="eth-transfers"><a class="header" href="#eth-transfers">ETH transfers</a></h5>
-<p>When Ether is transferred to a contract address, it will trigger the <code>receive</code> or <code>fallback</code> function, as implemented in the contract. An attacker can write any arbitrary logic into the <code>fallback</code> method, such that anytime the contract receives a transfer, that logic is executed. </p>
+<p>When Ether is transferred to a contract address, it will trigger the <code>receive</code> or <code>fallback</code> function, as implemented in the contract. An attacker can write any arbitrary logic into the <code>fallback</code> method, such that anytime the contract receives a transfer, that logic is executed.</p>
 <h5 id="safemint"><a class="header" href="#safemint"><code>safeMint</code></a></h5>
 <p>One example of a hard to spot external call is OpenZeppelin's <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L244"><code>ERC721._safeMint</code></a> &amp; <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L190"><code>ERC721._safeTransfer</code></a> functions.</p>
 <pre><code>/**
@@ -196,7 +225,7 @@ function _safeMint(
     _mint(to, tokenId);
     require(
         _checkOnERC721Received(address(0), to, tokenId, _data),
-        &quot;ERC721: transfer to non ERC721Receiver implementer&quot;
+        "ERC721: transfer to non ERC721Receiver implementer"
     );
 }
 </code></pre>
@@ -206,7 +235,7 @@ function _safeMint(
 <pre><code>// UNSECURE
 function withdraw() external {
     uint256 amount = balances[msg.sender];
-    (bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+    (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
     require(success);
     balances[msg.sender] = 0;
 }
@@ -224,7 +253,7 @@ function transfer(address to, uint amount) external {
 
 function withdraw() external {
   uint256 amount = balances[msg.sender];
-  (bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+  (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
   require(success);
   balances[msg.sender] = 0;
 }
@@ -238,7 +267,7 @@ contract A {
 	// but makes state change only after external call to sender
 	function withdraw() external nonReentrant {
 		uint256 amount = balances[msg.sender];
-		(bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+		(bool success,) = msg.sender.call{value: balances[msg.sender]}("");
 		require(success);
 		balances[msg.sender] = 0;
 	}
@@ -264,7 +293,7 @@ contract B {
 <pre><code>function withdraw() external {
   uint256 amount = balances[msg.sender];
   balances[msg.sender] = 0;
-  (bool success,) = msg.sender.call{value: balances[msg.sender]}(&quot;&quot;);
+  (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
   require(success);
 }
 </code></pre>
@@ -297,7 +326,7 @@ contract B {
 <p>For example, a lottery application may use the block timestamp to pick a random bidder in a group. A miner may enter the lottery then modify the timestamp to a value that gives them better odds at winning the lottery.</p>
 <p>Timestamps should thus not be used to create randomness. See <a href="vulnerabilities/weak-sources-randomness.html">Weak Sources of Randomness for Chain Attributes</a>.</p>
 <h3 id="the-15-second-rule"><a class="header" href="#the-15-second-rule">The 15-second Rule</a></h3>
-<p>Ethereum's reference specification, the Yellow Paper, doesn't specify a limit as to how much blocks can change in time, it just has to be bigger than the timestamp of it's parent. This being said, popular protocol implementations reject blocks with timestamps greater than 15 seconds in the future, so as long as your time-dependent event can safely vary by 15 seconds, it may be safe to use a block timestamp.</p>
+<p>Ethereum's reference specification, the Yellow Paper, doesn't specify a limit as to how much blocks can change in time, it just has to be bigger than the timestamp of its parent. This being said, popular protocol implementations reject blocks with timestamps greater than 15 seconds in the future, so as long as your time-dependent event can safely vary by 15 seconds, it may be safe to use a block timestamp.</p>
 <h3 id="dont-use-blocknumber-as-a-timestamp"><a class="header" href="#dont-use-blocknumber-as-a-timestamp">Don't use <code>block.number</code> as a timestamp</a></h3>
 <p>You can estimate the time difference between events using <code>block.number</code> and the average block time, but block times may change and break the functionality, so it's best to avoid this use.</p>
 <h3 id="sources-3"><a class="header" href="#sources-3">Sources</a></h3>
@@ -323,7 +352,7 @@ contract TxUserWallet {
     }
 }
 </code></pre>
-<p>Here we can see that the <code>TxUserWallet</code> contract authorizes the <code>transferTo()</code> function with <code>tx.origin</code>. </p>
+<p>Here we can see that the <code>TxUserWallet</code> contract authorizes the <code>transferTo()</code> function with <code>tx.origin</code>.</p>
 <pre><code>pragma solidity &gt;=0.5.0 &lt;0.7.0;
 
 interface TxUserWallet {
@@ -353,7 +382,7 @@ contract TxAttackWallet {
 <li>https://github.com/sigp/solidity-security-blog#tx-origin</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="floating-pragma"><a class="header" href="#floating-pragma">Floating Pragma</a></h2>
-<p>It is considered best practice to pick one compiler version and stick with it. With a floating pragma, contracts may accidentally be deployed using an outdated or problematic compiler version which can cause bugs, putting your smart contract's security in jeopardy. For open-source projects, the pragma also tells developers which version to use, should they deploy your contract. The chosen compiler version should be thoroughly tested and considered for known bugs. </p>
+<p>It is considered best practice to pick one compiler version and stick with it. With a floating pragma, contracts may accidentally be deployed using an outdated or problematic compiler version which can cause bugs, putting your smart contract's security in jeopardy. For open-source projects, the pragma also tells developers which version to use, should they deploy your contract. The chosen compiler version should be thoroughly tested and considered for known bugs.</p>
 <p>The exception in which it is acceptable to use a floating pragma, is in the case of libraries and packages. Otherwise, developers would need to manually update the pragma to compile locally.</p>
 <h3 id="sources-5"><a class="header" href="#sources-5">Sources</a></h3>
 <ul>
@@ -371,23 +400,23 @@ contract TxAttackWallet {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="unsafe-low-level-call"><a class="header" href="#unsafe-low-level-call">Unsafe Low-Level Call</a></h2>
 <p>In Solidity, you can either use low-level calls such as: <code>address.call()</code>, <code>address.callcode()</code>, <code>address.delegatecall()</code>, and <code>address.send()</code>; or you can use contract calls such as: <code>ExternalContract.doSomething()</code>.</p>
-<p>Low-level calls can be a good way to efficiently or arbitrarily make contract calls. However, it's important to be aware of the caveats it possesses. </p>
+<p>Low-level calls can be a good way to efficiently or arbitrarily make contract calls. However, it's important to be aware of the caveats it possesses.</p>
 <h3 id="unchecked-call-return-value"><a class="header" href="#unchecked-call-return-value">Unchecked call return value</a></h3>
 <p>Low-level calls will never throw an exception, instead they will return <code>false</code> if they encounter an exception, whereas contract calls will automatically throw. Thus if the return value of a low-level call is not checked, the execution may resume even if the function call throws an error. This can lead to unexpected behaviour and break the program logic. A failed call can even be caused intentionally by an attacker, who may be able to further exploit the application.</p>
 <p>In the case that you use low-level calls, be sure to check the return value to handle possible failed calls, e.g.:</p>
 <pre><code>// Simple transfer of 1 ether
-(bool success,) = to.call{value: 1 ether}(&quot;&quot;);
+(bool success,) = to.call{value: 1 ether}("");
 // Revert if unsuccessful
 require(success);
 </code></pre>
 <h3 id="successful-call-to-non-existent-contract"><a class="header" href="#successful-call-to-non-existent-contract">Successful call to non-existent contract</a></h3>
-<p>As noted in the <a href="https://docs.soliditylang.org/en/v0.8.15/control-structures.html?highlight=low%20level%20calls#external-function-calls">Solidity docs</a>: &quot;Due to the fact that the EVM considers a call to a non-existing contract to always succeed, Solidity uses the <code>extcodesize</code> opcode to check that the contract that is about to be called actually exists (it contains code) and causes an exception if it does not. This check is skipped if the return data will be decoded after the call and thus the ABI decoder will catch the case of a non-existing contract.</p>
-<p>Note that this check is not performed in case of <a href="https://docs.soliditylang.org/en/v0.8.15/units-and-global-variables.html#address-related">low-level calls</a> which operate on addresses rather than contract instances.&quot;</p>
+<p>As noted in the <a href="https://docs.soliditylang.org/en/v0.8.15/control-structures.html?highlight=low%20level%20calls#external-function-calls">Solidity docs</a>: "Due to the fact that the EVM considers a call to a non-existing contract to always succeed, Solidity uses the <code>extcodesize</code> opcode to check that the contract that is about to be called actually exists (it contains code) and causes an exception if it does not. This check is skipped if the return data will be decoded after the call and thus the ABI decoder will catch the case of a non-existing contract.</p>
+<p>Note that this check is not performed in case of <a href="https://docs.soliditylang.org/en/v0.8.15/units-and-global-variables.html#address-related">low-level calls</a> which operate on addresses rather than contract instances."</p>
 <p>It's imperative that we do not simply assume that a contract to be called via a low-level call actually exists, since if it doesn't our logic will proceed even though our external call effectively failed. This can lead to loss of funds and/or an invalid contract state. Instead, we must verify that the contract being called exists, either immediately before being called with an <code>extcodesize</code> check, or by verifying during contract deployment and using a <code>constant</code>/<code>immutable</code> value if the contract can be fully trusted.</p>
 <pre><code>// Verify address is a contract
 require(to.code.length &gt; 0);
 // Simple transfer of 1 ether
-(bool success,) = to.call{value: 1 ether}(&quot;&quot;);
+(bool success,) = to.call{value: 1 ether}("");
 // Revert if unsuccessful
 require(success);
 </code></pre>
@@ -396,10 +425,114 @@ require(success);
 <li>https://swcregistry.io/docs/SWC-104</li>
 <li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="uninitialized-storage-pointer"><a class="header" href="#uninitialized-storage-pointer">Uninitialized Storage Pointer</a></h2>
-<p>Data is stored in the EVM as either <code>storage</code>, <code>memory</code>, or <code>calldata</code>. It is important that they are well understood and correctly initialized. Incorrectly initializing data storage pointers, or simply leaving them uninitialized, can lead to contract vulnerabilities. </p>
-<p>As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer an issue since contracts with uninitialized storage pointers will no longer compile. This being said, it's still important to understand what storage pointers you should be using in certain situations.</p>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="unchecked-return-values"><a class="header" href="#unchecked-return-values">Unchecked Return Values</a></h3>
+<p>The main idea behind this type of vulnerability is the failure to properly handle the return values of external function calls. This can have significant consequences, including fund loss and unexpected behavior in the contract's logic.</p>
+<p>In Solidity, developers can perform external calls using methods like:</p>
+<ol>
+<li><code>.send()</code></li>
+<li><code>.call()</code></li>
+<li><code>.transfer()</code></li>
+</ol>
+<p><code>.transfer()</code> is commonly used to send ether to external accounts, however, the <code>.send()</code> function can also be used. For more versatile external calls, <code>.call()</code> can be used.</p>
+<p>Each of these methods has a different behavior when it comes to error handling. The <code>.call()</code> and <code>.send()</code> functions return a boolean indicating if the call succeeded or failed. Thus, these functions have a simple caveat: the transaction that executes these functions (<code>.call()</code> and <code>.send()</code>) WILL NOT revert if the external call fails. Instead, <code>.call()</code> and <code>.send()</code> will simply return the boolean value <code>false</code>.</p>
+<p>A common pitfall arises when the return value is not checked, as the developer expects a revert to occur when, in reality, the revert will not occur if not explicitly checked by the smart contract.</p>
+<p>For example, if a contract uses <code>.send()</code> without checking its return value, transaction execution will continue even if the call fails, resulting in unexpected behavior. Take the below contract for example:</p>
+<pre><code class="language-solidity">/// INSECURE
+contract Lotto {
+
+    bool public paidOut = false;
+    address public winner;
+    uint256 public winAmount;
+
+    /// extra functionality here
+
+    function sendToWinner() public {
+        require(!paidOut);
+        winner.send(winAmount);
+        paidOut = true;
+    }
+
+    function withdrawLeftOver() public {
+        require(paidOut);                // requires `paidOut` to be true
+        msg.sender.send(this.balance);
+    }
+}
+</code></pre>
+<p>The above contract represents a Lotto-like contract, where a winner receives <code>winAmount</code> of ether, which typically leaves a little left over for anyone to withdraw.</p>
+<p>The bug exists where <code>.send()</code> is used without checking the response, i.e., <code>winner.send(winAmount)</code>.</p>
+<p>In this example, a winner whose transaction fails (either by running out of gas or being a contract that intentionally throws in the fallback function) will still allow <code>paidOut</code> to be set to true (regardless of whether ether was sent or not).</p>
+<p>In this case, anyone can withdraw the winner's winnings using the <code>withdrawLeftOver()</code> function.</p>
+<p>A more serious version of this bug occurred in <a href="https://www.kingoftheether.com/thrones/kingoftheether/index.html">King of the Ether</a>. An excellent <a href="https://www.kingoftheether.com/postmortem.html">post-mortem</a> of this contract has been written, detailing how an unchecked failed <code>.send()</code> could be used to attack a contract.</p>
+<h3 id="preventive-techniques"><a class="header" href="#preventive-techniques">Preventive Techniques</a></h3>
+<p>To mitigate this vulnerability, developers should always check the return value of any call to an external contract. The <code>require()</code> function can be used to check if the call was successful and handle any errors that may occur.</p>
+<p>A caveat developers should be wary of when using the <code>require()</code> function is unexpected reverts that can cause DoS. If the developer naively decides to check for the success or failure of the external <code>.send()</code> call like so:</p>
+<pre><code class="language-solidity">/// INSECURE
+contract Lotto {
+
+    bool public paidOut = false;
+    address public winner;
+    uint256 public winAmount;
+
+    /// extra functionality here
+
+  function sendToWinner() public {
+        require(!paidOut);
+        require(winner.send(winAmount));        // naively check success of the external call
+        paidOut = true;
+    }
+
+  function withdrawLeftOver() public {
+        require(paidOut);                       // requires `paidOut` to be true
+        msg.sender.send(this.balance);
+    }
+</code></pre>
+<p>An attacker interacting with the <code>Lotto</code> contract from their own malicious contract and calling the <code>sendToWinner</code> function, can just implement a fallback function that reverts all payments making <code>paidOut</code> not set to true!</p>
+<p>A detailed explanation of this caveat can be found <a href="vulnerabilities/./dos-revert.html">here</a></p>
 <h3 id="sources-8"><a class="header" href="#sources-8">Sources</a></h3>
+<ul>
+<li><a href="https://blog.sigmaprime.io/solidity-security.html#unchecked-calls">SigmaPrime blog post</a></li>
+<li><a href="vulnerabilities/./dos-revert.html">DoS with an unexpected revert</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unsupported-opcodes"><a class="header" href="#unsupported-opcodes">Unsupported Opcodes</a></h1>
+<p>EVM-compatible chains, such as zkSync Era, BNB Chain, Polygon, Optimism and Arbitrum implement the Ethereum Virtual Machine (EVM) and its opcodes. However, opcode support can vary across these chains, which can lead to bugs and issues if not considered during smart contract development and deployment.</p>
+<h2 id="push0-opcode-compatibility"><a class="header" href="#push0-opcode-compatibility">PUSH0 Opcode Compatibility</a></h2>
+<p>The <code>PUSH0</code> opcode was introduced during the Shanghai hard fork of the Shapella upgrade (Solidity v0.8.20) and is available in certain EVM-compatible chains. However, not all chains have implemented support for this opcode yet.</p>
+<h3 id="is-push0-supported"><a class="header" href="#is-push0-supported">Is <code>PUSH0</code> supported:</a></h3>
+<ol>
+<li>Ethereum: YES</li>
+<li>Arbitrum One: YES</li>
+<li>Optimism: YES</li>
+<li>...</li>
+</ol>
+<p>More chain differences and opcode support can be found on: <a href="https://www.evmdiff.com">evmdiff.com</a></p>
+<p>You can also check compatibility by running the following command assuming you have Foundry set up:</p>
+<pre><code class="language-bash">cast call --rpc-url $ARBITRUM_RPC_URL --create 0x5f
+</code></pre>
+<p>Getting a <code>0x</code> response from running the above command means the opcode is supported; an error indicates the opcode isn't supported on that chain.</p>
+<h2 id="create-and-create2-on-zksync-era"><a class="header" href="#create-and-create2-on-zksync-era">CREATE and CREATE2 on zkSync Era</a></h2>
+<p>On zkSync Era, contract deployment uses the hash of the bytecode and the <code>factoryDeps</code> field of EIP712 transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the <code>ContractDeployer</code> system contract.</p>
+<p>To ensure that <code>create</code> and <code>create2</code> functions operate correctly, the compiler MUST be aware of the bytecode of the deployed contract in advance. The compiler interprets the calldata arguments as incomplete input for <code>ContractDeployer</code>, with the remaining part filled in by the compiler internally. The Yul <code>datasize</code> and <code>dataoffset</code> instructions have been adjusted to return the constant size and bytecode hash rather than the bytecode itself.</p>
+<p>The following code will not function correctly because the compiler is not aware of the bytecode beforehand but will work fine on Ethereum Mainnet:</p>
+<pre><code class="language-solidity">function myFactory(bytes memory bytecode) public {
+   assembly {
+      addr := create(0, add(bytecode, 0x20), mload(bytecode))
+   }
+}
+</code></pre>
+<h2 id="transfer-on-zksync-era"><a class="header" href="#transfer-on-zksync-era"><code>.transfer()</code> on zkSync Era</a></h2>
+<p>The <code>transfer()</code> function in Solidity is limited to 2300 gas, which can be insufficient if the receiving contract's fallback or receive function involves more complex logic. This can lead to the transaction reverting if the gas limit is exceeded.</p>
+<p>It is for this exact reason that the Gemholic project on zkSync Era locked its 921 ETH that was raised during the Gemholic token sale making the funds inaccessible.</p>
+<p>This was because the contract deployment did not account for zkSync Era's handling of the <code>.transfer()</code> function.</p>
+<h2 id="sources-9"><a class="header" href="#sources-9">Sources</a></h2>
+<ul>
+<li><a href="https://docs.zksync.io/build/developer-reference/differences-with-ethereum.html#create-create2">zkSync Era docs</a></li>
+<li><a href="https://www.codehawks.com/submissions/clomptuvr0001ie09bzfp4nqw/4">CodeHawks first flight submission: The TokenFactory.sol can't deploy on the ZKSync Era</a></li>
+<li><a href="https://medium.com/coinmonks/gemstoneido-contract-stuck-with-921-eth-an-analysis-of-why-transfer-does-not-work-on-zksync-era-d5a01807227d">GemstoneIDO Contract Issue Analysis on Medium</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="uninitialized-storage-pointer"><a class="header" href="#uninitialized-storage-pointer">Uninitialized Storage Pointer</a></h2>
+<p>Data is stored in the EVM as either <code>storage</code>, <code>memory</code>, or <code>calldata</code>. It is important that they are well understood and correctly initialized. Incorrectly initializing data storage pointers, or simply leaving them uninitialized, can lead to contract vulnerabilities.</p>
+<p>As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer an issue since contracts with uninitialized storage pointers will no longer compile. This being said, it's still important to understand what storage pointers you should be using in certain situations.</p>
+<h3 id="sources-10"><a class="header" href="#sources-10">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-109</li>
 <li>https://github.com/sigp/solidity-security-blog#storage</li>
@@ -409,9 +542,9 @@ require(success);
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="assert-violation"><a class="header" href="#assert-violation">Assert Violation</a></h2>
 <p>In Solidity <code>0.4.10</code>, the following functions were created: <code>assert()</code>, <code>require()</code>, and <code>revert()</code>. Here we'll discuss the assert function and how to use it.</p>
-<p>Formally said, the <code>assert()</code> funtion is meant to assert invariants; informally said, <code>assert()</code> is an overly assertive bodyguard that protects your contract, but steals your gas in the process. Properly functioning contracts should never reach a failing assert statement. If you've reached a failing assert statement, you've either improperly used <code>assert()</code>, or there is a bug in your contract that puts it in an invalid state.</p>
+<p>Formally said, the <code>assert()</code> function is meant to assert invariants; informally said, <code>assert()</code> is an overly assertive bodyguard that protects your contract, but steals your gas in the process. Properly functioning contracts should never reach a failing assert statement. If you've reached a failing assert statement, you've either improperly used <code>assert()</code>, or there is a bug in your contract that puts it in an invalid state.</p>
 <p>If the condition checked in the <code>assert()</code> is not actually an invariant, it's suggested that you replace it with a <code>require()</code> statement.</p>
-<h3 id="sources-9"><a class="header" href="#sources-9">Sources</a></h3>
+<h3 id="sources-11"><a class="header" href="#sources-11">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-110</li>
 <li>https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57</li>
@@ -430,7 +563,7 @@ require(success);
 <tr><td style="text-align: left"><code>var</code></td><td style="text-align: right"><code>corresponding type name</code></td></tr>
 </tbody></table>
 </div>
-<h3 id="sources-10"><a class="header" href="#sources-10">Sources</a></h3>
+<h3 id="sources-12"><a class="header" href="#sources-12">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-111</li>
 <li>https://github.com/ethereum/solidity/releases</li>
@@ -438,7 +571,7 @@ require(success);
 <div style="break-before: page; page-break-before: always;"></div><h2 id="delegatecall-to-untrusted-callee"><a class="header" href="#delegatecall-to-untrusted-callee">Delegatecall to Untrusted Callee</a></h2>
 <p><code>Delegatecall</code> is a special variant of a message call. It is almost identical to a regular message call except the target address is executed in the context of the calling contract and <code>msg.sender</code> and <code>msg.value</code> remain the same. Essentially, <code>delegatecall</code> delegates other contracts to modify the calling contract's storage.</p>
 <p>Since <code>delegatecall</code> gives so much control over a contract, it's very important to only use this with trusted contracts such as your own. If the target address comes from user input, be sure to verify that it is a trusted contract.</p>
-<h3 id="sources-11"><a class="header" href="#sources-11">Sources</a></h3>
+<h3 id="sources-13"><a class="header" href="#sources-13">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-112</li>
 <li>https://solidity.readthedocs.io/en/latest/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries</li>
@@ -455,9 +588,9 @@ require(!signatureUsed[signature]);
 
 signatureUsed[signature] = true;
 </code></pre>
-<p>In the above example, we can see that the <code>signature</code> is saved in a <code>signatureUsed</code> mapping after execution and validated to not exist in that mapping before execution. The problem with this is that if the <code>signature</code> can be modified while maintaining valididty, the transaction can be repeated by an attacker.</p>
+<p>In the above example, we can see that the <code>signature</code> is saved in a <code>signatureUsed</code> mapping after execution and validated to not exist in that mapping before execution. The problem with this is that if the <code>signature</code> can be modified while maintaining validity, the transaction can be repeated by an attacker.</p>
 <h3 id="how-it-works"><a class="header" href="#how-it-works">How it works</a></h3>
-<p>To understand how signature malleability works, we first need to understand a bit about elliptic curve cryptography. </p>
+<p>To understand how signature malleability works, we first need to understand a bit about elliptic curve cryptography.</p>
 <p>An elliptic curve consists of all the points that satisfy an equation of the form:</p>
 <p>$y^2 = x^3 + ax + b$</p>
 <p>where</p>
@@ -465,23 +598,23 @@ signatureUsed[signature] = true;
 <p>Some examples:</p>
 <p><img src="vulnerabilities/./img/elliptic-curves.png" alt="Elliptic Curves" /></p>
 <p>Note that the curves are always symmetrical about the x-axis</p>
-<p>The curve used by Ethereum is secp256k1, which looks like:</p>
+<p>The curve used by Ethereum is secp256k1, which looks like this:</p>
 <p><img src="vulnerabilities/./img/secp256k1.png" alt="secp256k1" /></p>
-<p>Now that we understand the basics of elliptic curve cryptography, we can dig into how signature malleability actually works on Ethereum. </p>
-<p>Ethereum uses <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a> as it's signature scheme. ECDSA signatures consist of a pair of numbers, $(r, s)$, with an integer order $n$. As a result of the x-axis symmetry, if $(r, s)$ is a valid signature, then so is $(r, -s$ mod $n)$. </p>
+<p>Now that we understand the basics of elliptic curve cryptography, we can dig into how signature malleability actually works on Ethereum.</p>
+<p>Ethereum uses <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a> as its signature scheme. ECDSA signatures consist of a pair of numbers, $(r, s)$, with an integer order $n$. As a result of the x-axis symmetry, if $(r, s)$ is a valid signature, then so is $(r, -s$ mod $n)$.</p>
 <p>It's possible to calculate this complementary signature without knowing the private key used to produce it in the first place, which gives an attacker the ability to produce a second valid signature.</p>
 <h3 id="mitigation"><a class="header" href="#mitigation">Mitigation</a></h3>
 <p>To avoid this issue, it's imperative to recognize that validating that a signature is not reused is insufficient in enforcing that the transaction is not replayed.</p>
-<h3 id="sources-12"><a class="header" href="#sources-12">Sources</a></h3>
+<h3 id="sources-14"><a class="header" href="#sources-14">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-117</li>
 <li>https://eklitzke.org/bitcoin-transaction-malleability</li>
 <li>https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="incorrect-constructor-name"><a class="header" href="#incorrect-constructor-name">Incorrect Constructor Name</a></h2>
-<p>Before Solidity <code>0.4.22</code>, the only way to define a constructor was by creating a function with the contract name. In some cases this was problematic. For example, if a smart contract is re-used with a different name but the constructor function isn't also changed it simply becomes a regular, callable function. Similarly, it's possible for an attacker to create a contract with which a function appears to be the constructor but actually has one character replaced with a similar looking character, e.g. replacing an &quot;l&quot; with a &quot;1&quot;, allowing logic to be executed when it's only expected to be executed during contract creation.</p>
+<p>Before Solidity <code>0.4.22</code>, the only way to define a constructor was by creating a function with the contract name. In some cases this was problematic. For example, if a smart contract is re-used with a different name but the constructor function isn't also changed it simply becomes a regular, callable function. Similarly, it's possible for an attacker to create a contract with which a function appears to be the constructor but actually has one character replaced with a similar looking character, e.g. replacing an "l" with a "1", allowing logic to be executed when it's only expected to be executed during contract creation.</p>
 <p>Now with modern versions of Solidity, the constructor is defined with the <code>constructor</code> keyword, effectively deprecating this vulnerability. Thus the solution to this problem is simply to use modern Solidity compiler versions.</p>
-<h3 id="sources-13"><a class="header" href="#sources-13">Sources</a></h3>
+<h3 id="sources-15"><a class="header" href="#sources-15">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-118</li>
 <li>https://blog.sigmaprime.io/solidity-security.html#constructors</li>
@@ -496,9 +629,9 @@ contract SubContract is SuperContract {
   uint a = 2;
 }
 </code></pre>
-<p>Here we can see that <code>SubContract</code> inherits <code>SuperContract</code> and the variable <code>a</code> is defined twice with different values. Now say we use <code>a</code> to perform some function in <code>SubContract</code>, functionality inherited from <code>SuperContract</code> will no longer work since the value of <code>a</code> has been modified. </p>
+<p>Here we can see that <code>SubContract</code> inherits <code>SuperContract</code> and the variable <code>a</code> is defined twice with different values. Now say we use <code>a</code> to perform some function in <code>SubContract</code>, functionality inherited from <code>SuperContract</code> will no longer work since the value of <code>a</code> has been modified.</p>
 <p>To avoid this vulnerability, it's important we check the entire smart contract system for ambiguities. It's also important to check for compiler warnings, as they can flag these ambiguities so long as they're in the smart contract.</p>
-<h3 id="sources-14"><a class="header" href="#sources-14">Sources</a></h3>
+<h3 id="sources-16"><a class="header" href="#sources-16">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-119</li>
 <li>https://github.com/ethereum/solidity/issues/2563</li>
@@ -507,7 +640,7 @@ contract SubContract is SuperContract {
 <div style="break-before: page; page-break-before: always;"></div><h2 id="weak-sources-of-randomness-from-chain-attributes"><a class="header" href="#weak-sources-of-randomness-from-chain-attributes">Weak Sources of Randomness from Chain Attributes</a></h2>
 <p>Using chain attributes for randomness, e.g.: <code>block.timestamp</code>, <code>blockhash</code>, and <code>block.difficulty</code> can seem like a good idea since they often produce pseudo-random values. The problem however, is that Ethereum is entirely deterministic and all available on-chain data is public. Chain attributes can either be predicted or manipulated, and should thus never be used for random number generation.</p>
 <p>A common solution is to use an oracle solution such as <a href="https://docs.chain.link/vrf/v2/introduction/">Chainlink VRF</a>.</p>
-<h3 id="sources-15"><a class="header" href="#sources-15">Sources</a></h3>
+<h3 id="sources-17"><a class="header" href="#sources-17">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-120</li>
 <li>https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe</li>
@@ -522,36 +655,36 @@ contract SubContract is SuperContract {
 <li>Include the address of the contract in the hash to ensure that the message is only used in a single contract.</li>
 <li>Never generate the message hash including the signature. See <a href="vulnerabilities/./signature-malleability.html">Signature Malleability</a></li>
 </ul>
-<h3 id="sources-16"><a class="header" href="#sources-16">Sources</a></h3>
+<h3 id="sources-18"><a class="header" href="#sources-18">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-121</li>
 <li>https://medium.com/cypher-core/replay-attack-vulnerability-in-ethereum-smart-contracts-introduced-by-transferproxy-124bf3694e25</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="requirement-violation"><a class="header" href="#requirement-violation">Requirement Violation</a></h2>
-<p>The <code>require()</code> method is meant to validate conditions, such as inputs or contract state variables, or to validate return values from external contract calls. For validating external calls, inputs can be provided by callers, or they can be returned by callees. In the case that an input violation has occured by the return value of a callee, likely one of two things has gone wrong:</p>
+<p>The <code>require()</code> method is meant to validate conditions, such as inputs or contract state variables, or to validate return values from external contract calls. For validating external calls, inputs can be provided by callers, or they can be returned by callees. In the case that an input violation has occurred by the return value of a callee, likely one of two things has gone wrong:</p>
 <ul>
 <li>There is a bug in the contract that provided the input.</li>
 <li>The requirement condition is too strong.</li>
 </ul>
 <p>To solve this issue, first consider whether the requirement condition is too strong. If necessary, weaken it to allow any valid external input. If the problem isn't the requirement condition, there must be a bug in the contract providing external input. Ensure that this contract is not providing invalid inputs.</p>
-<h3 id="sources-17"><a class="header" href="#sources-17">Sources</a></h3>
+<h3 id="sources-19"><a class="header" href="#sources-19">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-123</li>
 <li>https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="write-to-arbitrary-storage-location"><a class="header" href="#write-to-arbitrary-storage-location">Write to Arbitrary Storage Location</a></h2>
-<p>Only authorized addresses should have access to write to sensitive storage locations. If there isn't proper authorization checks throughout the contract, a malicious user may be able to overwrite sensitive data. However, even if there are authorization checks for writing to sensitive data, an attacker may still be able to overwrite the sensitive data via insensitive data. This could give an attacker access to overwrite important variables such as the contract owner. </p>
-<p>To prevent this from occuring, we not only want to protect sensitive data stores with authorization requirements, but we also want to ensure that writes to one data structure cannot inadvertently overwrite entries of another data structure.</p>
+<p>Only authorized addresses should have access to write to sensitive storage locations. If there isn't proper authorization checks throughout the contract, a malicious user may be able to overwrite sensitive data. However, even if there are authorization checks for writing to sensitive data, an attacker may still be able to overwrite the sensitive data via insensitive data. This could give an attacker access to overwrite important variables such as the contract owner.</p>
+<p>To prevent this from occurring, we not only want to protect sensitive data stores with authorization requirements, but we also want to ensure that writes to one data structure cannot inadvertently overwrite entries of another data structure.</p>
 <p>For an example, try <a href="https://ethernaut.openzeppelin.com/level/19">Ethernaut - Alien Codex</a>. If it's too hard, see <a href="https://github.com/theNvN/ethernaut-openzeppelin-hacks/blob/main/level_19_Alien-Codex.md">this walkthrough (SPOILER)</a>.</p>
-<h3 id="sources-18"><a class="header" href="#sources-18">Sources</a></h3>
+<h3 id="sources-20"><a class="header" href="#sources-20">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-124</li>
 <li>https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="incorrect-inheritance-order"><a class="header" href="#incorrect-inheritance-order">Incorrect Inheritance Order</a></h2>
-<p>In Solidity, it is possible to inherit from multiple sources, which if not properly understood can introduce ambiguity. This ambiguity is known as the Diamond Problem, wherein if two base contracts have the same functon, which one should be prioritized? Luckily, Solidity handles this problem gracefully, that is as long as the developer understands the solution. </p>
+<p>In Solidity, it is possible to inherit from multiple sources, which if not properly understood can introduce ambiguity. This ambiguity is known as the Diamond Problem, wherein if two base contracts have the same function, which one should be prioritized? Luckily, Solidity handles this problem gracefully, that is as long as the developer understands the solution.</p>
 <p>The solution Solidity provides to the Diamond Problem is by using reverse C3 linearization. This means that it will linearize the inheritance from right to left, so the order of inheritance matters. It is suggested to start with more general contracts and end with more specific contracts to avoid problems.</p>
-<h3 id="sources-19"><a class="header" href="#sources-19">Sources</a></h3>
+<h3 id="sources-21"><a class="header" href="#sources-21">Sources</a></h3>
 <ul>
 <li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/complex-inheritance/</li>
 <li>https://solidity.readthedocs.io/en/v0.4.25/contracts.html#multiple-inheritance-and-linearization</li>
@@ -565,7 +698,7 @@ contract SubContract is SuperContract {
 <li>Decreased code readability</li>
 </ul>
 <p>It is highly recommended to remove all unused variables from a code base.</p>
-<h3 id="sources-20"><a class="header" href="#sources-20">Sources</a></h3>
+<h3 id="sources-22"><a class="header" href="#sources-22">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-131</li>
 <li>https://github.com/ethereum/solidity/issues/718</li>
@@ -581,10 +714,10 @@ contract SubContract is SuperContract {
 <li>It blocked transfers of 0 value</li>
 <li>It didn't return true or false for success or fail</li>
 </ul>
-<p>The main cause for concern with this improper implementation is that if it is used with a smart contract that expects an ERC-20 token, it will behave in unexpected ways. It could even get locked in the contract forever. </p>
+<p>The main cause for concern with this improper implementation is that if it is used with a smart contract that expects an ERC-20 token, it will behave in unexpected ways. It could even get locked in the contract forever.</p>
 <p>Although standards aren't always perfect, and may someday become antiquated, they foster proper expectations to provide for secure smart contracts.</p>
 <p>Suggested by: <a href="https://github.com/RobertMCForster">RobertMCForster</a></p>
-<h3 id="sources-21"><a class="header" href="#sources-21">Sources</a></h3>
+<h3 id="sources-23"><a class="header" href="#sources-23">Sources</a></h3>
 <ul>
 <li>https://finance.yahoo.com/news/bnb-really-erc-20-token-160013314.html</li>
 <li>https://blog.goodaudience.com/binance-isnt-erc-20-7645909069a4</li>
@@ -595,19 +728,19 @@ contract SubContract is SuperContract {
   if (msg.sender.code.length != 0) revert CallerNotEOA();
 }
 </code></pre>
-<p>However, as noted in the <a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum Yellow Paper</a>, &quot;During initialization code execution, EXTCODESIZE on the address should return zero, which is the length of the code of the account while CODESIZE should return the length of the initialization&quot;. </p>
+<p>However, as noted in the <a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum Yellow Paper</a>, "During initialization code execution, EXTCODESIZE on the address should return zero, which is the length of the code of the account while CODESIZE should return the length of the initialization".</p>
 <p><a href="https://github.com/0xKitsune/Ghost-Contract/blob/main/src/Ghost.sol">This repo</a> shows how we may exploit this logic by simply calling during creation of a new contract.</p>
 <p>As we can see, it's important that we recognize that although we may be certain that an account with a non-zero codesize is a contract, we can't be certain that an account with a zero codesize is not a contract.</p>
-<h3 id="sources-22"><a class="header" href="#sources-22">Sources</a></h3>
+<h3 id="sources-24"><a class="header" href="#sources-24">Sources</a></h3>
 <ul>
 <li>https://ethereum.github.io/yellowpaper/paper.pdf</li>
 <li>https://github.com/0xKitsune/Ghost-Contract</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="transaction-ordering-dependence"><a class="header" href="#transaction-ordering-dependence">Transaction-Ordering Dependence</a></h2>
-<p>Transactions on Ethereum are grouped together in blocks which are processed on a semi-regular interval, 12 seconds. Before transactions are placed in blocks, they are broadcasted to the mempool where block builders can then proceed to place them as is economically optimal. What's important to understand here is that the mempool is public and thus anyone can see transactions before they're executed, giving them the power to frontrun by placing their own transaction executing the same, or a similar, action with a higher gas price. </p>
+<p>Transactions on Ethereum are grouped together in blocks which are processed on a semi-regular interval, 12 seconds. Before transactions are placed in blocks, they are broadcasted to the mempool where block builders can then proceed to place them as is economically optimal. What's important to understand here is that the mempool is public and thus anyone can see transactions before they're executed, giving them the power to frontrun by placing their own transaction executing the same, or a similar, action with a higher gas price.</p>
 <p>Frontrunning has become prevalent as a result of generalized frontrunning bots becoming more and more common. These generalized frontrunners work by observing the mempool for profitable, replicable transactions which they can replace for their own benefit. <a href="https://www.paradigm.xyz/2020/08/ethereum-is-a-dark-forest">Ethereum is a Dark Forest</a>.</p>
 <p>One solution to transaction-ordering dependence is to use a commit-reveal scheme in the case of information being submitted on-chain. This works by having the submitter send in a hash of the information, storing that on-chain along with the user address so that they may later reveal the answer along with the salt to prove that they were indeed correct. Another solution is to simply use a private mempool such as <a href="https://www.flashbots.net/">Flashbots</a>.</p>
-<h3 id="sources-23"><a class="header" href="#sources-23">Sources</a></h3>
+<h3 id="sources-25"><a class="header" href="#sources-25">Sources</a></h3>
 <ul>
 <li>https://consensys.github.io/smart-contract-best-practices/known_attacks/#front-running-aka-transaction-ordering-dependence</li>
 <li>https://users.encs.concordia.ca/~clark/papers/2019_wtsc_front.pdf</li>
@@ -618,7 +751,7 @@ contract SubContract is SuperContract {
 <h3 id="unbounded-operations"><a class="header" href="#unbounded-operations">Unbounded Operations</a></h3>
 <p>An example in which the block gas limit can be an issue is in executing logic in an unbounded loop. Even without any malicious intent, this can easily go wrong. Just by e.g., having too large an array of users to send funds to can exceed the gas limit and prevent the transaction from ever succeeding, potentially permanently locking up funds.</p>
 <p>This situation can also lead to an attack. Say a bad actor decides to create a significant amount of addresses, with each address being paid a small amount of funds from the smart contract. If done effectively, the transaction can be blocked indefinitely, possibly even preventing further transactions from going through.</p>
-<p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into it's own transaction, and have the recipient call the function.</p>
+<p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.</p>
 <p>If, for some reason, you really need to loop through an array of unspecified length, at least expect it to potentially take multiple blocks, and allow it to be performed in multiple transactions - as seen in this example:</p>
 <pre><code>struct Payee {
     address addr;
@@ -639,11 +772,11 @@ function payOut() {
 </code></pre>
 <h3 id="block-stuffing"><a class="header" href="#block-stuffing">Block Stuffing</a></h3>
 <p>In some situations, your contract can be attacked with a block gas limit even if you don't loop through an array of unspecified length. An attacker can fill several blocks before a transaction can be processed by using a sufficiently high gas price.</p>
-<p>This attack is done by issuing several transactions at a very high gas price. If the gas price is high enough, and the transactions consume enough gas, they can fill entire blocks and prevent other transactions from being processed. </p>
-<p>Ethereum transactions require the sender to pay gas to disincentivize spam attacks, but in some situations, there can be enough incentive to go through with such an attack. For example, a block stuffing attack was used on a gambling Dapp, Fomo3D. The app had a countdown timer, and users could win a jackpot by being the last to purchase a key, except everytime a user bought a key, the timer would be extended. An attacker bought a key then stuffed the next 13 blocks in a row so they could win the jackpot.</p>
-<p>To prevent such attacks from occuring, it's important to carefully consider whether it's safe to incorporate time-based actions in your application.</p>
+<p>This attack is done by issuing several transactions at a very high gas price. If the gas price is high enough, and the transactions consume enough gas, they can fill entire blocks and prevent other transactions from being processed.</p>
+<p>Ethereum transactions require the sender to pay gas to disincentivize spam attacks, but in some situations, there can be enough incentive to go through with such an attack. For example, a block stuffing attack was used on a gambling Dapp, Fomo3D. The app had a countdown timer, and users could win a jackpot by being the last to purchase a key, except every time a user bought a key, the timer would be extended. An attacker bought a key then stuffed the next 13 blocks in a row so they could win the jackpot.</p>
+<p>To prevent such attacks from occurring, it's important to carefully consider whether it's safe to incorporate time-based actions in your application.</p>
 <p>Example from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</p>
-<h3 id="sources-24"><a class="header" href="#sources-24">Sources</a></h3>
+<h3 id="sources-26"><a class="header" href="#sources-26">Sources</a></h3>
 <ul>
 <li>https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</li>
 <li>https://github.com/ethereum/wiki/wiki/Design-Rationale#gas-and-fees</li>
@@ -651,8 +784,8 @@ function payOut() {
 <div style="break-before: page; page-break-before: always;"></div><h2 id="dos-with-unexpected-revert"><a class="header" href="#dos-with-unexpected-revert">DoS with (Unexpected) revert</a></h2>
 <p>A DoS (Denial of Service) may be caused when logic is unable to be executed as a result of an unexpected revert. This can happen for a number of reasons and it's important to consider all the ways in which your logic may revert. The examples listed below are <em>non-exhaustive</em>.</p>
 <h3 id="reverting-funds-transfer"><a class="header" href="#reverting-funds-transfer">Reverting funds transfer</a></h3>
-<p>DoS (Denial of Service) attacks can occur in functions when you try to send funds to a user and the functionality relies on that fund transfer being successful. </p>
-<p>This can be problematic in the case that the funds are sent to a smart contract created by a bad actor, since they can simply create a fallback function that reverts all payments. </p>
+<p>DoS (Denial of Service) attacks can occur in functions when you try to send funds to a user and the functionality relies on that fund transfer being successful.</p>
+<p>This can be problematic in the case that the funds are sent to a smart contract created by a bad actor, since they can simply create a fallback function that reverts all payments.</p>
 <p>For example:</p>
 <pre><code>// INSECURE
 contract Auction {
@@ -670,7 +803,7 @@ contract Auction {
 }
 </code></pre>
 <p>As you can see in this example, if an attacker bids from a smart contract with a fallback function reverting all payments, they can never be refunded, and thus no one can ever make a higher bid.</p>
-<p>This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the funtion is reverted and no one is paid. </p>
+<p>This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the function is reverted and no one is paid.</p>
 <pre><code>address[] private refundAddresses;
 mapping (address =&gt; uint) public refunds;
 
@@ -681,7 +814,7 @@ function refundAll() public {
     }
 }
 </code></pre>
-<p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into it's own transaction, and have the recipient call the function.</p>
+<p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.</p>
 <pre><code>contract auction {
     address highestBidder;
     uint highestBid;
@@ -701,7 +834,7 @@ function refundAll() public {
     function withdrawRefund() external {
         uint refund = refunds[msg.sender];
         refunds[msg.sender] = 0;
-        (bool success, ) = msg.sender.call.value(refund)(&quot;&quot;);
+        (bool success, ) = msg.sender.call.value(refund)("");
         require(success);
     }
 }
@@ -709,12 +842,12 @@ function refundAll() public {
 <p>Examples from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
 https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/</p>
 <h3 id="overunderflow"><a class="header" href="#overunderflow">Over/Underflow</a></h3>
-<p>Prior to SafeMath usage, whether built-in in solidity &gt;=0.8.0 or using a library, <a href="vulnerabilities/./overflow-underflow.html">over/underflows</a> would result in rolling over to the minimum/maxium value. Now that checked math is commonplace, it's important to recognize that the effect of checked under/overflows is a revert, which may DoS important logic. </p>
+<p>Prior to SafeMath usage, whether built-in in solidity &gt;=0.8.0 or using a library, <a href="vulnerabilities/./overflow-underflow.html">over/underflows</a> would result in rolling over to the minimum/maximum value. Now that checked math is commonplace, it's important to recognize that the effect of checked under/overflows is a revert, which may DoS important logic.</p>
 <p>Regardless of usage of checked math, it's necessary to ensure that any valid input will not result in an over/underflow. Take extra care when working with smaller integers e.g. <code>int8</code>/<code>uint8</code>, <code>int16</code>/<code>uint16</code>, <code>int24</code>/<code>uint24</code>, etc..</p>
 <h3 id="unexpected-balance"><a class="header" href="#unexpected-balance">Unexpected Balance</a></h3>
 <p>It's important to take caution in enforcing expected contract balances of tokens or Ether as those balances may be increased by an attacker to cause an unexpected revert. This is easily possible with ERC20 tokens by simply <code>transfer</code>ring to the contract, but is also possible with Ether by <a href="vulnerabilities/./forcibly-sending-ether.html">Forcibly sending Ether to a contract</a>.</p>
-<p>Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert. </p>
-<h3 id="sources-25"><a class="header" href="#sources-25">Sources</a></h3>
+<p>Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert.</p>
+<h3 id="sources-27"><a class="header" href="#sources-27">Sources</a></h3>
 <ul>
 <li>https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</li>
 <li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/</li>
@@ -738,13 +871,13 @@ function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
 	owner = address(newOwner);
 }
 </code></pre>
-<h3 id="sources-26"><a class="header" href="#sources-26">Sources</a></h3>
+<h3 id="sources-28"><a class="header" href="#sources-28">Sources</a></h3>
 <ul>
 <li>https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions</li>
 <li>https://ethereum.stackexchange.com/a/69329</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="default-visibility"><a class="header" href="#default-visibility">Default Visibility</a></h2>
-<p>Visibility specifiers are used to determine where a function or variable can be accessed from. As explained in the <a href="https://docs.soliditylang.org/en/v0.8.15/cheatsheet.html?highlight=visibility#function-visibility-specifiers">solidity docs</a>: </p>
+<p>Visibility specifiers are used to determine where a function or variable can be accessed from. As explained in the <a href="https://docs.soliditylang.org/en/v0.8.15/cheatsheet.html?highlight=visibility#function-visibility-specifiers">solidity docs</a>:</p>
 <ul>
 <li><code>public</code>: visible externally and internally (creates a <a href="https://docs.soliditylang.org/en/v0.8.15/contracts.html#getter-functions">getter function</a> for storage/state variables)</li>
 <li><code>private</code>: only visible in the current contract</li>
@@ -753,7 +886,7 @@ function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
 </ul>
 <p>It's important to note that the default visibility is <code>public</code>, allowing access externally or internally by any contract or EOA. We can see how this may be a problem if a method is intended to only be accessible internally but is missing a visibility specifier.</p>
 <p>Modern compilers should catch missing function visibility specifiers, but will generally allow missing state variable visibility specifiers. Regardless, it's important to be aware of the possible interactions which may occur as a result of default visibility specifiers for both functions and state variables.</p>
-<h3 id="sources-27"><a class="header" href="#sources-27">Sources</a></h3>
+<h3 id="sources-29"><a class="header" href="#sources-29">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-100</li>
 <li>https://swcregistry.io/docs/SWC-108</li>
@@ -763,7 +896,7 @@ function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
 <div style="break-before: page; page-break-before: always;"></div><h2 id="insufficient-access-control"><a class="header" href="#insufficient-access-control">Insufficient Access Control</a></h2>
 <p>Access control is often imperative in management and ownership of smart contracts. It's important to consider ways in which access control may be circumvented, or insufficiently implemented and the corresponding consequences.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="off-by-one"><a class="header" href="#off-by-one">Off-By-One</a></h2>
-<p>Off-by-one errors are a common mistake made by programmers in which the intended boundaries are incorrect by only one, though these errors may seem insignificant, the effect can easily be quite severe. </p>
+<p>Off-by-one errors are a common mistake made by programmers in which the intended boundaries are incorrect by only one, though these errors may seem insignificant, the effect can easily be quite severe.</p>
 <h3 id="array-lengths"><a class="header" href="#array-lengths">Array lengths</a></h3>
 <p>Properly determining intended array lengths is a common source of off-by-one errors. Particularly since 0-indexing means the final value in an array is <code>array.length - 1</code>.</p>
 <p>Consider for example a function intended to loop over a list of recipients to transfer funds to each user, but the loop length is incorrectly set.</p>
@@ -783,7 +916,7 @@ if (collateralizationRatio &gt; 1 ether) {
 	liquidate();
 }
 </code></pre>
-<h3 id="sources-28"><a class="header" href="#sources-28">Sources</a></h3>
+<h3 id="sources-30"><a class="header" href="#sources-30">Sources</a></h3>
 <ul>
 <li>https://github.com/OpenCoreCH/smart-contract-auditing-heuristics#off-by-one-errors</li>
 </ul>
@@ -813,22 +946,6 @@ uint256 fee = amount / daysEarly * dailyFee
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
