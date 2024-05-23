@@ -9,10 +9,11 @@ This style guide outlines the formatting and content expectations for contributi
 ## Content Guidelines
 - *Vulnerability Type:* Identify the type of vulnerability at the beginning of the document (eg. Unsupported Opcodes, Reentrancy, Access Control).
 - *Technical Explanation:* Provide a concise technical explanation of the vulnerability, including potential impact and exploit scenarios. Use code snippets where necessary to illustrate the issue.
-- *Affected Chains:* Specify which EVM-compatible chains are susceptible to the vulnerability. Highlight any chain-specific considerations. 
-- *Detection and Mitigation:* Outline recommended methods for detecting the vulnerability during smart contract audits and suggest mitigation strategies for developers. Tools and best practices can be included here. 
+- *Affected Chains (Optional):* Specify which EVM-compatible chains are susceptible to the vulnerability. Highlight any chain-specific considerations. 
+- *Detection and Mitigation (Optional):* Outline recommended methods for detecting the vulnerability during smart contract audits and suggest mitigation strategies for developers. Tools and best practices can be included here. 
 - *Examples (Optional):* If applicable, include real-world examples of smart contracts impacted by the vulnerability.
-- *Severity Rating (Optional):* Consider incorporating a severity rating system to prioritize vulnerabilities based on potential impact. 
+- *Severity Rating (Optional):* Consider incorporating a severity rating system to prioritize vulnerabilities based on potential impact.
+- *Updating the README:* When you add a new vulnerability and its corresponding markdown file, remember to update `README.md` with the new entry. 
 
 ## Code Snippet Formatting
 - *Code Blocks:* Use [markdown code blocks](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks) to present code snippets.
