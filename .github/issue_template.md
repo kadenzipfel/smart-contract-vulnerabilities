@@ -1,5 +1,5 @@
 ## Checklist
-- [ ] I have searched the existing issues and pull requests.
+- [ ] I have searched the existing issues and pull requests for duplicates.
 
 ## Type of Issue
 - [ ] New vulnerability addition

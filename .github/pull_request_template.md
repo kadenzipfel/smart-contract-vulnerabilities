@@ -1,6 +1,10 @@
 ## Related Issue
 
-- Closes: #[issue number] (Link the issue this pull request addresses)
+- Closes: (Link the issue this pull request addresses)  
+
+## Checklist
+
+- [ ] I have read and followed the [style guide](https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/style-guide.md)
 
 ### Describe the changes you've made:
 
