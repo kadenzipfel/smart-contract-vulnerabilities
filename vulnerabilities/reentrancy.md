@@ -73,6 +73,28 @@ function withdraw() external {
 
 In this example, a hacker can exploit this contract by having a fallback function call `transfer()` to transfer spent funds before the balance is set to 0 in the `withdraw()` function.
 
+### Cross-Contract Reentrancy 
+
+Cross-Contract Reentrancy is a sophisticated type of reentrancy attack that leverages the fact of using one contract's state to mainpulate the state of another contract.
+
+```
+// Contract A - Secure Withdraw Function
+function withdraw(uint256 amount) external {
+    require(balances[msg.sender] >= amount, "Insufficient balance");
+    balances[msg.sender] -= amount;
+    // Transfer funds to Contract B
+    (bool success,) = address(contractB).call{value: amount}("");
+    require(success, "Transfer failed.");
+}
+
+// Contract B - Malicious Fallback Function
+fallback() external payable {
+    // Call Contract A's withdraw function to drain funds
+    contractA.withdraw(amount);
+}
+```
+
+In this scenarios, the malicious `fallback()` function of contract B calls the `withdraw()` function of contract A repeatedly, draining its funds before the balance is reset. 
 ### Read-only Reentrancy
 
 Read-only reentrancy is a novel attack vector in which instead of reentering into the same contract in which state changes have yet to be made, an attacker reenters into another contract which reads from the state of the original contract.
