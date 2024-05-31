@@ -1,8 +1,8 @@
-## Unbounded Return Data Gas Griefing
+## Unbounded Return Data
 
-The [Byzantium](https://blog.ethereum.org/2017/10/12/byzantium-hf-announcement) 2017 mainnet hard-fork included [EIP-211](https://eips.ethereum.org/EIPS/eip-211), which added 2 new opcodes `RETURNDATASIZE` and `RETURNDATACOPY`. This allows for an arbitrary-length return data buffer, from which the caller can copy all or some of the return data from an external call. This variable length buffer is created empty for each new call-frame. Prior to this EIP, the return data size had to be anticipated in advance in the call parameters.
+The [Byzantium](https://blog.ethereum.org/2017/10/12/byzantium-hf-announcement) 2017 mainnet hard-fork introduced [EIP-211](https://eips.ethereum.org/EIPS/eip-211). This EIP established an arbitrary-length return data buffer as well as 2 new opcodes: `RETURNDATASIZE` and `RETURNDATACOPY`. This enables callers to copy all or part of the return data from an external call to memory. The variable length buffer is created empty for each new call-frame. Previously, the size of the return data had to be specified in advance in the call parameters.
 
-However under Solidity's implementation, up until at least `0.8.26`, the entirety of this return data is automatically copied from the buffer into memory, even when using a Solidity low-level call and with the omission of the `bytes memory data` syntax.
+However under Solidity's implementation, up until at least `0.8.26`, the entirety of this return data is automatically copied from the buffer into memory. This is true even when using a Solidity low-level call with the omission of the `bytes memory data` syntax.
 
 Consider the following example:
 
@@ -25,8 +25,7 @@ contract Victim {
 }
 ```
 
-In the above example one can observe that even though the `Victim` contract has not explicitly requested `bytes memory data` to be returned, and has furthermore given the external call a gas stipend of 2500, Solidity will still invoke `RETURNDATACOPY` during the top-level call-frame. This means the `Attacker` contract, through revert or return, can force the `Victim` contract to consume unbounded gas during their own call-frame and not that of the `Attacker`. Given that memory gas costs grow exponentially after 23 words, this attack vector has the potential to prevent certain contract flows from being executed.
-
+In the above example one can observe that even though the `Victim` contract has not explicitly requested `bytes memory data` to be returned, and has furthermore given the external call a gas stipend of 2500, Solidity will still invoke `RETURNDATACOPY` during the top-level call-frame. This means the `Attacker` contract, through revert or return, can force the `Victim` contract to consume unbounded gas during their own call-frame and not that of the `Attacker`. Given that memory gas costs grow exponentially after 23 words, this attack vector has the potential to prevent certain contract flows from being executed due to an `Out of Gas` error. Examples of vulnerable contract flows include unstaking or undelegating funds where a callback is involved. Here the user may be prevented from unstaking or undelegating their funds, because the transaction reverts due to insufficient gas.
 
 ### Mitigation
 
