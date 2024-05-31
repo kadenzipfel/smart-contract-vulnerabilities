@@ -85,6 +85,7 @@ function withdraw(uint256 amount) external {
     // Transfer funds to Contract B
     (bool success,) = address(contractB).call{value: amount}("");
     require(success, "Transfer failed.");
+    balances[msg.sender] = 0;
 }
 
 // Contract B - Malicious Fallback Function
