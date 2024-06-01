@@ -21,12 +21,12 @@ abi.encodePacked(["a", "b"], ["c", "d"])
 abi.encodePacked(["a"], ["b", "c", "d"])
 ```
 
-Both calls could potentially produce the same packed encoding because `abi.encodePacked()` simply concatenates the elements without any delimiters.
+Both calls could potentially produce the same packed encoding because `abi.encodePacked()` simply concatenates the elements without any delimiters!
 
-As a matter of fact, the below warning is from the [official solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode) on the same
+As a matter of fact, the below warning is taken as it is straight from the [official solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode) on the same
 
 
-> [!WARNING]  
+> [!WARNING]
 > If you use `keccak256(abi.encodePacked(a, b))` and both `a` and `b` are dynamic types, it is easy to craft collisions in the hash value by moving parts of `a` into `b` and vice-versa.
 > More specifically, `abi.encodePacked("a", "bc") == abi.encodePacked("ab", "c")`. If you use `abi.encodePacked` for signatures, authentication or data integrity, make sure to always use the same types and check that at most one of them is dynamic. Unless there is a compelling reason, `abi.encode` should be preferred.
 
@@ -35,6 +35,7 @@ As a matter of fact, the below warning is from the [official solidity documentat
 
 
 ```solidity
+/// INSECURE
 function addUsers(address[] calldata admins, address[] calldata regularUsers, bytes calldata signature) external {
     if (!isAdmin[msg.sender]) {
         bytes32 hash = keccak256(abi.encodePacked(admins, regularUsers));
@@ -53,7 +54,7 @@ function addUsers(address[] calldata admins, address[] calldata regularUsers, by
 In the provided sample code above, the `addUsers` function uses `abi.encodePacked(admins, regularUsers)` to generate a hash. An attacker could exploit this by rearranging elements between the `admins` and `regularUsers` arrays, resulting in the same hash and thereby bypassing authorization checks.
 
 
-**Fixed Code Using Single User (`access_control_fixed_1.sol`):**
+**Fixed Code Using Single User:**
 
 ```solidity
 function addUser(address user, bool admin, bytes calldata signature) external {
@@ -72,7 +73,7 @@ function addUser(address user, bool admin, bytes calldata signature) external {
 
 This approach eliminates the use of variable-length arrays, thus avoiding the hash collision issue entirely by dealing with a single user at a time.
 
-**Fixed Code Using Fixed-Length Arrays (`access_control_fixed_2.sol`):**
+**Fixed Code Using Fixed-Length Arrays:**
 
 ```solidity
 function addUsers(address[3] calldata admins, address[3] calldata regularUsers, bytes calldata signature) external {
@@ -95,14 +96,11 @@ In this version, fixed-length arrays are used, which mitigates the risk of hash 
 
 ## Remediation Strategies
 
-To prevent this type of hash collision vulnerability, several remediation strategies can be employed:
+To prevent this type of hash collision, the below remediation strategies can be employed:
 
 1. **Avoid Variable-Length Arguments**: Avoid using `abi.encodePacked()` with variable-length arguments. Instead, use fixed-length arrays to ensure the encoding is unique and unambiguous.
 
 2. **Use `abi.encode()` Instead**: Unlike `abi.encodePacked()`, `abi.encode()` includes additional type information and length prefixes in the encoding, making it much less prone to hash collisions. Switching from `abi.encodePacked()` to `abi.encode()` is a simple yet effective fix.
-
-3. **Replay Protection**: Implement replay protection mechanisms to prevent attackers from reusing valid signatures. This can involve including nonces or timestamps in the signed data. However, this does not completely eliminate the risk of hash collisions but adds an additional layer of security.
-
 
 ## Sources
 - [Smart Contract Weakness Classification #133](https://swcregistry.io/docs/SWC-133/)
