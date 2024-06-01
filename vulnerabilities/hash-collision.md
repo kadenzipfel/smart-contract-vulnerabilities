@@ -23,7 +23,7 @@ abi.encodePacked(["a"], ["b", "c", "d"])
 
 Both calls could potentially produce the same packed encoding because `abi.encodePacked()` simply concatenates the elements without any delimiters!
 
-As a matter of fact, the below warning is taken as it is straight from the [official solidity language documentation](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode) on the same
+As a matter of fact, the below warning is taken as it is straight from the [official solidity language documentation](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode) regarding the same.
 
 
 > [!WARNING]
