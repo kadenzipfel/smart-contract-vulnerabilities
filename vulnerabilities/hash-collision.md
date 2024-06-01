@@ -1,4 +1,4 @@
-In Solidity, the `abi.encodePacked()` function is used to create tightly packed byte arrays which can then be hashed using `keccak256()`.
+In Solidity, the `abi.encodePacked()` function is used to create tightly packed byte arrays which can then be hashed using `keccak256()`
 
 However, this function can be dangerous when used with multiple variable-length arguments because it can lead to hash collisions. These collisions can potentially be exploited in scenarios such as signature verification, allowing attackers to bypass authorization mechanisms.
 
@@ -23,7 +23,7 @@ abi.encodePacked(["a"], ["b", "c", "d"])
 
 Both calls could potentially produce the same packed encoding because `abi.encodePacked()` simply concatenates the elements without any delimiters!
 
-As a matter of fact, the below warning is taken as it is straight from the [official solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode) on the same
+As a matter of fact, the below warning is taken as it is straight from the [official solidity language documentation](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode) on the same
 
 
 > [!WARNING]
@@ -101,6 +101,9 @@ To prevent this type of hash collision, the below remediation strategies can be 
 1. **Avoid Variable-Length Arguments**: Avoid using `abi.encodePacked()` with variable-length arguments. Instead, use fixed-length arrays to ensure the encoding is unique and unambiguous.
 
 2. **Use `abi.encode()` Instead**: Unlike `abi.encodePacked()`, `abi.encode()` includes additional type information and length prefixes in the encoding, making it much less prone to hash collisions. Switching from `abi.encodePacked()` to `abi.encode()` is a simple yet effective fix.
+
+3. **Replay Protection**: Implement replay protection mechanisms to prevent attackers from reusing valid signatures. This can involve including nonces or timestamps in the signed data. However, this does not completely eliminate the risk of hash collisions but adds an additional layer of security. More on this can be found [here](./missing-protection-signature-replay.md)
+
 
 ## Sources
 - [Smart Contract Weakness Classification #133](https://swcregistry.io/docs/SWC-133/)
