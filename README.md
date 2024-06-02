@@ -6,6 +6,7 @@
 - [Timestamp Dependence](./vulnerabilities/timestamp-dependence.md)
 - [Authorization Through tx.origin](./vulnerabilities/authorization-txorigin.md)
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
+- [Force Feeding](./vulnerabilities/force-feeding.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
 - [Unsafe Low-Level Call](./vulnerabilities/unsafe-low-level-call.md)
 - [Unchecked Return Value](./vulnerabilities/unchecked-return-values.md)
