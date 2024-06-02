@@ -1,3 +1,5 @@
+# Hash Collisions in Solidity's `abi.encodePacked()` with Multiple Variable-Length Arguments.
+
 In Solidity, the `abi.encodePacked()` function is used to create tightly packed byte arrays which can then be hashed using `keccak256()`
 
 However, this function can be dangerous when used with multiple variable-length arguments because it can lead to hash collisions. These collisions can potentially be exploited in scenarios such as signature verification, allowing attackers to bypass authorization mechanisms.
