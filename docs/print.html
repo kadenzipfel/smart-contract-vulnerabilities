@@ -567,8 +567,11 @@ contract Lotto {
 <li><a href="https://medium.com/coinmonks/gemstoneido-contract-stuck-with-921-eth-an-analysis-of-why-transfer-does-not-work-on-zksync-era-d5a01807227d">GemstoneIDO Contract Issue Analysis on Medium</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="uninitialized-storage-pointer"><a class="header" href="#uninitialized-storage-pointer">Uninitialized Storage Pointer</a></h2>
+<blockquote>
+<p>[!NOTE]<br />
+As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer an issue since contracts with uninitialized storage pointers will no longer compile. This being said, it's still important to understand what storage pointers you should be using in certain situations.</p>
+</blockquote>
 <p>Data is stored in the EVM as either <code>storage</code>, <code>memory</code>, or <code>calldata</code>. It is important that they are well understood and correctly initialized. Incorrectly initializing data storage pointers, or simply leaving them uninitialized, can lead to contract vulnerabilities.</p>
-<p>As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer an issue since contracts with uninitialized storage pointers will no longer compile. This being said, it's still important to understand what storage pointers you should be using in certain situations.</p>
 <h3 id="sources-10"><a class="header" href="#sources-10">Sources</a></h3>
 <ul>
 <li>https://swcregistry.io/docs/SWC-109</li>
@@ -649,6 +652,10 @@ signatureUsed[signature] = true;
 <li>https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="incorrect-constructor-name"><a class="header" href="#incorrect-constructor-name">Incorrect Constructor Name</a></h2>
+<blockquote>
+<p>[!NOTE]<br />
+This vulnerability is relevant to older contracts using Solidity versions before <code>0.4.22</code>. Modern Solidity versions (0.4.22 and later) use the <code>constructor</code> keyword, effectively deprecating this vulnerability. However, it is still important to be aware of this issue when reviewing or interacting with legacy contracts.</p>
+</blockquote>
 <p>Before Solidity <code>0.4.22</code>, the only way to define a constructor was by creating a function with the contract name. In some cases this was problematic. For example, if a smart contract is re-used with a different name but the constructor function isn't also changed it simply becomes a regular, callable function. Similarly, it's possible for an attacker to create a contract with which a function appears to be the constructor but actually has one character replaced with a similar looking character, e.g. replacing an "l" with a "1", allowing logic to be executed when it's only expected to be executed during contract creation.</p>
 <p>Now with modern versions of Solidity, the constructor is defined with the <code>constructor</code> keyword, effectively deprecating this vulnerability. Thus the solution to this problem is simply to use modern Solidity compiler versions.</p>
 <h3 id="sources-15"><a class="header" href="#sources-15">Sources</a></h3>
