@@ -33,7 +33,7 @@ contract Executor {
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/attacks/griefing/
+- https://scsfg.io/hackers/griefing/
 - https://ethereum.stackexchange.com/questions/62829/what-does-griefing-mean
 - https://ethereum.stackexchange.com/questions/73261/griefing-attacks-are-they-profitable-for-the-attacker
 - https://en.wikipedia.org/wiki/Griefer
