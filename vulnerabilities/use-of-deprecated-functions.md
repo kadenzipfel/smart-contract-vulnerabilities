@@ -6,7 +6,7 @@ Here is a *non-exhaustive* list of deprecated functions and alternatives. Many a
 
 | Deprecated              | Alternatives              |
 | :---------------------- | ------------------------: |
-| `suicide(address)`      |	`selfdestruct(address)`   |
+| `suicide(address)`/`selfdestruct(address)` | N/A    | 
 | `block.blockhash(uint)` |	`blockhash(uint)`         |
 | `sha3(...)`	            | `keccak256(...)`          |
 | `callcode(...)`	        | `delegatecall(...)`       |
