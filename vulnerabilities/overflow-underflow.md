@@ -25,7 +25,7 @@ The above code snippet will overflow and the ``2`` will be stored in the variabl
 ### Using Shift Operators
 Overflow & underflow checks are not performed for shift operations like they are performed for other arithmetic operations. Thus, over/underflows can occur.
 
-The left shift ``<<`` operator shifts all the beats in the first operand by the number specified in the second operand.Shifting an operand by 1 position is equivalent to multiplying it by 2, shifting 2 positions is equivalent to multiplying it by 4, and shifting 3 positions is equivalent to multiplying by 8. 
+The left shift ``<<`` operator shifts all the beats in the first operand by the number specified in the second operand. Shifting an operand by 1 position is equivalent to multiplying it by 2, shifting 2 positions is equivalent to multiplying it by 4, and shifting 3 positions is equivalent to multiplying by 8. 
 
 ```solidity
 uint8 public a = 100;
@@ -42,19 +42,18 @@ Inline Assembly in solidity is performed using YUL language. In YUL programming 
 uint8 public a = 255;
 
 function addition() public returns (uint8 result) {
+    assembly {
+        result := add(sload(a.slot), 1) // adding 1 will overflow and reset to 0
+        // using inline assembly
+    }
 
-assembly {
-result := add(sload(a.slot),1) // adding 1 will overflow and reset to 0
-// using inline assembly
-}
-
-return result;
+    return result;
 }
 ```
 In the above code we are adding ``1`` into the variable with inline assembly and then returning the result. The variable result will overflow and 0 will be returned, despite this the contract will not throw an error or revert.
 
 ### Use of unchecked code block:
-Performing arithmetic operations inside the unchecked block saves a lot of gas because it omits several checks and opcodes.But, some of these opcodes are used in default arithmetic operations in 0.8 to check for underflow/ overflow.
+Performing arithmetic operations inside the unchecked block saves a lot of gas because it omits several checks and opcodes. But, some of these opcodes are used in default arithmetic operations in 0.8 to check for underflow/overflow.
 
 ```solidity
 uint8 public a = 255;
