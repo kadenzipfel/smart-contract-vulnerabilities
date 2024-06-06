@@ -1,4 +1,4 @@
-# Force Feeding
+# Unexpected Ether Transfer
 
 Force-feeding is a technique where an attacker sends Ether directly to a smart contract address without invoking any of its functions. This can disrupt the contract's internal accounting mechanisms, particularly if the contract relies on balance checks for its logic.
 
