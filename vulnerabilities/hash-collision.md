@@ -1,13 +1,10 @@
-# Hash Collisions in Solidity's `abi.encodePacked()` with Multiple Variable-Length Arguments.
+ # Hash Collision when using `abi.encodePacked()` with Multiple Variable-Length Arguments
 
 In Solidity, the `abi.encodePacked()` function is used to create tightly packed byte arrays which can then be hashed using `keccak256()`
 
 However, this function can be dangerous when used with multiple variable-length arguments because it can lead to hash collisions. These collisions can potentially be exploited in scenarios such as signature verification, allowing attackers to bypass authorization mechanisms.
 
-## Key Concepts
-
-- **Hash Collision**: A situation where two different sets of inputs produce the same hash output. In this context, a hash collision can occur when using `abi.encodePacked()` with multiple variable-length arguments, allowing an attacker to craft different inputs that produce the same hash.
-- **Signature Verification**: A common method for authentication and authorization in smart contracts, where a message signed by a private key is verified using the corresponding public key.
+**Hash Collision** is a situation where two different sets of inputs produce the same hash output. In this context, a hash collision can occur when using `abi.encodePacked()` with multiple variable-length arguments, allowing an attacker to craft different inputs that produce the same hash.
 
 ## Understanding the vulnerability
 
@@ -134,8 +131,14 @@ To prevent this type of hash collision, the below remediation strategies can be 
 1. **Avoid Variable-Length Arguments**: Avoid using `abi.encodePacked()` with variable-length arguments such as arrays and strings. Instead, use fixed-length arrays to ensure the encoding is unique and unambiguous.
 
 2. **Use `abi.encode()` Instead**: Unlike `abi.encodePacked()`, `abi.encode()` includes additional type information and length prefixes in the encoding, making it much less prone to hash collisions. Switching from `abi.encodePacked()` to `abi.encode()` is a simple yet effective fix.
+   
+> [!IMPORTANT]
+> Replay Protection does not protect against possible hash collisions!
+> 
+> It is listed here as a defense in depth strategy and SHOULD NOT be solely relied upon to protect against said vulnerability
 
 3. **Replay Protection**: Implement replay protection mechanisms to prevent attackers from reusing valid signatures. This can involve including nonces or timestamps in the signed data. However, this does not completely eliminate the risk of hash collisions but adds an additional layer of security. More on this can be found [here](./missing-protection-signature-replay.md)
+
 
 
 ## Sources
