@@ -2,13 +2,9 @@
 
 Force-feeding is a technique where an attacker sends Ether directly to a smart contract address without invoking any of its functions. This can disrupt the contract's internal accounting mechanisms, particularly if the contract relies on balance checks for its logic.
 
-## Force Feeding Mechanics
-
 ### Normal Contract Behavior
 
 In typical smart contract operation, Ether is sent to a contract via a transaction that calls a payable function or invokes the `receive()` or `fallback()` functions. If a contract lacks these functions, transactions sending Ether to it will normally be reverted, ensuring the contract does not inadvertently receive funds.
-
-### Force-Feeding Bypasses
 
 Force-feeding bypasses this by sending Ether in a manner that doesn't require calling the contract's functions, thereby avoiding the checks and logic coded in Solidity.
 
