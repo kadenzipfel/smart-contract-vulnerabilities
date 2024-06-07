@@ -6,7 +6,7 @@ Force-feeding is a technique where an attacker sends Ether directly to a smart c
 
 ### Normal Contract Behavior
 
-In typical smart contract operation, Ether is sent to a contract via a transaction that calls a function or invokes the `receive()` or `fallback()` functions. If a contract lacks these functions, transactions sending Ether to it will normally be reverted, ensuring the contract does not inadvertently receive funds.
+In typical smart contract operation, Ether is sent to a contract via a transaction that calls a payable function or invokes the `receive()` or `fallback()` functions. If a contract lacks these functions, transactions sending Ether to it will normally be reverted, ensuring the contract does not inadvertently receive funds.
 
 ### Force-Feeding Bypasses
 
