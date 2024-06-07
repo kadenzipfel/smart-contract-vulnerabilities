@@ -174,18 +174,64 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="integer-overflow-and-underflow"><a class="header" href="#integer-overflow-and-underflow">Integer Overflow and Underflow</a></h2>
-<p>In solidity, integer types have maximum values. For example:</p>
-<p><code>uint8</code> =&gt; 255
-<code>uint16</code> =&gt; 65535
-<code>uint24</code> =&gt; 16777215
-<code>uint256</code> =&gt; (2^256) - 1</p>
-<p>Overflow and underflow bugs can occur when you exceed the maximum value (overflow) or when you go below the minimum value (underflow). When you exceed the maximum value, you go back down to zero, and when you go below the minimum value, it brings you back up to the maximum value.</p>
-<p>Since smaller integer types like: <code>uint8</code>, <code>uint16</code>, etc. have smaller maximum values, it can be easier to cause an overflow, thus they should be used with greater caution.</p>
-<p>Older contracts often made use of the <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol">SafeMath library</a>, to avoid over/underflows, but in solidity &gt;=v0.8.0, SafeMath logic is built in by default. It's important to consider that regardless of SafeMath logic being used, either built-in or used manually in older contracts, over/underflows still trigger reverts, which may result in <a href="./dos-revert.html">denial of service</a> of important functionality or other unexpected effects. Built-in SafeMath logic may also be avoided with <code>unchecked</code> blocks, <a href="https://docs.soliditylang.org/en/v0.8.15/control-structures.html?highlight=unchecked#checked-or-unchecked-arithmetic">see docs for more info</a>.</p>
-<h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
-<ul>
-<li>https://consensys.github.io/smart-contract-best-practices/attacks/insecure-arithmetic/</li>
-</ul>
+<p>In solidity, Integer types have maximum and minimum values. Integer overflow occurs when an integer variable exceeds the maximum value that can be stored in that variable type. Similarly, Integer underflow occurs when an integer variable goes below the minimum value for that variable type. Example: The maximum value <code>uint8</code> can store is <code>255</code>. Now, when you store <code>256</code> in <code>uint8</code> it will overflow and the value will reset to 0. When you store <code>257</code>, the value will be <code>1</code>, <code>2</code> for <code>258</code> and so on. Similarly, if you try to store <code>-1</code> in the uint8 variable the value of the variable will become <code>255</code>, and so on as it will underflow.</p>
+<p>Some integer types and their min/max values:</p>
+<div class="table-wrapper"><table><thead><tr><th>Type</th><th>Max</th><th>Min</th></tr></thead><tbody>
+<tr><td>uint8</td><td>255</td><td>0</td></tr>
+<tr><td>uint16</td><td>65535</td><td>0</td></tr>
+<tr><td>uint24</td><td>16777215</td><td>0</td></tr>
+<tr><td>uint256</td><td>2^256 - 1</td><td>0</td></tr>
+</tbody></table>
+</div>
+<p>Since smaller integer types like: <code>uint8</code>, <code>uint16</code>, etc have smaller maximum values, it can be easier to cause an overflow, thus they should be used with greater caution.</p>
+<p>To prevent over/underflows, <a href="https://github.com/ConsenSysMesh/openzeppelin-solidity/blob/master/contracts/math/SafeMath.sol">Safe Math Library</a> is often used by contracts with older versions of Solidity but Solidity &gt;=0.8 protects against integer overflows and underflows through the use of built-in safe math functions. It's important to consider that regardless of SafeMath logic being used, either built-in or used manually in older contracts, over/underflows still trigger reverts, which may result in <a href="https://github.com/kadenzipfel/smart-contract-vulnerabilities/blob/master/vulnerabilities/dos-revert.md">denial of service</a> of important functionality or other unexpected effects. Even after the update of solidity to 0.8, there are scenarios in which the integer overflow and underflow can still occur without the transaction reverting.</p>
+<h3 id="typecasting"><a class="header" href="#typecasting">Typecasting</a></h3>
+<p>The most common way in which integer over/underflow is possible when you convert an integer of a larger uint data type to a smaller data type.</p>
+<pre><code class="language-solidity">uint256 public a = 258;
+uint8 public b = uint8(a); // typecasting uint256 to uint8
+</code></pre>
+<p>The above code snippet will overflow and the <code>2</code> will be stored in the variable <code>b</code> due to the fact that maximum value in uint8 data type is <code>255</code>. So, it will overflow and reset to <code>0</code> without reverting.</p>
+<h3 id="using-shift-operators"><a class="header" href="#using-shift-operators">Using Shift Operators</a></h3>
+<p>Overflow &amp; underflow checks are not performed for shift operations like they are performed for other arithmetic operations. Thus, over/underflows can occur.</p>
+<p>The left shift <code>&lt;&lt;</code> operator shifts all the beats in the first operand by the number specified in the second operand. Shifting an operand by 1 position is equivalent to multiplying it by 2, shifting 2 positions is equivalent to multiplying it by 4, and shifting 3 positions is equivalent to multiplying by 8.</p>
+<pre><code class="language-solidity">uint8 public a = 100;
+uint8 public b = 2;
+
+uint8 public c = a &lt;&lt; b; // overflow as 100 * 4 &gt; 255
+</code></pre>
+<p>In the above code, left shifting <code>a</code> which is <code>100</code> by 2 positions <code>b</code> is equivalent to multiplying 100 by 4. So the result will overflow and the value in c will be <code>144</code> because <code>400-256</code> is <code>144</code>.</p>
+<h3 id="use-of-inline-assembly"><a class="header" href="#use-of-inline-assembly">Use of Inline Assembly:</a></h3>
+<p>Inline Assembly in solidity is performed using YUL language. In YUL programming language, integer underflow &amp; overflow is possible as compiler does not check automatically for it as YUL is a low-level language that is mostly used for making the code more optimized, which does this by omitting many opcodes.</p>
+<pre><code class="language-solidity">uint8 public a = 255;
+
+function addition() public returns (uint8 result) {
+    assembly {
+        result := add(sload(a.slot), 1) // adding 1 will overflow and reset to 0
+        // using inline assembly
+    }
+
+    return result;
+}
+</code></pre>
+<p>In the above code we are adding <code>1</code> into the variable with inline assembly and then returning the result. The variable result will overflow and 0 will be returned, despite this the contract will not throw an error or revert.</p>
+<h3 id="use-of-unchecked-code-block"><a class="header" href="#use-of-unchecked-code-block">Use of unchecked code block:</a></h3>
+<p>Performing arithmetic operations inside the unchecked block saves a lot of gas because it omits several checks and opcodes. But, some of these opcodes are used in default arithmetic operations in 0.8 to check for underflow/overflow.</p>
+<pre><code class="language-solidity">uint8 public a = 255;
+
+function uncheck() public{
+
+  unchecked {
+      a++;  // overflow and reset to 0 without reverting
+  }
+
+}
+</code></pre>
+<p>The unchecked code block is only recommended if you are sure that there is no possible way for the arithmetic to overflow or underflow.</p>
+<h2 id="sources"><a class="header" href="#sources">Sources</a></h2>
+<ol>
+<li>https://docs.soliditylang.org/en/latest/080-breaking-changes.html</li>
+<li>https://faizannehal.medium.com/how-solidity-0-8-protect-against-integer-underflow-overflow-and-how-they-can-still-happen-7be22c4ab92f</li>
+</ol>
 
                     </main>
 
