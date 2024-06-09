@@ -35,3 +35,4 @@
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 - [Unbounded Return Data](./vulnerabilities/unbounded-return-data.md)
+- [Using ``msg.value`` in a loop](./vulnerabilities/msgvalue-loop.md)
