@@ -16,15 +16,20 @@ In the above example, first iteration will use all the ``msg.value`` sent and ot
 2. Revert on zero value transfer if ETH balance doesn't exist inside the contract.
 3. Succeed with zero value transfer.
 
-Also, if a function has a check like ``msg.value > 0.1e18``, that function can be called multiple times in a same transaction as ``msg.value`` is not updated in a transaction call.
+Also, if a function has a check like ``require(msg.value == 1e18, "Not Enough Balance")``, that function can be called multiple times in a same transaction by sending ``1 ether`` once as ``msg.value`` is not updated in a transaction call.
+
 ```solidity
 function batchBuy(address[] memory addr) external payable{
     mapping (uint => address) nft;
+
     for (uint i = 0; i < addr.length; i++) {
          buy1NFT(addr[i])
     }
+
     function buy1NFT(address to) internal {
-         if (msg.value < 1 ether) { revert("not enough ether") } // buy unlimited times after paying 1 ether once
+         if (msg.value < 1 ether) { // buy unlimited times after sending 1 ether once
+            revert("Not enough ether");
+            } 
          nft[numero] = address;
     }
 }
