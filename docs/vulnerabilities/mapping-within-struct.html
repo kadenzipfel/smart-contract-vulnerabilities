@@ -174,7 +174,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="deleting-a-mapping-within-a-struct"><a class="header" href="#deleting-a-mapping-within-a-struct">Deleting a Mapping Within a Struct</a></h1>
-<p>It is a common assumption that deleting <code>struct</code> will delete all of it's data entirely but there is an exception. Deleting structs with dynamic data types does not delete the data stored inside them.</p>
+<p>It is a common assumption that deleting a <code>struct</code> will delete all of it's data entirely but there is an exception. Deleting structs with dynamic data types does not delete the data stored inside them.</p>
 <p>For example: If a <code>mapping</code> (or dynamic array) is inside a struct, and the struct is deleted, the mapping will not be deleted. This is because mappings are implemented as hash tables and the EVM does not keep track of which keys have been used in the mapping. As a result, EVM doesn't know how to reset a mapping and the remaining data can be used to compromise the contract.</p>
 <pre><code class="language-solidity">    struct BalancesStruct{
         address owner;
