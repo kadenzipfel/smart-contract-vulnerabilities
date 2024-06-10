@@ -1,6 +1,6 @@
 # Deleting a Mapping Within a Struct
 
-It is a common assumption that deleting ``struct`` will delete all of it's data entirely but there is an exception. Deleting structs with dynamic data types does not delete the data stored inside them.
+It is a common assumption that deleting a ``struct`` will delete all of it's data entirely but there is an exception. Deleting structs with dynamic data types does not delete the data stored inside them.
 
 For example: If a ``mapping`` (or dynamic array) is inside a struct, and the struct is deleted, the mapping will not be deleted. This is because mappings are implemented as hash tables and the EVM does not keep track of which keys have been used in the mapping. As a result, EVM doesn't know how to reset a mapping and the remaining data can be used to compromise the contract. 
 
