@@ -33,6 +33,6 @@
 - [Default Visibility](./vulnerabilities/default-visibility.md)
 - [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
 - [Off-By-One](./vulnerabilities/off-by-one.md)
-- [Lack of Precision](./vulnerabilities/lack-of-precision.md)
+- [Precision Loss](./vulnerabilities/precision-loss.md)
 - [Unbounded Return Data](./vulnerabilities/unbounded-return-data.md)
 - [Using ``msg.value`` in a Loop](./vulnerabilities/msgvalue-loop.md)
