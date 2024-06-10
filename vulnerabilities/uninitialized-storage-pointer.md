@@ -10,5 +10,5 @@ Data is stored in the EVM as either `storage`, `memory`, or `calldata`. It is im
 - https://swcregistry.io/docs/SWC-109
 - https://github.com/sigp/solidity-security-blog#storage
 - https://solidity.readthedocs.io/en/latest/types.html#data-location
-- https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage
-- https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-in-memory
+- https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html
+- https://docs.soliditylang.org/en/latest/internals/layout_in_memory.html

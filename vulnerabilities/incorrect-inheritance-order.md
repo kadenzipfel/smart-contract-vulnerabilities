@@ -8,4 +8,3 @@ The solution Solidity provides to the Diamond Problem is by using reverse C3 lin
 
 - https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/complex-inheritance/
 - https://solidity.readthedocs.io/en/v0.4.25/contracts.html#multiple-inheritance-and-linearization
-- https://pdaian.com/blog/solidity-anti-patterns-fun-with-inheritance-dag-abuse/
