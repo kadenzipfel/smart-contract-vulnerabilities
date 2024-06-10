@@ -6,7 +6,6 @@
 - [Timestamp Dependence](./vulnerabilities/timestamp-dependence.md)
 - [Authorization Through tx.origin](./vulnerabilities/authorization-txorigin.md)
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
-- [Force Feeding](./vulnerabilities/force-feeding.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
 - [Unsafe Low-Level Call](./vulnerabilities/unsafe-low-level-call.md)
 - [Unchecked Return Value](./vulnerabilities/unchecked-return-values.md)
@@ -22,6 +21,7 @@
 - [Missing Protection against Signature Replay Attacks](./vulnerabilities/missing-protection-signature-replay.md)
 - [Requirement Validation](./vulnerabilities/requirement-violation.md)
 - [Write to Arbitrary Storage Location](./vulnerabilities/arbitrary-storage-location.md)
+- [Hash Collision when using abi.encodePacked() with Multiple Variable-Length Arguments](./vulnerabilities/hash-collision.md)
 - [Incorrect Inheritance Order](./vulnerabilities/incorrect-inheritance-order.md)
 - [Presence of Unused Variables](./vulnerabilities/unused-variables.md)
 - [Unencrypted Private Data On-Chain](./vulnerabilities/unencrypted-private-data-on-chain.md)
@@ -36,4 +36,5 @@
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 - [Unbounded Return Data](./vulnerabilities/unbounded-return-data.md)
-  
+- [Using ``msg.value`` in a Loop](./vulnerabilities/msgvalue-loop.md)
+- [Deleting a Mapping Within a Struct](./vulnerabilities/mapping-within-struct.md)
