@@ -87,12 +87,11 @@ It's important to take caution in enforcing expected contract balances of tokens
 
 Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert. 
 
-### Divide by zero
-In solidity if the contract attempts to perform division when the denominator is ``zero``, the whole transaction reverts. Thus, the denominator should be always checked before division to prevent DoS revert.
+### Divide by Zero
+In solidity if the contract attempts to perform division when the denominator is ``zero``, the call reverts. Thus, the denominator should be always checked before division to prevent DoS revert.
 ```solidity
 function foo(uint num, uint den) public pure returns(uint result) {
-  if(den == 0) return 0; // if denominator is 0, return 0 instead of reverting
-  result = num / den;
+  result = num / den; // if den = 0, the execution reverts
 }
 ```
 
