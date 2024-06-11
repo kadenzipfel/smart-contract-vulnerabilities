@@ -11,6 +11,7 @@
 - [Unchecked Return Value](./vulnerabilities/unchecked-return-values.md)
 - [Unsupported Opcodes](./vulnerabilities/unsupported-opcodes.md)
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
+- [Unexpected Balances](./vulnerabilities/unexpected-balances.md)
 - [Assert Violation](./vulnerabilities/assert-violation.md)
 - [Use of Deprecated Functions](./vulnerabilities/use-of-deprecated-functions.md)
 - [Delegatecall to Untrusted Callee](./vulnerabilities/delegatecall-untrusted-callee.md)
