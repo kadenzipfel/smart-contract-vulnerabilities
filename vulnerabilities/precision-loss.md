@@ -22,7 +22,7 @@ In the above code example, ``funcA()`` returns:
 ```
 and ``funcB()`` returns:
 ```solidity
-11 * 2 / 10 = 55
+11 * 10 / 2 = 55
 ```
 Solidity truncates any non-integer result to the nearest lower integer. Thus in ``funcA()``, instead of ``11 / 2 = 5.5``, ``0.5`` is truncated and the result amounts to ``5``. This results in the function returning ``50`` instead of ``55`` due to division before multiplication whereas multiplication before division returns the correct value.
 
