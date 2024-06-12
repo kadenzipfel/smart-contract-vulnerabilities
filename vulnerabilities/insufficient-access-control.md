@@ -87,7 +87,7 @@ contract AccessExample {
 
     constructor() {
         owner = msg.sender;
-        managers[msg.sender] = true; // Assign the creator as manager
+        managers[msg.sender] = true; // Assign the owner as manager
     }
 
     modifier onlyOwner() {
