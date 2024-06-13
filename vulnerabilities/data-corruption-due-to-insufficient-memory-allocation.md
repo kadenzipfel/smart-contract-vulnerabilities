@@ -2,7 +2,7 @@
 
 Data corruption occurs when a program writes outside the bounds of allocated memory, potentially overwriting other important data.
 
-In Solidity, especially when using inline assembly, it's crucial to allocate enough memory to avoid memory corruption issues. This is particularly critical when using inline assembly, where manual memory management is required.
+In Solidity, especially when using inline assembly, it's crucial to allocate enough memory to avoid data corruption issues. This is particularly critical when using inline assembly, where manual memory management is required.
 
 Below is a simplified example from [this](https://solodit.xyz/issues/memory-corruption-in-buffer-fixed-consensys-ens-permanent-registrar-markdown) Ethereum Name Service(ENS) audit highlighting how insufficient memory allocation can lead to memory corruption:
 
