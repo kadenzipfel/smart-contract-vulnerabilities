@@ -1,5 +1,3 @@
-# WORK IN PROGRESS AND NOT YET READY FOR A MERGE AS I FIGURE OUT HOW TO ACCOUNT FOR INFLATION ATTACKS!
-
 # Unexpected Balances in Smart Contracts
 
 Unexpected balances in smart contracts can lead to significant accounting issues when the contract's logic relies on the balance for its operations. Two prominent examples of such issues are "force-feeding a contract" and inflation attacks.
@@ -22,12 +20,73 @@ Since block reward transfers are handled at the protocol level, they bypass Soli
 
 ## Inflation Attacks
 
-An inflation attack target vault and vault-like smart contracts. These vaults act like investment pools that hold funds sent to it. The below shows how the attack occurs:
+Consider an inflation attack on a standard ERC-4626 vault. For the attack to work, the attacker has to send funds directly to the vulnerable ERC-4626 vault. This action disrupts the accounting mechanism and for this matter, the attacker is able to get away with funds belonging to other users of the vault.
 
-1. **A Vault Opens for Business:** A new vault opens, ready for investors to deposit funds.
-2. **Attacker Sneaks in First:** A malicious actor makes the first deposit to such a vault either by frontrunning another investor or by monitoring new vault launches and makes a tiny deposit, e.g 1 wei before any real investors. This gives the attacker a small share of the vault.
-3. **Attacker Inflates the Pot:** The attacker quickly deposits a large amount of money (by sending funds directly to the smart contract and not calling any function in the contract), inflating the total value in the vault. This is where the unexpected balance occurs!
-4. **Real Investor Gets Squeezed:** An unsuspecting investor tries to deposit, but because of the attacker's sneaky first move, the exchange rate gets messed up.
-5. **Investor Gets Nothing:** Due to the inflated value, the real investor ends up getting practically zero shares for their deposit.
-6. **Attacker Cashes Out:** The attacker, now holding the only significant share, withdraws all the money from the vault.
+Detailed explanation of inflation attacks can be found [here](https://www.youtube.com/watch?v=3IMw7xbxJgY)
+
+
+## Mitigation Strategies
+
+### 1. Avoid Using the Contract’s Balance Directly
+
+Instead of relying on `address(this).balance` for critical logic, maintain an internal accounting system. For example:
+
+```solidity
+/// DO NOT USE IN PRODUCTION
+/// ONLY MEANT TO SERVE AS AN EXAMPLE
+
+mapping(address => uint256) internalBalances;
+
+function deposit() external payable {
+    internalBalances[msg.sender] += msg.value;
+}
+
+function withdraw(uint256 amount) external {
+    require(internalBalances[msg.sender] >= amount, "Insufficient balance");
+    internalBalances[msg.sender] -= amount;
+    payable(msg.sender).transfer(amount);
+}
+
+function getBalance(address user) external view returns (uint256) {
+    return internalBalances[user];
+}
+```
+
+### 2. Immediate Funds Transfer
+
+Instead of holding funds within the contract, immediately transfer received Ether to a secure, off-contract storage or another smart contract that handles funds securely:
+
+```solidity
+address payable public safeAddress = payable(0xSafeAddress);
+
+receive() external payable {
+    safeAddress.transfer(msg.value);
+}
+```
+
+### 3. Event-Based Balance Tracking
+
+Use events for deposit and withdrawal tracking, enabling off-chain monitoring and cross-verification of the contract’s balance:
+
+```solidity
+event Deposit(address indexed from, uint256 amount);
+event Withdrawal(address indexed to, uint256 amount);
+
+function deposit() external payable {
+    internalBalances[msg.sender] += msg.value;
+    emit Deposit(msg.sender, msg.value);
+}
+
+function withdraw(uint256 amount) external {
+    require(internalBalances[msg.sender] >= amount, "Insufficient balance");
+    internalBalances[msg.sender] -= amount;
+    payable(msg.sender).transfer(amount);
+    emit Withdrawal(msg.sender, amount);
+}
+```
+
+Off-chain systems can then monitor these events and compare them with the on-chain state to ensure integrity.
+
+## Sources
+- [Solidity coinbase address](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#block-and-transaction-properties)
 
