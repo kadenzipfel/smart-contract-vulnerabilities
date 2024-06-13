@@ -1,10 +1,13 @@
-# Memory Corruption Due to Insufficient Memory Allocation
+# Data Corruption Due to Insufficient Memory Allocation
 
-Memory corruption occurs when a program writes outside the bounds of allocated memory, potentially overwriting other important data.
+Data corruption occurs when a program writes outside the bounds of allocated memory, potentially overwriting other important data.
 
-In Solidity, especially when using inline assembly, it's crucial to allocate enough memory to avoid memory corruption issues.
+In Solidity, especially when using inline assembly, it's crucial to allocate enough memory to avoid memory corruption issues. This is particularly critical when using inline assembly, where manual memory management is required.
 
-Below is an example heavily borrowed off and simplified from [this](https://solodit.xyz/issues/memory-corruption-in-buffer-fixed-consensys-ens-permanent-registrar-markdown) Ethereum Name Service(ENS) audit to demonstrate the issue:
+Below is a simplified example from [this](https://solodit.xyz/issues/memory-corruption-in-buffer-fixed-consensys-ens-permanent-registrar-markdown) Ethereum Name Service(ENS) audit highlighting how insufficient memory allocation can lead to memory corruption:
+
+Consider a library `Buffer` that is used to manage a dynamically-sized byte array (`bytes`) with a specific capacity. The library contains functions to initialize the buffer (`init`), add data (`append`) and write data to the buffer (`write`)
+
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -87,7 +90,7 @@ library Buffer {
 }
 ```
 
-A library `Buffer` is used to manage a dynamically-sized byte array (`bytes`) with a specific capacity. The library contains functions to initialize the buffer (`init`), add data (`append`) and write data to the buffer (`write`)
+To demonstrate how the corruption occurs, consider the below test contract from the amazing work of [Dacian](https://x.com/DevDacian):
 
 
 ```solidity
@@ -119,9 +122,8 @@ contract BufferTest is Test {
 }
 ```
 
-- The above foundry test is borrowed from the amazing work of [Dacian](https://x.com/DevDacian)
 
-### Memory Corruption Explained
+### Explanation:
 
 1. **Initialization**:
     - `Buffer::init` initializes a buffer with a specified capacity.
@@ -145,9 +147,9 @@ forge test --match-contract BufferTest --debug test_MemoryCorruption
 
 and examine in details how this memory corruption happens
 
-## Mitigating the issue
+## Remediation Strategies
 
-To prevent memory corruption, ensure the allocation accounts for the length of the buffer:
+1. Ensure Proper Memory Allocation: Always allocate sufficient memory for your data structures. Manage memory to ensure enough space is allocated. To mitigate the ENS data corruption vulnerability discussed above, the below can be done which ensures the memory allocation accounts for the length of the buffer: 
 
 ```solidity
 function init(buffer memory buf, uint capacity) internal pure returns(buffer memory) {
@@ -165,7 +167,30 @@ function init(buffer memory buf, uint capacity) internal pure returns(buffer mem
 }
 ```
 
-Applying the suggested fix results in `foo.length` being written to `0x140` which prevents the memory corruption.
+2.  Align Memory Allocations: Align memory allocations to 32-byte boundaries to ensure proper memory access and avoid unaligned writes, which can lead to memory corruption, e.g
+
+```solidity
+function alignedAlloc(uint capacity) internal pure returns (bytes memory) {
+    if (capacity % 32 != 0) {
+        capacity += 32 - (capacity % 32);
+    }
+    bytes memory buffer = new bytes(capacity);
+    return buffer;
+}
+```
+
+3. Perform Bounds Checks: Perform bounds checks before writing data to ensure that you do not write outside the allocated memory. This can prevent out-of-bounds writes and potential memory corruption, e.g
+
+```solidity
+function writeData(bytes memory buffer, uint offset, bytes32 data, uint len) internal pure {
+    require(offset + len <= buffer.length, "Write out of bounds");
+    assembly {
+        let bufptr := add(buffer, 32) // Skip the length field
+        let dest := add(bufptr, offset)
+        mstore(dest, data)
+    }
+}
+```
 
 
 ## Sources
