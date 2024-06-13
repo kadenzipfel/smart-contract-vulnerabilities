@@ -1,3 +1,5 @@
+# WORK IN PROGRESS AND NOT YET READY FOR A MERGE AS I FIGURE OUT HOW TO ACCOUNT FOR INFLATION ATTACKS!
+
 # Unexpected Balances in Smart Contracts
 
 Unexpected balances in smart contracts can lead to significant accounting issues when the contract's logic relies on the balance for its operations. Two prominent examples of such issues are "force-feeding a contract" and inflation attacks.
