@@ -68,7 +68,7 @@ In the above code we are adding 1 into the variable with inline assembly and the
 
 ### Subtle Overflow with Smaller Integers (e.g., `uint128`)
 
-When using smaller integers like `uint128`, a more subtle overflow can occur because inline assembly operates with 256-bit values.
+When using smaller integers like `uint128`, a very subtle overflow can occur because inline assembly operates with 256-bit values.
 
 Consider the contract below which provides a method to get a swap quote by adding one to the input amount:
 
@@ -88,7 +88,8 @@ contract DexPair is IDexPair {
 ```
 
 - The problem is that the `add` opcode always produces a 256-bit result. For `uint128` maximum value (`type(uint128).max`), this will not overflow in the 256-bit space but will overflow when treated as `uint128`
-- The overflow check inside assembly fails because it checks against 256-bit values.
+    
+- The inline assembly overflow check fails because the EVM uses 256-bit arithmetic, while the function is supposed to handle 128-bit values. This discrepancy allows an overflow to evade detection, causing the function to return incorrect results without reverting. Specifically, adding 1 to the maximum uint128 value (2^128 - 1) results in an overflow to 0 instead of triggering the overflow detection.
 
 
 ### Use of unchecked code block:
@@ -110,7 +111,7 @@ The unchecked code block is only recommended if you are sure that there is no po
 
 ### Mitigation Strategies
 
-1. Using `addmod`
+1. Consider using `addmod` for the subtle `uint128` integer overflow. The `addmod` operation confines the result within the `uint128` range.
 
 ```solidity
 function getSwapQuoteUint128(uint128 amountToSwap) external view returns(uint128 outputTokens) {
@@ -121,9 +122,7 @@ function getSwapQuoteUint128(uint128 amountToSwap) external view returns(uint128
 }
 ```
 
-The `addmod` operation confines the result within the `uint128` range.
-
-2. Post-assembly Check
+2. Consider performing a post-assembly check for the subtle `uint128` integer overflow. Perform an overflow check outside YUL using normal Solidity to ensure correct behavior for `uint128` as it will compare the 128-bit values.
 
 ```solidity
 function getSwapQuoteUint128(uint128 amountToSwap) external view returns(uint128 outputTokens) {
@@ -134,9 +133,7 @@ function getSwapQuoteUint128(uint128 amountToSwap) external view returns(uint128
 }
 ```
 
-Perform an overflow check outside YUL using normal Solidity to ensure correct behavior for `uint128` as it will compare the 128-bit values.
-
-3. Add a manual check
+3. Add a manual check. The below check for example ensures that if the result is less than the input, it indicates an overflow.
 
 ```solidity
 function getSwapQuote(uint256 amountToSwap) external view returns(uint256 outputTokens) {
@@ -146,11 +143,6 @@ function getSwapQuote(uint256 amountToSwap) external view returns(uint256 output
     }
 }
 ```
-
-This check ensures that if the result is less than the input, it indicates an overflow.
-
-> [!IMPORTANT]  
-> Be careful not to fall into the pitfall of the aforementioned `uint128`
 
 
 ## Sources
