@@ -25,6 +25,7 @@
 - [Incorrect Inheritance Order](./vulnerabilities/incorrect-inheritance-order.md)
 - [Presence of Unused Variables](./vulnerabilities/unused-variables.md)
 - [Unencrypted Private Data On-Chain](./vulnerabilities/unencrypted-private-data-on-chain.md)
+- [Unexpected Balances](./vulnerabilities/unexpected-balances.md)
 - [Inadherence to Standards](./vulnerabilities/inadherence-to-standards.md)
 - [Asserting Contract from Code Size](./vulnerabilities/asserting-contract-from-code-size.md)
 - [Transaction-Ordering Dependence](./vulnerabilities/transaction-ordering-dependence.md)
