@@ -12,11 +12,29 @@ Force-feeding bypasses this by sending Ether in a manner that doesn't require ca
 
 ### Force Feeding Methods
 
-#### Block Rewards and Coinbase
+#### 1. Block Rewards and Coinbase
 
 In Proof of Stake systems like Ethereum, validators earn block rewards for successfully adding blocks to the blockchain. These rewards are sent to an address known as the **coinbase address**. Validators typically set this address to their own wallets, but an attacker-validator can set it to a target smart contract’s address.
 
 Since block reward transfers are handled at the protocol level, they bypass Solidity-level checks. As a result, the target contract receives Ether directly as part of the block reward, regardless of any Solidity-coded restrictions.
+
+#### 2. Use of `selfdestruct`
+
+Although Selfdestruct was deprecated during the Shanghai Ethereum upgrade, it is a method an attacker can use for force-feeding a contract address. When a contract is destroyed using `selfdestruct`, its remaining Ether balance is transferred to a specified address. This transfer happens at the EVM level, bypassing Solidity-level mechanisms such as the `receive` and `fallback` functions.
+
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity 0.8.23;
+
+contract SelfDestructable {
+    function kill(address _to) external payable {
+        selfdestruct(payable(_to));
+    }
+}
+```
+
+An attacker can `selfdestruct` a contract and set an unsuspecting contract to be the receiver of any remaining funds in the contract, i.e the address `_to`
+
 
 ## Inflation Attacks
 
