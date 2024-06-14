@@ -60,6 +60,6 @@ To mitigate the risks associated with `delegatecall` to untrusted callees, consi
 ### Sources
 
 - [SWC Registry: SWC-112](https://swcregistry.io/docs/SWC-112)
-- [Solidity Documentation: Delegatecall](https://solidity.readthedocs.io/en/latest/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries)
+- [Solidity Documentation: Delegatecall](https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html#delegatecall-and-libraries)
 - [Sigma Prime: Solidity Security](https://blog.sigmaprime.io/solidity-security.html#delegatecall)
 - [Ethereum Stack Exchange: Difference Between Call, Callcode, and Delegatecall](https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall)
