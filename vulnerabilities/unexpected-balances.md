@@ -35,6 +35,30 @@ contract SelfDestructable {
 
 An attacker can `selfdestruct` a contract and set an unsuspecting contract to be the receiver of any remaining funds in the contract, i.e the address `_to`
 
+#### 3. Pre-calculated Deployments
+
+Addresses in Ethereum are deterministic, meaning that they can be calculated prior to actually creating the address. This is the case for addresses creating contracts and also for contracts spawning other contracts. In fact, a created contract's address is determined by:
+
+```
+keccak256(rlp.encode([<account_address>, <transaction_nonce>]))
+```
+
+Below is an example function from [pyethereum](https://github.com/ethereum/pyethereum/blob/782842758e219e40739531a5e56fff6e63ca567b/ethereum/utils.py) showcasing the same
+
+```python
+def mk_contract_address(sender, nonce): 
+    return sha3(rlp.encode([normalize_address(sender), nonce]))[12:] 
+```
+
+Essentially, a contract's address is just the `keccak256` hash of the account that created it concatenated with the account's transaction nonce. The same is true for contracts, except contracts' nonces start at 1 whereas addresses' transaction nonces start at 0.
+
+This means that given an Ethereum address, we can calculate all the possible contract addresses that this address can spawn. For example, if the address 0x123000...000 were to create a contract on its 100th transaction, it would create the contract address 
+
+```
+keccak256(rlp.encode[0x123...000, 100])
+```
+
+With such, an attacker can send funds to this address even before the deployment has happened!
 
 ## Inflation Attacks
 
