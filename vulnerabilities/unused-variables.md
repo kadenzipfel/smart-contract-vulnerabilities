@@ -10,6 +10,6 @@ It is highly recommended to remove all unused variables from a code base.
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-131
-- https://github.com/ethereum/solidity/issues/718
-- https://github.com/ethereum/solidity/issues/2563
+- [SWC-131: Missing Protection Against Signature Replay Attacks](https://swcregistry.io/docs/SWC-131)
+- [Solidity Issue #718](https://github.com/ethereum/solidity/issues/718)
+- [Solidity Issue #2563](https://github.com/ethereum/solidity/issues/2563)

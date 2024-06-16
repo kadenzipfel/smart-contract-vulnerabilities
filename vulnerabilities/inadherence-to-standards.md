@@ -16,5 +16,5 @@ Suggested by: [RobertMCForster](https://github.com/RobertMCForster)
 
 ### Sources
 
-- https://finance.yahoo.com/news/bnb-really-erc-20-token-160013314.html
-- https://blog.goodaudience.com/binance-isnt-erc-20-7645909069a4
+- [BNB: Is It Really an ERC-20 Token?](https://finance.yahoo.com/news/bnb-really-erc-20-token-160013314.html)
+- [Binance Isn't ERC-20](https://blog.goodaudience.com/binance-isnt-erc-20-7645909069a4)

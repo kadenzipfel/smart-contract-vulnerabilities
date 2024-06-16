@@ -8,5 +8,5 @@ If the condition checked in the `assert()` is not actually an invariant, it's su
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-110
-- https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57
+- [SWC-110](https://swcregistry.io/docs/SWC-110)
+- [The Use of revert, assert, and require in Solidity and the New REVERT Opcode in the EVM](https://medium.com/blockchannel/the-use-of-revert-assert-and-require-in-solidity-and-the-new-revert-opcode-in-the-evm-1a3a7990e06e)

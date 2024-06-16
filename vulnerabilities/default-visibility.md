@@ -13,7 +13,7 @@ Modern compilers should catch missing function visibility specifiers, but will g
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-100
-- https://swcregistry.io/docs/SWC-108
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/visibility/
-- https://github.com/sigp/solidity-security-blog#visibility
+- [SWC-100](https://swcregistry.io/docs/SWC-100)
+- [SWC-108](https://swcregistry.io/docs/SWC-108)
+- [Consensys Smart Contract Best Practices - Visibility](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/visibility/)
+- [SigP Solidity Security Blog - Visibility](https://github.com/sigp/solidity-security-blog#visibility)

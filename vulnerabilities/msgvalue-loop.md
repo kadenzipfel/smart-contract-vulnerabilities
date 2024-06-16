@@ -1,4 +1,4 @@
-# Using ``msg.value`` in a Loop
+## Using ``msg.value`` in a Loop
 
 The value of ``msg.value`` in a transaction’s call never gets updated, even if the called contract ends up sending some or all of the ETH to another contract. This means that using ``msg.value`` in ``for`` or ``while`` loops, without extra accounting logic, will either lead to the transaction reverting (when there are no longer sufficient funds for later iterations), or to the contract being drained (when the contract itself has an ETH balance).
 
@@ -39,6 +39,7 @@ Thus, using ``msg.value`` inside a loop is dangerous because this might allow th
 
 Reuse of ``msg.value`` can also show up with payable multicalls. Multicalls enable a user to submit a list of transactions to avoid paying the 21,000 gas transaction fee over and over. However, If ``msg.value`` gets ``re-used`` while looping through the functions to execute, it can cause a serious issue like the [Opyn Hack](https://peckshield.medium.com/opyn-hacks-root-cause-analysis-c65f3fe249db).
 
-## Sources
-- https://www.rareskills.io/post/smart-contract-security#:~:text=Using%20msg.,show%20up%20with%20payable%20multicalls.
-- https://trustchain.medium.com/ethereum-msg-value-reuse-vulnerability-5afd0aa2bcef
+### Sources
+
+- [Rare Skills - Smart Contract Security](https://www.rareskills.io/post/smart-contract-security#:~:text=Using%20msg.,show%20up%20with%20payable%20multicalls.)
+- [TrustChain - Ethereum msg.value Reuse Vulnerability](https://trustchain.medium.com/ethereum-msg-value-reuse-vulnerability-5afd0aa2bcef)

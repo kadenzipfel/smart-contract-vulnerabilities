@@ -140,7 +140,6 @@ To prevent this type of hash collision, the below remediation strategies can be 
 3. **Replay Protection**: Implement replay protection mechanisms to prevent attackers from reusing valid signatures. This can involve including nonces or timestamps in the signed data. However, this does not completely eliminate the risk of hash collisions but adds an additional layer of security. More on this can be found [here](./missing-protection-signature-replay.md)
 
 
-
 ## Sources
 - [Smart Contract Weakness Classification #133](https://swcregistry.io/docs/SWC-133/)
 - [Solidity Non-standard Packed Mode](https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode)

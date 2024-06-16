@@ -8,5 +8,5 @@ For an example, try [Ethernaut - Alien Codex](https://ethernaut.openzeppelin.com
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-124
-- https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte
+- [SWC-124: Write to Arbitrary Storage Location](https://swcregistry.io/docs/SWC-124)
+- [USCC 2017 Submission by doughoyte](https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte)

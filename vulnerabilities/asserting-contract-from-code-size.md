@@ -16,5 +16,5 @@ As we can see, it's important that we recognize that although we may be certain 
 
 ### Sources
 
-- https://ethereum.github.io/yellowpaper/paper.pdf
-- https://github.com/0xKitsune/Ghost-Contract
+- [Ethereum Yellow Paper](https://ethereum.github.io/yellowpaper/paper.pdf)
+- [Ghost Contract on GitHub](https://github.com/0xKitsune/Ghost-Contract)

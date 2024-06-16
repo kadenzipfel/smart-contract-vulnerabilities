@@ -37,5 +37,5 @@ require(success);
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-104
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
+- [SWC-104: Record Replay](https://swcregistry.io/docs/SWC-104)
+- [Consensys Smart Contract Best Practices - External Calls](https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/)

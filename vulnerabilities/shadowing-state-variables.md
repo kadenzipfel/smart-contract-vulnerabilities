@@ -18,6 +18,6 @@ To avoid this vulnerability, it's important we check the entire smart contract s
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-119
-- https://github.com/ethereum/solidity/issues/2563
-- https://github.com/ethereum/solidity/issues/973
+- [SWC-119](https://swcregistry.io/docs/SWC-119)
+- [Solidity Issue #2563](https://github.com/ethereum/solidity/issues/2563)
+- [Solidity Issue #973](https://github.com/ethereum/solidity/issues/973)
