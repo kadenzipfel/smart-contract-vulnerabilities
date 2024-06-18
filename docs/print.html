@@ -1090,6 +1090,12 @@ https://consensys.github.io/smart-contract-best-practices/development-recommenda
 <h3 id="unexpected-balance"><a class="header" href="#unexpected-balance">Unexpected Balance</a></h3>
 <p>It's important to take caution in enforcing expected contract balances of tokens or Ether as those balances may be increased by an attacker to cause an unexpected revert. This is easily possible with ERC20 tokens by simply <code>transfer</code>ring to the contract, but is also possible with Ether by <a href="vulnerabilities/./forcibly-sending-ether.html">Forcibly sending Ether to a contract</a>.</p>
 <p>Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert.</p>
+<h3 id="divide-by-zero"><a class="header" href="#divide-by-zero">Divide by Zero</a></h3>
+<p>In solidity if the contract attempts to perform division when the denominator is <code>zero</code>, the call reverts. Thus, the denominator should be always checked before division to prevent DoS revert.</p>
+<pre><code class="language-solidity">function foo(uint num, uint den) public pure returns(uint result) {
+  result = num / den; // if den = 0, the execution reverts
+}
+</code></pre>
 <h3 id="sources-28"><a class="header" href="#sources-28">Sources</a></h3>
 <ul>
 <li>https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</li>
