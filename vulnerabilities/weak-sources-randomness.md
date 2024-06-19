@@ -24,7 +24,7 @@ contract GuessTheRandomNumber {
     }
 }
 ```
-In the above example, the answer variable is initialized using `blockhash(block.number - 1)` and `block.timestamp`. This method is insecure because both `blockhash` and `block.timestamp` can be influenced or predicted by miners, making it possible to guess the answer and win the challenge unfairly.
+In the above example, the answer variable is initialized using `blockhash(block.number - 1)` and `block.timestamp`. This method is insecure because both `blockhash` and `block.timestamp` can be retrieved directly by another contract just in time, making it possible to guess the answer and win the challenge unfairly.
 
 An attacker can exploit the weak randomness as follows:
 
