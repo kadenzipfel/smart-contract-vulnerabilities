@@ -203,7 +203,7 @@
 <p>The <code>transfer()</code> function in Solidity is limited to 2300 gas, which can be insufficient if the receiving contract's fallback or receive function involves more complex logic. This can lead to the transaction reverting if the gas limit is exceeded.</p>
 <p>It is for this exact reason that the Gemholic project on zkSync Era locked its 921 ETH that was raised during the Gemholic token sale making the funds inaccessible.</p>
 <p>This was because the contract deployment did not account for zkSync Era's handling of the <code>.transfer()</code> function.</p>
-<h2 id="sources"><a class="header" href="#sources">Sources</a></h2>
+<h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
 <ul>
 <li><a href="https://docs.zksync.io/build/developer-reference/differences-with-ethereum.html#create-create2">zkSync Era docs</a></li>
 <li><a href="https://www.codehawks.com/submissions/clomptuvr0001ie09bzfp4nqw/4">CodeHawks first flight submission: The TokenFactory.sol can't deploy on the ZKSync Era</a></li>

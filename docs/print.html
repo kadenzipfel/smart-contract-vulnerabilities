@@ -241,10 +241,10 @@ contract Executor {
 </code></pre>
 <h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/attacks/griefing/</li>
-<li>https://ethereum.stackexchange.com/questions/62829/what-does-griefing-mean</li>
-<li>https://ethereum.stackexchange.com/questions/73261/griefing-attacks-are-they-profitable-for-the-attacker</li>
-<li>https://en.wikipedia.org/wiki/Griefer</li>
+<li><a href="https://scsfg.io/hackers/griefing/">SCSFG - Griefing</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/62829/what-does-griefing-mean">Ethereum Stack Exchange - What does griefing mean?</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/73261/griefing-attacks-are-they-profitable-for-the-attacker">Ethereum Stack Exchange - Griefing attacks: Are they profitable for the attacker?</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Griefer">Wikipedia - Griefer</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="reentrancy"><a class="header" href="#reentrancy">Reentrancy</a></h2>
 <p>Reentrancy is an attack that can occur when a bug in a contract may allow a malicious contract to reenter the contract unexpectedly during execution of the original function. This can be used to drain funds from a smart contract if used maliciously. Reentrancy is likely the single most impactful vulnerability in terms of total loss of funds by smart contract hacks, and should be considered accordingly. <a href="https://github.com/pcaversaccio/reentrancy-attacks">List of reentrancy attacks</a></p>
@@ -342,9 +342,9 @@ contract B {
 <p>Examples from: https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21</p>
 <h3 id="sources-1"><a class="header" href="#sources-1">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/</li>
-<li>https://medium.com/@gus_tavo_guim/reentrancy-attack-on-smart-contracts-how-to-identify-the-exploitable-and-an-example-of-an-attack-4470a2d8dfe4</li>
-<li>https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21</li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/">Reentrancy Attacks on Smart Contracts: Best Practices for Pentesters</a></li>
+<li><a href="https://medium.com/@gus_tavo_guim/reentrancy-attack-on-smart-contracts-how-to-identify-the-exploitable-and-an-example-of-an-attack-4470a2d8dfe4">Reentrancy attack on Smart Contracts: How to identify the exploitable and an example of an attack</a></li>
+<li><a href="https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21">Protect Your Solidity Smart Contracts From Reentrancy Attacks</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="integer-overflow-and-underflow"><a class="header" href="#integer-overflow-and-underflow">Integer Overflow and Underflow</a></h2>
 <p>In solidity, Integer types have maximum and minimum values. Integer overflow occurs when an integer variable exceeds the maximum value that can be stored in that variable type. Similarly, Integer underflow occurs when an integer variable goes below the minimum value for that variable type. Example: The maximum value <code>uint8</code> can store is <code>255</code>. Now, when you store <code>256</code> in <code>uint8</code> it will overflow and the value will reset to 0. When you store <code>257</code>, the value will be <code>1</code>, <code>2</code> for <code>258</code> and so on. Similarly, if you try to store <code>-1</code> in the uint8 variable the value of the variable will become <code>255</code>, and so on as it will underflow.</p>
@@ -400,11 +400,11 @@ function uncheck() public{
 }
 </code></pre>
 <p>The unchecked code block is only recommended if you are sure that there is no possible way for the arithmetic to overflow or underflow.</p>
-<h2 id="sources-2"><a class="header" href="#sources-2">Sources</a></h2>
-<ol>
-<li>https://docs.soliditylang.org/en/latest/080-breaking-changes.html</li>
-<li>https://faizannehal.medium.com/how-solidity-0-8-protect-against-integer-underflow-overflow-and-how-they-can-still-happen-7be22c4ab92f</li>
-</ol>
+<h3 id="sources-2"><a class="header" href="#sources-2">Sources</a></h3>
+<ul>
+<li><a href="https://docs.soliditylang.org/en/latest/080-breaking-changes.html">Solidity Documentation - 0.8.0 Breaking Changes</a></li>
+<li><a href="https://faizannehal.medium.com/how-solidity-0-8-protect-against-integer-underflow-overflow-and-how-they-can-still-happen-7be22c4ab92f">Medium - How Solidity 0.8 Protects Against Integer Underflow/Overflow and How They Can Still Happen</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="timestamp-dependence"><a class="header" href="#timestamp-dependence">Timestamp Dependence</a></h2>
 <p><strong>NOTE: This vulnerability no longer affects Ethereum mainnet as of the Proof of Stake merge. <a href="https://ethereum.stackexchange.com/a/140818">Read more</a></strong></p>
 <p>The timestamp of a block, accessed by <code>block.timestamp</code> or alias <code>now</code> can be manipulated by a miner. There are three considerations you should take into account when using a timestamp to execute a contract function.</p>
@@ -418,8 +418,8 @@ function uncheck() public{
 <p>You can estimate the time difference between events using <code>block.number</code> and the average block time, but block times may change and break the functionality, so it's best to avoid this use.</p>
 <h3 id="sources-3"><a class="header" href="#sources-3">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/attacks/timestamp-dependence/</li>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/timestamp-dependence/</li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/attacks/timestamp-dependence/">Consensys Smart Contract Best Practices - Timestamp Dependence (Attacks)</a></li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/timestamp-dependence/">Consensys Smart Contract Best Practices - Timestamp Dependence (Development Recommendations)</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="authorization-through-txorigin"><a class="header" href="#authorization-through-txorigin">Authorization Through tx.origin</a></h2>
 <p><code>tx.origin</code> is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use <code>tx.origin</code> for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in <code>tx.origin</code>. Consider this example:</p>
@@ -463,27 +463,27 @@ contract TxAttackWallet {
 <p>Examples from: https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin</p>
 <h3 id="sources-4"><a class="header" href="#sources-4">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-115</li>
-<li>https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin</li>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/</li>
-<li>https://github.com/sigp/solidity-security-blog#tx-origin</li>
+<li><a href="https://swcregistry.io/docs/SWC-115">SWC-115</a></li>
+<li><a href="https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin">Solidity Security Considerations - tx.origin</a></li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/">Consensys Smart Contract Best Practices - tx.origin</a></li>
+<li><a href="https://github.com/sigp/solidity-security-blog#tx-origin">SigP Solidity Security Blog - tx.origin</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="floating-pragma"><a class="header" href="#floating-pragma">Floating Pragma</a></h2>
 <p>It is considered best practice to pick one compiler version and stick with it. With a floating pragma, contracts may accidentally be deployed using an outdated or problematic compiler version which can cause bugs, putting your smart contract's security in jeopardy. For open-source projects, the pragma also tells developers which version to use, should they deploy your contract. The chosen compiler version should be thoroughly tested and considered for known bugs.</p>
 <p>The exception in which it is acceptable to use a floating pragma, is in the case of libraries and packages. Otherwise, developers would need to manually update the pragma to compile locally.</p>
 <h3 id="sources-5"><a class="header" href="#sources-5">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-103</li>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/locking-pragmas/</li>
+<li><a href="https://swcregistry.io/docs/SWC-103">SWC-103</a></li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/locking-pragmas/">Consensys Smart Contract Best Practices - Locking Pragmas</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="outdated-compiler-version"><a class="header" href="#outdated-compiler-version">Outdated Compiler Version</a></h2>
 <p>Developers often find bugs and vulnerabilities in existing software and make patches. For this reason, it's important to use the most recent compiler version possible. See bugs from past compiler versions <a href="https://solidity.readthedocs.io/en/latest/bugs.html">here</a>.</p>
 <h3 id="sources-6"><a class="header" href="#sources-6">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-102</li>
-<li>https://github.com/ethereum/solidity/releases</li>
-<li>https://etherscan.io/solcbuginfo</li>
-<li>https://solidity.readthedocs.io/en/latest/bugs.html</li>
+<li><a href="https://swcregistry.io/docs/SWC-102">SWC-102</a></li>
+<li><a href="https://github.com/ethereum/solidity/releases">Ethereum Solidity Releases</a></li>
+<li><a href="https://etherscan.io/solcbuginfo">Etherscan Solidity Bug Info</a></li>
+<li><a href="https://solidity.readthedocs.io/en/latest/bugs.html">Solidity Documentation - Bugs</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="unsafe-low-level-call"><a class="header" href="#unsafe-low-level-call">Unsafe Low-Level Call</a></h2>
 <p>In Solidity, you can either use low-level calls such as: <code>address.call()</code>, <code>address.callcode()</code>, <code>address.delegatecall()</code>, and <code>address.send()</code>; or you can use contract calls such as: <code>ExternalContract.doSomething()</code>.</p>
@@ -509,8 +509,8 @@ require(success);
 </code></pre>
 <h3 id="sources-7"><a class="header" href="#sources-7">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-104</li>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/</li>
+<li><a href="https://swcregistry.io/docs/SWC-104">SWC-104: Record Replay</a></li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/">Consensys Smart Contract Best Practices - External Calls</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h3 id="unchecked-return-values"><a class="header" href="#unchecked-return-values">Unchecked Return Values</a></h3>
 <p>The main idea behind this type of vulnerability is the failure to properly handle the return values of external function calls. This can have significant consequences, including fund loss and unexpected behavior in the contract's logic.</p>
@@ -610,7 +610,7 @@ contract Lotto {
 <p>The <code>transfer()</code> function in Solidity is limited to 2300 gas, which can be insufficient if the receiving contract's fallback or receive function involves more complex logic. This can lead to the transaction reverting if the gas limit is exceeded.</p>
 <p>It is for this exact reason that the Gemholic project on zkSync Era locked its 921 ETH that was raised during the Gemholic token sale making the funds inaccessible.</p>
 <p>This was because the contract deployment did not account for zkSync Era's handling of the <code>.transfer()</code> function.</p>
-<h2 id="sources-9"><a class="header" href="#sources-9">Sources</a></h2>
+<h3 id="sources-9"><a class="header" href="#sources-9">Sources</a></h3>
 <ul>
 <li><a href="https://docs.zksync.io/build/developer-reference/differences-with-ethereum.html#create-create2">zkSync Era docs</a></li>
 <li><a href="https://www.codehawks.com/submissions/clomptuvr0001ie09bzfp4nqw/4">CodeHawks first flight submission: The TokenFactory.sol can't deploy on the ZKSync Era</a></li>
@@ -624,11 +624,11 @@ As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer 
 <p>Data is stored in the EVM as either <code>storage</code>, <code>memory</code>, or <code>calldata</code>. It is important that they are well understood and correctly initialized. Incorrectly initializing data storage pointers, or simply leaving them uninitialized, can lead to contract vulnerabilities.</p>
 <h3 id="sources-10"><a class="header" href="#sources-10">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-109</li>
-<li>https://github.com/sigp/solidity-security-blog#storage</li>
-<li>https://solidity.readthedocs.io/en/latest/types.html#data-location</li>
-<li>https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage</li>
-<li>https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-in-memory</li>
+<li><a href="https://swcregistry.io/docs/SWC-109">SWC-109: Arbitrary Storage Write</a></li>
+<li><a href="https://github.com/sigp/solidity-security-blog#storage">Solidity Security Blog - Storage</a></li>
+<li><a href="https://solidity.readthedocs.io/en/latest/types.html#data-location">Solidity Documentation: Data Location</a></li>
+<li><a href="https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html">Solidity Documentation: Layout in Storage</a></li>
+<li><a href="https://docs.soliditylang.org/en/latest/internals/layout_in_memory.html">Solidity Documentation: Layout in Memory</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="assert-violation"><a class="header" href="#assert-violation">Assert Violation</a></h2>
 <p>In Solidity <code>0.4.10</code>, the following functions were created: <code>assert()</code>, <code>require()</code>, and <code>revert()</code>. Here we'll discuss the assert function and how to use it.</p>
@@ -636,8 +636,8 @@ As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer 
 <p>If the condition checked in the <code>assert()</code> is not actually an invariant, it's suggested that you replace it with a <code>require()</code> statement.</p>
 <h3 id="sources-11"><a class="header" href="#sources-11">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-110</li>
-<li>https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57</li>
+<li><a href="https://swcregistry.io/docs/SWC-110">SWC-110</a></li>
+<li><a href="https://medium.com/blockchannel/the-use-of-revert-assert-and-require-in-solidity-and-the-new-revert-opcode-in-the-evm-1a3a7990e06e">The Use of revert, assert, and require in Solidity and the New REVERT Opcode in the EVM</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="use-of-deprecated-functions"><a class="header" href="#use-of-deprecated-functions">Use of Deprecated Functions</a></h2>
 <p>As time goes by, functions and operators in Solidity are deprecated and often replaced. It's important to not use deprecated functions, as it can lead to unexpected effects and compilation errors.</p>
@@ -655,18 +655,18 @@ As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer 
 </div>
 <h3 id="sources-12"><a class="header" href="#sources-12">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-111</li>
-<li>https://github.com/ethereum/solidity/releases</li>
+<li><a href="https://swcregistry.io/docs/SWC-111">SWC-111: Use of Deprecated Solidity Features</a></li>
+<li><a href="https://github.com/ethereum/solidity/releases">Solidity Releases on GitHub</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="delegatecall-to-untrusted-callee"><a class="header" href="#delegatecall-to-untrusted-callee">Delegatecall to Untrusted Callee</a></h2>
 <p><code>Delegatecall</code> is a special variant of a message call. It is almost identical to a regular message call except the target address is executed in the context of the calling contract and <code>msg.sender</code> and <code>msg.value</code> remain the same. Essentially, <code>delegatecall</code> delegates other contracts to modify the calling contract's storage.</p>
 <p>Since <code>delegatecall</code> gives so much control over a contract, it's very important to only use this with trusted contracts such as your own. If the target address comes from user input, be sure to verify that it is a trusted contract.</p>
 <h3 id="sources-13"><a class="header" href="#sources-13">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-112</li>
-<li>https://solidity.readthedocs.io/en/latest/introduction-to-smart-contracts.html#delegatecall-callcode-and-libraries</li>
-<li>https://blog.sigmaprime.io/solidity-security.html#delegatecall</li>
-<li>https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall</li>
+<li><a href="https://swcregistry.io/docs/SWC-112">SWC Registry: SWC-112</a></li>
+<li><a href="https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html#delegatecall-and-libraries">Solidity Documentation: Delegatecall</a></li>
+<li><a href="https://blog.sigmaprime.io/solidity-security.html#delegatecall">Sigma Prime: Solidity Security</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall">Ethereum Stack Exchange: Difference Between Call, Callcode, and Delegatecall</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="signature-malleability"><a class="header" href="#signature-malleability">Signature Malleability</a></h2>
 <p>It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, it is possible to modify and signature and maintain validity. One example of a system which is vulnerable to signature malleability is one in which validation as to whether an action can be executed is determined based on whether the signature has been previously used.</p>
@@ -697,9 +697,9 @@ signatureUsed[signature] = true;
 <p>To avoid this issue, it's imperative to recognize that validating that a signature is not reused is insufficient in enforcing that the transaction is not replayed.</p>
 <h3 id="sources-14"><a class="header" href="#sources-14">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-117</li>
-<li>https://eklitzke.org/bitcoin-transaction-malleability</li>
-<li>https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3</li>
+<li><a href="https://swcregistry.io/docs/SWC-117">SWC-117</a></li>
+<li><a href="https://eklitzke.org/bitcoin-transaction-malleability">Bitcoin Transaction Malleability</a></li>
+<li><a href="https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3">The Math Behind Elliptic Curve Cryptography</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="incorrect-constructor-name"><a class="header" href="#incorrect-constructor-name">Incorrect Constructor Name</a></h2>
 <blockquote>
@@ -710,8 +710,8 @@ This vulnerability is relevant to older contracts using Solidity versions before
 <p>Now with modern versions of Solidity, the constructor is defined with the <code>constructor</code> keyword, effectively deprecating this vulnerability. Thus the solution to this problem is simply to use modern Solidity compiler versions.</p>
 <h3 id="sources-15"><a class="header" href="#sources-15">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-118</li>
-<li>https://blog.sigmaprime.io/solidity-security.html#constructors</li>
+<li><a href="https://swcregistry.io/docs/SWC-118">SWC-118</a></li>
+<li><a href="https://blog.sigmaprime.io/solidity-security.html#constructors">Sigma Prime Blog - Solidity Security Constructors</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="shadowing-state-variables"><a class="header" href="#shadowing-state-variables">Shadowing State Variables</a></h2>
 <p>It is possible to use the same variable twice in Solidity, but it can lead to unintended side effects. This is especially difficult regarding working with multiple contracts. Take the following example:</p>
@@ -727,19 +727,19 @@ contract SubContract is SuperContract {
 <p>To avoid this vulnerability, it's important we check the entire smart contract system for ambiguities. It's also important to check for compiler warnings, as they can flag these ambiguities so long as they're in the smart contract.</p>
 <h3 id="sources-16"><a class="header" href="#sources-16">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-119</li>
-<li>https://github.com/ethereum/solidity/issues/2563</li>
-<li>https://github.com/ethereum/solidity/issues/973</li>
+<li><a href="https://swcregistry.io/docs/SWC-119">SWC-119</a></li>
+<li><a href="https://github.com/ethereum/solidity/issues/2563">Solidity Issue #2563</a></li>
+<li><a href="https://github.com/ethereum/solidity/issues/973">Solidity Issue #973</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="weak-sources-of-randomness-from-chain-attributes"><a class="header" href="#weak-sources-of-randomness-from-chain-attributes">Weak Sources of Randomness from Chain Attributes</a></h2>
 <p>Using chain attributes for randomness, e.g.: <code>block.timestamp</code>, <code>blockhash</code>, and <code>block.difficulty</code> can seem like a good idea since they often produce pseudo-random values. The problem however, is that Ethereum is entirely deterministic and all available on-chain data is public. Chain attributes can either be predicted or manipulated, and should thus never be used for random number generation.</p>
 <p>A common solution is to use an oracle solution such as <a href="https://docs.chain.link/vrf/v2/introduction/">Chainlink VRF</a>.</p>
 <h3 id="sources-17"><a class="header" href="#sources-17">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-120</li>
-<li>https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe</li>
-<li>https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract</li>
-<li>https://fravoll.github.io/solidity-patterns/randomness.html</li>
+<li><a href="https://swcregistry.io/docs/SWC-120">SWC Registry: SWC-120</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe">When can blockhash be safely used for a random number? When would it be unsafe?</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract">How can I securely generate a random number in my smart contract?</a></li>
+<li><a href="https://fravoll.github.io/solidity-patterns/randomness.html">Solidity Patterns: Randomness</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="missing-protection-against-signature-replay-attacks"><a class="header" href="#missing-protection-against-signature-replay-attacks">Missing Protection against Signature Replay Attacks</a></h2>
 <p>Sometimes in smart contracts it is necessary to perform signature verification to improve usability and gas cost. However, consideration needs to be taken when implementing signature verification. To protect against Signature Replay Attacks, the contract should only be allowing new hashes to be processed. This prevents malicious users from replaying another users signature multiple times.</p>
@@ -751,8 +751,8 @@ contract SubContract is SuperContract {
 </ul>
 <h3 id="sources-18"><a class="header" href="#sources-18">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-121</li>
-<li>https://medium.com/cypher-core/replay-attack-vulnerability-in-ethereum-smart-contracts-introduced-by-transferproxy-124bf3694e25</li>
+<li><a href="https://swcregistry.io/docs/SWC-121">SWC-121</a></li>
+<li><a href="https://medium.com/cypher-core/replay-attack-vulnerability-in-ethereum-smart-contracts-introduced-by-transferproxy-124bf3694e25">Medium - Replay Attack Vulnerability in Ethereum Smart Contracts</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="requirement-violation"><a class="header" href="#requirement-violation">Requirement Violation</a></h2>
 <p>The <code>require()</code> method is meant to validate conditions, such as inputs or contract state variables, or to validate return values from external contract calls. For validating external calls, inputs can be provided by callers, or they can be returned by callees. In the case that an input violation has occurred by the return value of a callee, likely one of two things has gone wrong:</p>
@@ -763,8 +763,8 @@ contract SubContract is SuperContract {
 <p>To solve this issue, first consider whether the requirement condition is too strong. If necessary, weaken it to allow any valid external input. If the problem isn't the requirement condition, there must be a bug in the contract providing external input. Ensure that this contract is not providing invalid inputs.</p>
 <h3 id="sources-19"><a class="header" href="#sources-19">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-123</li>
-<li>https://media.consensys.net/when-to-use-revert-assert-and-require-in-solidity-61fb2c0e5a57</li>
+<li><a href="https://swcregistry.io/docs/SWC-123">SWC-123: Requirement Violation (SWC Registry)</a></li>
+<li><a href="https://medium.com/blockchannel/the-use-of-revert-assert-and-require-in-solidity-and-the-new-revert-opcode-in-the-evm-1a3a7990e06e">The Use of revert, assert, and require in Solidity, and the New REVERT Opcode in the EVM</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="write-to-arbitrary-storage-location"><a class="header" href="#write-to-arbitrary-storage-location">Write to Arbitrary Storage Location</a></h2>
 <p>Only authorized addresses should have access to write to sensitive storage locations. If there isn't proper authorization checks throughout the contract, a malicious user may be able to overwrite sensitive data. However, even if there are authorization checks for writing to sensitive data, an attacker may still be able to overwrite the sensitive data via insensitive data. This could give an attacker access to overwrite important variables such as the contract owner.</p>
@@ -772,8 +772,8 @@ contract SubContract is SuperContract {
 <p>For an example, try <a href="https://ethernaut.openzeppelin.com/level/19">Ethernaut - Alien Codex</a>. If it's too hard, see <a href="https://github.com/theNvN/ethernaut-openzeppelin-hacks/blob/main/level_19_Alien-Codex.md">this walkthrough (SPOILER)</a>.</p>
 <h3 id="sources-20"><a class="header" href="#sources-20">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-124</li>
-<li>https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte</li>
+<li><a href="https://swcregistry.io/docs/SWC-124">SWC-124: Write to Arbitrary Storage Location</a></li>
+<li><a href="https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte">USCC 2017 Submission by doughoyte</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hash-collision-when-using-abiencodepacked-with-multiple-variable-length-arguments"><a class="header" href="#hash-collision-when-using-abiencodepacked-with-multiple-variable-length-arguments">Hash Collision when using <code>abi.encodePacked()</code> with Multiple Variable-Length Arguments</a></h1>
 <p>In Solidity, the <code>abi.encodePacked()</code> function is used to create tightly packed byte arrays which can then be hashed using <code>keccak256()</code></p>
@@ -888,9 +888,10 @@ Replay Protection does not protect against possible hash collisions!</p>
 <p>The solution Solidity provides to the Diamond Problem is by using reverse C3 linearization. This means that it will linearize the inheritance from right to left, so the order of inheritance matters. It is suggested to start with more general contracts and end with more specific contracts to avoid problems.</p>
 <h3 id="sources-22"><a class="header" href="#sources-22">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/complex-inheritance/</li>
-<li>https://solidity.readthedocs.io/en/v0.4.25/contracts.html#multiple-inheritance-and-linearization</li>
-<li>https://pdaian.com/blog/solidity-anti-patterns-fun-with-inheritance-dag-abuse/</li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/complex-inheritance/">Consensys: Smart Contract Best Practices - Complex Inheritance</a></li>
+<li><a href="https://solidity.readthedocs.io/en/v0.4.25/contracts.html#multiple-inheritance-and-linearization">Solidity Documentation: Multiple Inheritance and Linearization</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">Wikipedia: The Diamond Problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/C3_linearization">Wikipedia: C3 Linearization</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="presence-of-unused-variables"><a class="header" href="#presence-of-unused-variables">Presence of Unused Variables</a></h2>
 <p>Although it is allowed, it is best practice to avoid unused variables. Unused variables can lead to a few different problems:</p>
@@ -902,9 +903,9 @@ Replay Protection does not protect against possible hash collisions!</p>
 <p>It is highly recommended to remove all unused variables from a code base.</p>
 <h3 id="sources-23"><a class="header" href="#sources-23">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-131</li>
-<li>https://github.com/ethereum/solidity/issues/718</li>
-<li>https://github.com/ethereum/solidity/issues/2563</li>
+<li><a href="https://swcregistry.io/docs/SWC-131">SWC-131: Missing Protection Against Signature Replay Attacks</a></li>
+<li><a href="https://github.com/ethereum/solidity/issues/718">Solidity Issue #718</a></li>
+<li><a href="https://github.com/ethereum/solidity/issues/2563">Solidity Issue #2563</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="unencrypted-private-data-on-chain"><a class="header" href="#unencrypted-private-data-on-chain">Unencrypted Private Data On-Chain</a></h2>
 <p>Ethereum smart contract code, storage, and any data transacted on-chain can always be read. Treat it as such. Even if your code is not verified on Etherscan, attackers can still decompile or check transactions to and from it to analyze it. For this reason, it's imperative that private data is never stored on-chain unencrypted.</p>
@@ -962,8 +963,8 @@ contract OddEven {
 <p>Suggested by: <a href="https://github.com/RobertMCForster">RobertMCForster</a></p>
 <h3 id="sources-24"><a class="header" href="#sources-24">Sources</a></h3>
 <ul>
-<li>https://finance.yahoo.com/news/bnb-really-erc-20-token-160013314.html</li>
-<li>https://blog.goodaudience.com/binance-isnt-erc-20-7645909069a4</li>
+<li><a href="https://finance.yahoo.com/news/bnb-really-erc-20-token-160013314.html">BNB: Is It Really an ERC-20 Token?</a></li>
+<li><a href="https://blog.goodaudience.com/binance-isnt-erc-20-7645909069a4">Binance Isn't ERC-20</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="asserting-contract-from-code-size"><a class="header" href="#asserting-contract-from-code-size">Asserting contract from Code Size</a></h2>
 <p>A common method for asserting whether a sender is a contract or EOA has been to check the code size of the sender. This check asserts that if the sender has a code size &gt; 0 that it must be a contract and if not then it must be an EOA. For example:</p>
@@ -976,8 +977,8 @@ contract OddEven {
 <p>As we can see, it's important that we recognize that although we may be certain that an account with a non-zero codesize is a contract, we can't be certain that an account with a zero codesize is not a contract.</p>
 <h3 id="sources-25"><a class="header" href="#sources-25">Sources</a></h3>
 <ul>
-<li>https://ethereum.github.io/yellowpaper/paper.pdf</li>
-<li>https://github.com/0xKitsune/Ghost-Contract</li>
+<li><a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum Yellow Paper</a></li>
+<li><a href="https://github.com/0xKitsune/Ghost-Contract">Ghost Contract on GitHub</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="transaction-ordering-dependence"><a class="header" href="#transaction-ordering-dependence">Transaction-Ordering Dependence</a></h2>
 <p>Transactions on Ethereum are grouped together in blocks which are processed on a semi-regular interval, 12 seconds. Before transactions are placed in blocks, they are broadcasted to the mempool where block builders can then proceed to place them as is economically optimal. What's important to understand here is that the mempool is public and thus anyone can see transactions before they're executed, giving them the power to frontrun by placing their own transaction executing the same, or a similar, action with a higher gas price.</p>
@@ -985,9 +986,9 @@ contract OddEven {
 <p>One solution to transaction-ordering dependence is to use a commit-reveal scheme in the case of information being submitted on-chain. This works by having the submitter send in a hash of the information, storing that on-chain along with the user address so that they may later reveal the answer along with the salt to prove that they were indeed correct. Another solution is to simply use a private mempool such as <a href="https://www.flashbots.net/">Flashbots</a>.</p>
 <h3 id="sources-26"><a class="header" href="#sources-26">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/known_attacks/#front-running-aka-transaction-ordering-dependence</li>
-<li>https://users.encs.concordia.ca/~clark/papers/2019_wtsc_front.pdf</li>
-<li>https://swcregistry.io/docs/SWC-114</li>
+<li><a href="https://medium.com/coinmonks/solidity-transaction-ordering-attacks-1193a014884e">Solidity Transaction Ordering Attacks</a></li>
+<li><a href="https://users.encs.concordia.ca/~clark/papers/2019_wtsc_front.pdf">Analysis of Transaction Ordering in Ethereum</a></li>
+<li><a href="https://swcregistry.io/docs/SWC-114">SWC-114: Transaction Order Dependence</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="dos-with-block-gas-limit"><a class="header" href="#dos-with-block-gas-limit">DoS with Block Gas Limit</a></h2>
 <p>One of the primary benefits of a block gas limit is that it prevents attackers from creating an infinite transaction loop. If the gas usage of a transaction exceeds this limit, the transaction will fail. However, along with this benefit comes a side effect which is important to understand.</p>
@@ -1018,11 +1019,11 @@ function payOut() {
 <p>This attack is done by issuing several transactions at a very high gas price. If the gas price is high enough, and the transactions consume enough gas, they can fill entire blocks and prevent other transactions from being processed.</p>
 <p>Ethereum transactions require the sender to pay gas to disincentivize spam attacks, but in some situations, there can be enough incentive to go through with such an attack. For example, a block stuffing attack was used on a gambling Dapp, Fomo3D. The app had a countdown timer, and users could win a jackpot by being the last to purchase a key, except every time a user bought a key, the timer would be extended. An attacker bought a key then stuffed the next 13 blocks in a row so they could win the jackpot.</p>
 <p>To prevent such attacks from occurring, it's important to carefully consider whether it's safe to incorporate time-based actions in your application.</p>
-<p>Example from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</p>
+<p>Example from: <a href="https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/">https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</a></p>
 <h3 id="sources-27"><a class="header" href="#sources-27">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</li>
-<li>https://github.com/ethereum/wiki/wiki/Design-Rationale#gas-and-fees</li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/">Consensys Smart Contract Best Practices - Denial of Service</a></li>
+<li><a href="https://ethereum.org/en/developers/docs/gas/">Ethereum Developers Documentation - Gas</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="dos-with-unexpected-revert"><a class="header" href="#dos-with-unexpected-revert">DoS with (Unexpected) revert</a></h2>
 <p>A DoS (Denial of Service) may be caused when logic is unable to be executed as a result of an unexpected revert. This can happen for a number of reasons and it's important to consider all the ways in which your logic may revert. The examples listed below are <em>non-exhaustive</em>.</p>
@@ -1098,8 +1099,8 @@ https://consensys.github.io/smart-contract-best-practices/development-recommenda
 </code></pre>
 <h3 id="sources-28"><a class="header" href="#sources-28">Sources</a></h3>
 <ul>
-<li>https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/</li>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/</li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/">Consensys Smart Contract Best Practices - Denial of Service</a></li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/">Consensys Smart Contract Best Practices - External Calls</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="unexpected-ecrecover-null-address"><a class="header" href="#unexpected-ecrecover-null-address">Unexpected <code>ecrecover</code> Null Address</a></h2>
 <p><code>ecrecover</code> is a precompiled built-in cryptographic function which recovers an address associated with the public key from an elliptic curve signature or <em>returns zero on error</em>. The parameters corresponding to the signature are <code>r</code>, <code>s</code> &amp; <code>v</code>.</p>
@@ -1122,8 +1123,8 @@ function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
 </code></pre>
 <h3 id="sources-29"><a class="header" href="#sources-29">Sources</a></h3>
 <ul>
-<li>https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions</li>
-<li>https://ethereum.stackexchange.com/a/69329</li>
+<li><a href="https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions">Solidity Documentation: Mathematical and Cryptographic Functions</a></li>
+<li><a href="https://ethereum.stackexchange.com/a/69329">Ethereum Stack Exchange Answer</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="default-visibility"><a class="header" href="#default-visibility">Default Visibility</a></h2>
 <p>Visibility specifiers are used to determine where a function or variable can be accessed from. As explained in the <a href="https://docs.soliditylang.org/en/v0.8.15/cheatsheet.html?highlight=visibility#function-visibility-specifiers">solidity docs</a>:</p>
@@ -1137,10 +1138,10 @@ function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
 <p>Modern compilers should catch missing function visibility specifiers, but will generally allow missing state variable visibility specifiers. Regardless, it's important to be aware of the possible interactions which may occur as a result of default visibility specifiers for both functions and state variables.</p>
 <h3 id="sources-30"><a class="header" href="#sources-30">Sources</a></h3>
 <ul>
-<li>https://swcregistry.io/docs/SWC-100</li>
-<li>https://swcregistry.io/docs/SWC-108</li>
-<li>https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/visibility/</li>
-<li>https://github.com/sigp/solidity-security-blog#visibility</li>
+<li><a href="https://swcregistry.io/docs/SWC-100">SWC-100</a></li>
+<li><a href="https://swcregistry.io/docs/SWC-108">SWC-108</a></li>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/visibility/">Consensys Smart Contract Best Practices - Visibility</a></li>
+<li><a href="https://github.com/sigp/solidity-security-blog#visibility">SigP Solidity Security Blog - Visibility</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="insufficient-access-control"><a class="header" href="#insufficient-access-control">Insufficient Access Control</a></h2>
 <p>Access control is often imperative in management and ownership of smart contracts. It's important to consider ways in which access control may be circumvented, or insufficiently implemented and the corresponding consequences.</p>
@@ -1167,7 +1168,7 @@ if (collateralizationRatio &gt; 1 ether) {
 </code></pre>
 <h3 id="sources-31"><a class="header" href="#sources-31">Sources</a></h3>
 <ul>
-<li>https://github.com/OpenCoreCH/smart-contract-auditing-heuristics#off-by-one-errors</li>
+<li><a href="https://github.com/OpenCoreCH/smart-contract-auditing-heuristics#off-by-one-errors">OpenCoreCH - Smart Contract Auditing Heuristics: Off-by-One Errors</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="lack-of-precision"><a class="header" href="#lack-of-precision">Lack of Precision</a></h2>
 <p>In Solidity, there are a limited variety of number types. Differently from many programming languages, floating point numbers are unsupported. Fixed point numbers are partially supported, but cannot be assigned to or from. The primary number type in Solidity are integers, of which resulting values of calculations are always rounded down.</p>
@@ -1247,11 +1248,11 @@ contract Victim {
 </code></pre>
 <h3 id="sources-32"><a class="header" href="#sources-32">Sources</a></h3>
 <ul>
-<li>https://github.com/ethereum/solidity/issues/12306</li>
-<li>https://github.com/nomad-xyz/ExcessivelySafeCall</li>
-<li>https://github.com/Layr-Labs/eigenlayer-contracts/blob/0139d6213927c0a7812578899ddd3dda58051928/src/contracts/core/DelegationManager.sol#L259-L299</li>
+<li><a href="https://github.com/ethereum/solidity/issues/12306">Solidity Issue #12306</a></li>
+<li><a href="https://github.com/nomad-xyz/ExcessivelySafeCall">ExcessivelySafeCall Repository</a></li>
+<li><a href="https://github.com/Layr-Labs/eigenlayer-contracts/blob/0139d6213927c0a7812578899ddd3dda58051928/src/contracts/core/DelegationManager.sol#L259-L299">DelegationManager.sol (lines 259-299)</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="using-msgvalue-in-a-loop"><a class="header" href="#using-msgvalue-in-a-loop">Using <code>msg.value</code> in a Loop</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="using-msgvalue-in-a-loop"><a class="header" href="#using-msgvalue-in-a-loop">Using <code>msg.value</code> in a Loop</a></h2>
 <p>The value of <code>msg.value</code> in a transaction’s call never gets updated, even if the called contract ends up sending some or all of the ETH to another contract. This means that using <code>msg.value</code> in <code>for</code> or <code>while</code> loops, without extra accounting logic, will either lead to the transaction reverting (when there are no longer sufficient funds for later iterations), or to the contract being drained (when the contract itself has an ETH balance).</p>
 <pre><code class="language-solidity">contract depositer {
     function deposit(address weth) payable external {
@@ -1285,12 +1286,12 @@ contract Victim {
 </code></pre>
 <p>Thus, using <code>msg.value</code> inside a loop is dangerous because this might allow the sender to <code>re-use</code> the <code>msg.value</code>.</p>
 <p>Reuse of <code>msg.value</code> can also show up with payable multicalls. Multicalls enable a user to submit a list of transactions to avoid paying the 21,000 gas transaction fee over and over. However, If <code>msg.value</code> gets <code>re-used</code> while looping through the functions to execute, it can cause a serious issue like the <a href="https://peckshield.medium.com/opyn-hacks-root-cause-analysis-c65f3fe249db">Opyn Hack</a>.</p>
-<h2 id="sources-33"><a class="header" href="#sources-33">Sources</a></h2>
+<h3 id="sources-33"><a class="header" href="#sources-33">Sources</a></h3>
 <ul>
-<li>https://www.rareskills.io/post/smart-contract-security#:~:text=Using%20msg.,show%20up%20with%20payable%20multicalls.</li>
-<li>https://trustchain.medium.com/ethereum-msg-value-reuse-vulnerability-5afd0aa2bcef</li>
+<li><a href="https://www.rareskills.io/post/smart-contract-security#:~:text=Using%20msg.,show%20up%20with%20payable%20multicalls.">Rare Skills - Smart Contract Security</a></li>
+<li><a href="https://trustchain.medium.com/ethereum-msg-value-reuse-vulnerability-5afd0aa2bcef">TrustChain - Ethereum msg.value Reuse Vulnerability</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="deleting-a-mapping-within-a-struct"><a class="header" href="#deleting-a-mapping-within-a-struct">Deleting a Mapping Within a Struct</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="deleting-a-mapping-within-a-struct"><a class="header" href="#deleting-a-mapping-within-a-struct">Deleting a Mapping Within a Struct</a></h2>
 <p>It is a common assumption that deleting a <code>struct</code> will delete all of it's data entirely but there is an exception. Deleting structs with dynamic data types does not delete the data stored inside them.</p>
 <p>For example: If a <code>mapping</code> (or dynamic array) is inside a struct, and the struct is deleted, the mapping will not be deleted. This is because mappings are implemented as hash tables and the EVM does not keep track of which keys have been used in the mapping. As a result, EVM doesn't know how to reset a mapping and the remaining data can be used to compromise the contract.</p>
 <pre><code class="language-solidity">    struct BalancesStruct{
@@ -1305,9 +1306,9 @@ contract Victim {
     }
 </code></pre>
 <p><code>remove()</code> function above deletes an item of <code>stackBalance</code>. But the mapping <code>balances</code> inside <code>BalancesStruct</code> won't reset. Only individual keys and what they map to can be deleted. Example: <code>delete stackBalance[msg.sender].balances[x]</code> will delete the data stored at address <code>x</code> in the balances mapping.</p>
-<h2 id="sources-34"><a class="header" href="#sources-34">Sources</a></h2>
+<h3 id="sources-34"><a class="header" href="#sources-34">Sources</a></h3>
 <ul>
-<li>https://docs.soliditylang.org/en/latest/types.html#delete</li>
+<li><a href="https://docs.soliditylang.org/en/latest/types.html#delete">Solidity Documentation - Delete</a></li>
 </ul>
 
                     </main>
