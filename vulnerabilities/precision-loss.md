@@ -36,4 +36,5 @@ function foo() public pure returns(uint result) {
   result = num / den; // returns 0
 }
 ```
+
 In regular math, the function ``foo()`` will return ``10 / 20 = 0.5``. But, the function returns ``0`` due to integer truncation in solidity. Therefore, It needs to be always made sure that numerator is greater than the denominator to avoid unexpected results.
