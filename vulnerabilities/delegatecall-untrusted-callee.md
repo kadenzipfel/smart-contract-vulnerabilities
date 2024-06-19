@@ -12,7 +12,19 @@ Consider the following contracts where `delegatecall` is misused, leading to a v
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 
-contract Lib {
+contract Proxy {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function forward(address callee, bytes calldata _data) public {
+        require(callee.delegatecall(_data), "Delegatecall failed");
+    }
+}
+
+contract Target {
     address public owner;
 
     function pwn() public {
@@ -20,34 +32,22 @@ contract Lib {
     }
 }
 
-contract HackMe {
-    address public owner;
-    Lib public lib;
-
-    constructor(Lib _lib) {
-        owner = msg.sender;
-        lib = Lib(_lib);
-    }
-
-    fallback() external payable {
-        address(lib).delegatecall(msg.data);
-    }
-}
-
 contract Attack {
-    address public hackMe;
+    address public proxy;
 
-    constructor(address _hackMe) {
-        hackMe = _hackMe;
+    constructor(address _proxy) {
+        proxy = _proxy;
     }
 
-    function attack() public {
-        hackMe.call(abi.encodeWithSignature("pwn()"));
+    function attack(address target) public {
+        Proxy(proxy).forward(target, abi.encodeWithSignature("pwn()"));
     }
 }
 ```
 
-In this example, the `HackMe` contract uses `delegatecall` to forward any call it receives to the `Lib` contract. The `Attack` contract then uses this vulnerability to call the `pwn()` function of `Lib` through the `HackMe` contract, thus changing the owner of `HackMe` contract to the attacker. This demonstrates the dangers of using delegatecall with untrusted callees.
+In this example, the `Proxy` contract uses `delegatecall` to forward any call it receives to an address provided by the user. The `Target` contract contains a to call the `pwn()` function that changes the owner of the contract to the caller.
+
+The `Attack` contract takes advantage of this setup by calling the `forward` function of the `Proxy` contract, passing the address of the `Target` contract and the encoded function call `pwn()`. This results in the `Proxy` contract's storage being modified, specifically the `owner` variable, which is set to the attacker’s address.
 
 ### Mitigations
 
