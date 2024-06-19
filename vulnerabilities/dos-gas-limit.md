@@ -41,9 +41,9 @@ Ethereum transactions require the sender to pay gas to disincentivize spam attac
 
 To prevent such attacks from occurring, it's important to carefully consider whether it's safe to incorporate time-based actions in your application.
 
-Example from: https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
+Example from: [https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/](https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/)
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
-- https://github.com/ethereum/wiki/wiki/Design-Rationale#gas-and-fees
+- [Consensys Smart Contract Best Practices - Denial of Service](https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/)
+- [Ethereum Developers Documentation - Gas](https://ethereum.org/en/developers/docs/gas/)

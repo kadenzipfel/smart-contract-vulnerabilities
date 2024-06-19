@@ -8,6 +8,6 @@ One solution to transaction-ordering dependence is to use a commit-reveal scheme
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/known_attacks/#front-running-aka-transaction-ordering-dependence
-- https://users.encs.concordia.ca/~clark/papers/2019_wtsc_front.pdf
-- https://swcregistry.io/docs/SWC-114
+- [Solidity Transaction Ordering Attacks](https://medium.com/coinmonks/solidity-transaction-ordering-attacks-1193a014884e)
+- [Analysis of Transaction Ordering in Ethereum](https://users.encs.concordia.ca/~clark/papers/2019_wtsc_front.pdf)
+- [SWC-114: Transaction Order Dependence](https://swcregistry.io/docs/SWC-114)

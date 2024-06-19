@@ -81,6 +81,6 @@ Therefore to mitigate this griefing risk entirely, EigenLayer used a Yul call, w
 
 ### Sources
 
-- https://github.com/ethereum/solidity/issues/12306
-- https://github.com/nomad-xyz/ExcessivelySafeCall
-- https://github.com/Layr-Labs/eigenlayer-contracts/blob/0139d6213927c0a7812578899ddd3dda58051928/src/contracts/core/DelegationManager.sol#L259-L299
+- [Solidity Issue #12306](https://github.com/ethereum/solidity/issues/12306)
+- [ExcessivelySafeCall Repository](https://github.com/nomad-xyz/ExcessivelySafeCall)
+- [DelegationManager.sol (lines 259-299)](https://github.com/Layr-Labs/eigenlayer-contracts/blob/0139d6213927c0a7812578899ddd3dda58051928/src/contracts/core/DelegationManager.sol#L259-L299)

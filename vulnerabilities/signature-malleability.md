@@ -49,6 +49,6 @@ To avoid this issue, it's imperative to recognize that validating that a signatu
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-117
-- https://eklitzke.org/bitcoin-transaction-malleability
-- https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3
+- [SWC-117](https://swcregistry.io/docs/SWC-117)
+- [Bitcoin Transaction Malleability](https://eklitzke.org/bitcoin-transaction-malleability)
+- [The Math Behind Elliptic Curve Cryptography](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3)

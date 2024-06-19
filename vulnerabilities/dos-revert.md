@@ -97,5 +97,5 @@ function foo(uint num, uint den) public pure returns(uint result) {
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
+- [Consensys Smart Contract Best Practices - Denial of Service](https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/)
+- [Consensys Smart Contract Best Practices - External Calls](https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/)

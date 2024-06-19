@@ -50,7 +50,7 @@ Examples from: https://solidity.readthedocs.io/en/develop/security-consideration
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-115
-- https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/
-- https://github.com/sigp/solidity-security-blog#tx-origin
+- [SWC-115](https://swcregistry.io/docs/SWC-115)
+- [Solidity Security Considerations - tx.origin](https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin)
+- [Consensys Smart Contract Best Practices - tx.origin](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/tx-origin/)
+- [SigP Solidity Security Blog - tx.origin](https://github.com/sigp/solidity-security-blog#tx-origin)

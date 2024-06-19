@@ -29,5 +29,5 @@ function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
 
 ### Sources
 
-- https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions
-- https://ethereum.stackexchange.com/a/69329
+- [Solidity Documentation: Mathematical and Cryptographic Functions](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions)
+- [Ethereum Stack Exchange Answer](https://ethereum.stackexchange.com/a/69329)

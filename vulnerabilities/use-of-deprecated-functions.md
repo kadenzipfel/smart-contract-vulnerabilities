@@ -17,5 +17,5 @@ Here is a *non-exhaustive* list of deprecated functions and alternatives. Many a
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-111
-- https://github.com/ethereum/solidity/releases
+- [SWC-111: Use of Deprecated Solidity Features](https://swcregistry.io/docs/SWC-111)
+- [Solidity Releases on GitHub](https://github.com/ethereum/solidity/releases)

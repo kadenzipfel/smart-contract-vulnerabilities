@@ -133,6 +133,6 @@ Examples from: https://medium.com/coinmonks/protect-your-solidity-smart-contract
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/
-- https://medium.com/@gus_tavo_guim/reentrancy-attack-on-smart-contracts-how-to-identify-the-exploitable-and-an-example-of-an-attack-4470a2d8dfe4
-- https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21
+- [Reentrancy Attacks on Smart Contracts: Best Practices for Pentesters](https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/)
+- [Reentrancy attack on Smart Contracts: How to identify the exploitable and an example of an attack](https://medium.com/@gus_tavo_guim/reentrancy-attack-on-smart-contracts-how-to-identify-the-exploitable-and-an-example-of-an-attack-4470a2d8dfe4)
+- [Protect Your Solidity Smart Contracts From Reentrancy Attacks](https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21)

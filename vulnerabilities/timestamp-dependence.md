@@ -23,5 +23,5 @@ You can estimate the time difference between events using `block.number` and the
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/attacks/timestamp-dependence/
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/timestamp-dependence/
+- [Consensys Smart Contract Best Practices - Timestamp Dependence (Attacks)](https://consensys.github.io/smart-contract-best-practices/attacks/timestamp-dependence/)
+- [Consensys Smart Contract Best Practices - Timestamp Dependence (Development Recommendations)](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/timestamp-dependence/)

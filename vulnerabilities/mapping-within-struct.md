@@ -1,4 +1,4 @@
-# Deleting a Mapping Within a Struct
+## Deleting a Mapping Within a Struct
 
 It is a common assumption that deleting a ``struct`` will delete all of it's data entirely but there is an exception. Deleting structs with dynamic data types does not delete the data stored inside them.
 
@@ -18,7 +18,6 @@ For example: If a ``mapping`` (or dynamic array) is inside a struct, and the str
 ```
 ``remove()`` function above deletes an item of ``stackBalance``. But the mapping ``balances`` inside ``BalancesStruct`` won't reset. Only individual keys and what they map to can be deleted. Example: ``delete stackBalance[msg.sender].balances[x]`` will delete the data stored at address ``x`` in the balances mapping.
 
+### Sources
 
-
-## Sources
-- https://docs.soliditylang.org/en/latest/types.html#delete
+- [Solidity Documentation - Delete](https://docs.soliditylang.org/en/latest/types.html#delete)

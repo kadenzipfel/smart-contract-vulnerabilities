@@ -31,7 +31,6 @@ if (collateralizationRatio > 1 ether) {
 }
 ```
 
-
 ### Sources
 
-- https://github.com/OpenCoreCH/smart-contract-auditing-heuristics#off-by-one-errors
+- [OpenCoreCH - Smart Contract Auditing Heuristics: Off-by-One Errors](https://github.com/OpenCoreCH/smart-contract-auditing-heuristics#off-by-one-errors)
