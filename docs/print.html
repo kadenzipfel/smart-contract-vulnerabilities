@@ -661,6 +661,55 @@ As of solidity <code>0.5.0</code>, uninitialized storage pointers are no longer 
 <div style="break-before: page; page-break-before: always;"></div><h2 id="delegatecall-to-untrusted-callee"><a class="header" href="#delegatecall-to-untrusted-callee">Delegatecall to Untrusted Callee</a></h2>
 <p><code>Delegatecall</code> is a special variant of a message call. It is almost identical to a regular message call except the target address is executed in the context of the calling contract and <code>msg.sender</code> and <code>msg.value</code> remain the same. Essentially, <code>delegatecall</code> delegates other contracts to modify the calling contract's storage.</p>
 <p>Since <code>delegatecall</code> gives so much control over a contract, it's very important to only use this with trusted contracts such as your own. If the target address comes from user input, be sure to verify that it is a trusted contract.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>Consider the following contracts where <code>delegatecall</code> is misused, leading to a vulnerability:</p>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.16;
+
+contract Proxy {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function forward(address callee, bytes calldata _data) public {
+        require(callee.delegatecall(_data), "Delegatecall failed");
+    }
+}
+
+contract Target {
+    address public owner;
+
+    function pwn() public {
+        owner = msg.sender;
+    }
+}
+
+contract Attack {
+    address public proxy;
+
+    constructor(address _proxy) {
+        proxy = _proxy;
+    }
+
+    function attack(address target) public {
+        Proxy(proxy).forward(target, abi.encodeWithSignature("pwn()"));
+    }
+}
+</code></pre>
+<p>In this example, the <code>Proxy</code> contract uses <code>delegatecall</code> to forward any call it receives to an address provided by the user. The <code>Target</code> contract contains a to call the <code>pwn()</code> function that changes the owner of the contract to the caller.</p>
+<p>The <code>Attack</code> contract takes advantage of this setup by calling the <code>forward</code> function of the <code>Proxy</code> contract, passing the address of the <code>Target</code> contract and the encoded function call <code>pwn()</code>. This results in the <code>Proxy</code> contract's storage being modified, specifically the <code>owner</code> variable, which is set to the attacker’s address.</p>
+<h3 id="mitigations"><a class="header" href="#mitigations">Mitigations</a></h3>
+<p>To mitigate the risks associated with <code>delegatecall</code> to untrusted callees, consider the following strategies:</p>
+<ol>
+<li>
+<p><strong>Whitelist Trusted Contracts</strong>: Ensure that the target address for <code>delegatecall</code> is a contract you control or a contract that is part of a verified and trusted list.</p>
+</li>
+<li>
+<p><strong>Limit the Scope of Delegatecall</strong>: Use <code>delegatecall</code> only for specific, controlled operations. Avoid exposing it as a general-purpose function unless absolutely necessary.</p>
+</li>
+</ol>
 <h3 id="sources-13"><a class="header" href="#sources-13">Sources</a></h3>
 <ul>
 <li><a href="https://swcregistry.io/docs/SWC-112">SWC Registry: SWC-112</a></li>
@@ -909,7 +958,7 @@ Replay Protection does not protect against possible hash collisions!</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="unencrypted-private-data-on-chain"><a class="header" href="#unencrypted-private-data-on-chain">Unencrypted Private Data On-Chain</a></h2>
 <p>Ethereum smart contract code, storage, and any data transacted on-chain can always be read. Treat it as such. Even if your code is not verified on Etherscan, attackers can still decompile or check transactions to and from it to analyze it. For this reason, it's imperative that private data is never stored on-chain unencrypted.</p>
-<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
 <p>Let's consider a scenario where players participate in an Odd or Even game. Each player submits a number, and the winner is determined by the sum of both numbers being odd or even. Here is a vulnerable implementation:</p>
 <pre><code class="language-solidity">// Vulnerable contract storing unencrypted private data
 contract OddEven {
