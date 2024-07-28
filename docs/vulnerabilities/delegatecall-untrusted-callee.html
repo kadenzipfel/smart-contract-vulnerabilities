@@ -213,7 +213,7 @@ contract Attack {
     }
 }
 </code></pre>
-<p>In this example, the <code>Proxy</code> contract uses <code>delegatecall</code> to forward any call it receives to an address provided by the user. The <code>Target</code> contract contains a to call the <code>pwn()</code> function that changes the owner of the contract to the caller.</p>
+<p>In this example, the <code>Proxy</code> contract uses <code>delegatecall</code> to forward any call it receives to an address provided by the user. The <code>Target</code> contract contains a call to the <code>pwn()</code> function that changes the owner of the contract to the caller.</p>
 <p>The <code>Attack</code> contract takes advantage of this setup by calling the <code>forward</code> function of the <code>Proxy</code> contract, passing the address of the <code>Target</code> contract and the encoded function call <code>pwn()</code>. This results in the <code>Proxy</code> contract's storage being modified, specifically the <code>owner</code> variable, which is set to the attacker’s address.</p>
 <h3 id="mitigations"><a class="header" href="#mitigations">Mitigations</a></h3>
 <p>To mitigate the risks associated with <code>delegatecall</code> to untrusted callees, consider the following strategies:</p>
