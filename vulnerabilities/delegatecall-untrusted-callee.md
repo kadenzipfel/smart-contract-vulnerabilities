@@ -45,7 +45,7 @@ contract Attack {
 }
 ```
 
-In this example, the `Proxy` contract uses `delegatecall` to forward any call it receives to an address provided by the user. The `Target` contract contains a to call the `pwn()` function that changes the owner of the contract to the caller.
+In this example, the `Proxy` contract uses `delegatecall` to forward any call it receives to an address provided by the user. The `Target` contract contains a call to the `pwn()` function that changes the owner of the contract to the caller.
 
 The `Attack` contract takes advantage of this setup by calling the `forward` function of the `Proxy` contract, passing the address of the `Target` contract and the encoded function call `pwn()`. This results in the `Proxy` contract's storage being modified, specifically the `owner` variable, which is set to the attacker’s address.
 
