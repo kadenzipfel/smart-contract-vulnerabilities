@@ -83,7 +83,7 @@ Regardless of usage of checked math, it's necessary to ensure that any valid inp
 
 ### Unexpected Balance
 
-It's important to take caution in enforcing expected contract balances of tokens or Ether as those balances may be increased by an attacker to cause an unexpected revert. This is easily possible with ERC20 tokens by simply `transfer`ring to the contract, but is also possible with Ether by [Forcibly sending Ether to a contract](./forcibly-sending-ether.md).
+It's important to take caution in enforcing expected contract balances of tokens or Ether as those balances may be increased by an attacker to cause an unexpected revert. This is easily possible with ERC20 tokens by simply `transfer`ring to the contract, but is also possible with Ether by [Forcibly sending Ether to a contract](./unexpected-balances.md).
 
 Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert. 
 
