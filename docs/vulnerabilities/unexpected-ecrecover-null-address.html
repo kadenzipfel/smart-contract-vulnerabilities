@@ -176,20 +176,22 @@
                         <h2 id="unexpected-ecrecover-null-address"><a class="header" href="#unexpected-ecrecover-null-address">Unexpected <code>ecrecover</code> Null Address</a></h2>
 <p><code>ecrecover</code> is a precompiled built-in cryptographic function which recovers an address associated with the public key from an elliptic curve signature or <em>returns zero on error</em>. The parameters corresponding to the signature are <code>r</code>, <code>s</code> &amp; <code>v</code>.</p>
 <p>As noted above, <code>ecrecover</code> will return zero on error. It's possible to do this deterministically by setting <code>v</code> as any positive number other than 27 or 28.</p>
-<p><code>ecrecover</code> is often used to verify that the signer is an authorized account. The problem with this is that uninitialized or renounced authorization logic often sets the owner/admin address as <code>address(0)</code>, the same value which may be deterministically returned by <code>ecrecover</code>. This means that an unsecure contract may allow an attacker to spoof an authorized-only method into executing as though the authorized account is the signer.</p>
+<p>This can be manipulated by attackers to make it seem like a valid message has been signed by <code>address(0)</code>.</p>
+<blockquote>
+<p><strong>NOTE:</strong> The default value for addresses in solidity is <code>address(0)</code>. As such, in case important storage variables, e.g. owner/admin, are unset, it's possible to spoof a signature from one of these unset addresses, executing authorized-only logic.</p>
+</blockquote>
 <pre><code>// UNSECURE
-function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
-	address signer = ecrecover(newOwner, v, r, s);
-	require(signer == owner);
-	owner = address(newOwner);
+function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
+	address recoveredSigner = ecrecover(message, v, r, s);
+	return signer == recoveredSigner;
 }
 </code></pre>
-<p>The above method is intended to only set a new <code>owner</code> if a valid signature from the existing <code>owner</code> is provided. However, as we know, if we set <code>v</code> to any value other than 27 or 28, the <code>signer</code> will be the null address and if the current owner is uninitialized or renounced, the <code>require</code> statement will succeed allowing an attacker to set themselves as <code>owner</code>.</p>
-<p>We can mitigate this issue by reverting if the recovered <code>signer</code> address is null, e.g.:</p>
-<pre><code>function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
-	address signer = ecrecover(newOwnerHash, v, r, s);
-	require(signer == owner &amp;&amp; signer != address(0));
-	owner = address(newOwner);
+<p>The above method is intended to only return true if a valid signature is provided. However, as we know, if we set <code>v</code> to any value other than 27 or 28, the <code>recoveredSigner</code> will be the null address and if the provided <code>signer</code> is <code>address(0)</code>, the function will unexpectedly return <code>true</code>.</p>
+<p>We can mitigate this issue by reverting if the <code>recoveredSigner</code> address is null, e.g.:</p>
+<pre><code>function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
+        address recoveredSigner = ecrecover(message, v, r, s);
+        require(recoveredSigner != address(0));
+        return signer == recoveredSigner;
 }
 </code></pre>
 <h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
