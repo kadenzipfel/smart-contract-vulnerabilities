@@ -10,7 +10,7 @@ This can be problematic in the case that the funds are sent to a smart contract 
 
 For example:
 
-```
+```solidity
 // INSECURE
 contract Auction {
     address currentLeader;
@@ -31,7 +31,7 @@ As you can see in this example, if an attacker bids from a smart contract with a
 
 This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the function is reverted and no one is paid. 
 
-```
+```solidity
 address[] private refundAddresses;
 mapping (address => uint) public refunds;
 
@@ -45,7 +45,7 @@ function refundAll() public {
 
 An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.
 
-```
+```solidity
 contract auction {
     address highestBidder;
     uint highestBid;

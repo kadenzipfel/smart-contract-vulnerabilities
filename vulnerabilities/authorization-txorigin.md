@@ -2,7 +2,7 @@
 
 `tx.origin` is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use `tx.origin` for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in `tx.origin`. Consider this example:
 
-```
+```solidity
 pragma solidity >=0.5.0 <0.7.0;
 
 // THIS CONTRACT CONTAINS A BUG - DO NOT USE
@@ -22,7 +22,7 @@ contract TxUserWallet {
 
 Here we can see that the `TxUserWallet` contract authorizes the `transferTo()` function with `tx.origin`. 
 
-```
+```solidity
 pragma solidity >=0.5.0 <0.7.0;
 
 interface TxUserWallet {

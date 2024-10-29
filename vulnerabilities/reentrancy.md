@@ -14,7 +14,7 @@ When Ether is transferred to a contract address, it will trigger the `receive` o
 
 One example of a hard to spot external call is OpenZeppelin's [`ERC721._safeMint`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L244) & [`ERC721._safeTransfer`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L190) functions.
 
-```
+```solidity
 /**
   * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
   * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
@@ -38,7 +38,7 @@ The function is titled `_safeMint` because it prevents tokens from being uninten
 
 A single function reentrancy attack occurs when a vulnerable function is the same function that an attacker is trying to recursively call.
 
-```
+```solidity
 // UNSECURE
 function withdraw() external {
     uint256 amount = balances[msg.sender];
@@ -54,7 +54,7 @@ Here we can see that the balance is only modified after the funds have been tran
 
 A cross-function reentrancy attack is a more complex version of the same process. Cross-function reentrancy occurs when a vulnerable function shares state with a function that an attacker can exploit.
 
-```
+```solidity
 // UNSECURE
 function transfer(address to, uint amount) external {
   if (balances[msg.sender] >= amount) {
@@ -77,7 +77,7 @@ In this example, a hacker can exploit this contract by having a fallback functio
 
 Read-only reentrancy is a novel attack vector in which instead of reentering into the same contract in which state changes have yet to be made, an attacker reenters into another contract which reads from the state of the original contract.
 
-```
+```solidity
 // UNSECURE
 contract A {
 	// Has a reentrancy guard to prevent reentrancy
@@ -116,7 +116,7 @@ Finally, we can perform *interactions* with other smart contracts, e.g. external
 
 This structure is effective against reentrancy because when an attacker reenters the function, the state changes have already been made. For example:
 
-```
+```solidity
 function withdraw() external {
   uint256 amount = balances[msg.sender];
   balances[msg.sender] = 0;

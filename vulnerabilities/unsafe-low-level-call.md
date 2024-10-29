@@ -10,7 +10,7 @@ Low-level calls will never throw an exception, instead they will return `false` 
 
 In the case that you use low-level calls, be sure to check the return value to handle possible failed calls, e.g.:
 
-```
+```solidity
 // Simple transfer of 1 ether
 (bool success,) = to.call{value: 1 ether}("");
 // Revert if unsuccessful
@@ -25,7 +25,7 @@ Note that this check is not performed in case of [low-level calls](https://doc
 
 It's imperative that we do not simply assume that a contract to be called via a low-level call actually exists, since if it doesn't our logic will proceed even though our external call effectively failed. This can lead to loss of funds and/or an invalid contract state. Instead, we must verify that the contract being called exists, either immediately before being called with an `extcodesize` check, or by verifying during contract deployment and using a `constant`/`immutable` value if the contract can be fully trusted.
 
-```
+```solidity
 // Verify address is a contract
 require(to.code.length > 0);
 // Simple transfer of 1 ether

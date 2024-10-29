@@ -8,7 +8,7 @@ This can be manipulated by attackers to make it seem like a valid message has be
 
 > **NOTE:** The default value for addresses in solidity is `address(0)`. As such, in case important storage variables, e.g. owner/admin, are unset, it's possible to spoof a signature from one of these unset addresses, executing authorized-only logic.
 
-```
+```solidity
 // UNSECURE
 function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
 	address recoveredSigner = ecrecover(message, v, r, s);
@@ -20,7 +20,7 @@ The above method is intended to only return true if a valid signature is provide
 
 We can mitigate this issue by reverting if the `recoveredSigner` address is null, e.g.:
 
-```
+```solidity
 function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
         address recoveredSigner = ecrecover(message, v, r, s);
         require(recoveredSigner != address(0));

@@ -2,7 +2,7 @@
 
 It is possible to use the same variable twice in Solidity, but it can lead to unintended side effects. This is especially difficult regarding working with multiple contracts. Take the following example:
 
-```
+```solidity
 contract SuperContract {
   uint a = 1;
 }

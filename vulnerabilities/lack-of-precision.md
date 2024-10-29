@@ -4,7 +4,7 @@ In Solidity, there are a limited variety of number types. Differently from many 
 
 Since division often results in a remainder, performing division with integers generally requires a lack of precision to some degree. To see how a lack of precision may cause a serious flaw, consider the following example in which we charge a fee for early withdrawals denominated in the number of days early that the withdrawal is made:
 
-```
+```solidity
 uint256 daysEarly = withdrawalsOpenTimestamp - block.timestamp / 1 days
 uint256 fee = amount / daysEarly * dailyFee
 ```

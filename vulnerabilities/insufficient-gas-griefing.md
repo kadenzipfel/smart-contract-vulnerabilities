@@ -4,7 +4,7 @@ Insufficient gas griefing can be done on contracts which accept data and use it 
 
 Let's consider a simple relayer contract as an example. As shown below, the relayer contract allows someone to make and sign a transaction, without having to execute the transaction. Often this is used when a user can't pay for the gas associated with the transaction.
 
-```
+```solidity
 contract Relayer {
     mapping (bytes => bool) executed;
 
@@ -21,7 +21,7 @@ The user who executes the transaction, the 'forwarder', can effectively censor t
 
 There are two ways this could be prevented. The first solution would be to only allow trusted users to relay transactions. The other solution is to require that the forwarder provides enough gas, as seen below.
 
-```
+```solidity
 // contract called by Relayer
 contract Executor {
     function execute(bytes _data, uint _gasLimit) {

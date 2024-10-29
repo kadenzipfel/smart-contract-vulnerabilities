@@ -12,7 +12,7 @@ An effective solution to this problem would be to use a pull payment system over
 
 If, for some reason, you really need to loop through an array of unspecified length, at least expect it to potentially take multiple blocks, and allow it to be performed in multiple transactions - as seen in this example:
 
-```
+```solidity
 struct Payee {
     address addr;
     uint256 value;
