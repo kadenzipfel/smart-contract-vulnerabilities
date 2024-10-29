@@ -218,7 +218,7 @@
 <div style="break-before: page; page-break-before: always;"></div><h2 id="insufficient-gas-griefing"><a class="header" href="#insufficient-gas-griefing">Insufficient Gas Griefing</a></h2>
 <p>Insufficient gas griefing can be done on contracts which accept data and use it in a sub-call on another contract. This method is often used in multisignature wallets as well as transaction relayers. If the sub-call fails, either the whole transaction is reverted, or execution is continued.</p>
 <p>Let's consider a simple relayer contract as an example. As shown below, the relayer contract allows someone to make and sign a transaction, without having to execute the transaction. Often this is used when a user can't pay for the gas associated with the transaction.</p>
-<pre><code>contract Relayer {
+<pre><code class="language-solidity">contract Relayer {
     mapping (bytes =&gt; bool) executed;
 
     function relay(bytes _data) public {
@@ -231,7 +231,7 @@
 </code></pre>
 <p>The user who executes the transaction, the 'forwarder', can effectively censor transactions by using just enough gas so that the transaction executes, but not enough gas for the sub-call to succeed.</p>
 <p>There are two ways this could be prevented. The first solution would be to only allow trusted users to relay transactions. The other solution is to require that the forwarder provides enough gas, as seen below.</p>
-<pre><code>// contract called by Relayer
+<pre><code class="language-solidity">// contract called by Relayer
 contract Executor {
     function execute(bytes _data, uint _gasLimit) {
         require(gasleft() &gt;= _gasLimit);
@@ -254,7 +254,7 @@ contract Executor {
 <p>When Ether is transferred to a contract address, it will trigger the <code>receive</code> or <code>fallback</code> function, as implemented in the contract. An attacker can write any arbitrary logic into the <code>fallback</code> method, such that anytime the contract receives a transfer, that logic is executed.</p>
 <h5 id="safemint"><a class="header" href="#safemint"><code>safeMint</code></a></h5>
 <p>One example of a hard to spot external call is OpenZeppelin's <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L244"><code>ERC721._safeMint</code></a> &amp; <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L190"><code>ERC721._safeTransfer</code></a> functions.</p>
-<pre><code>/**
+<pre><code class="language-solidity">/**
   * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
   * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
   */
@@ -273,7 +273,7 @@ function _safeMint(
 <p>The function is titled <code>_safeMint</code> because it prevents tokens from being unintentionally minted to a contract by checking first whether that contract has implemented ERC721Receiver, i.e. marking itself as a willing recipient of NFTs. This all seems fine, but <code>_checkOnERC721Received</code> is an external call to the receiving contract, allowing arbitrary execution.</p>
 <h3 id="single-function-reentrancy"><a class="header" href="#single-function-reentrancy">Single function reentrancy</a></h3>
 <p>A single function reentrancy attack occurs when a vulnerable function is the same function that an attacker is trying to recursively call.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 function withdraw() external {
     uint256 amount = balances[msg.sender];
     (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
@@ -284,7 +284,7 @@ function withdraw() external {
 <p>Here we can see that the balance is only modified after the funds have been transferred. This can allow a hacker to call the function many times before the balance is set to 0, effectively draining the smart contract.</p>
 <h3 id="cross-function-reentrancy"><a class="header" href="#cross-function-reentrancy">Cross-function reentrancy</a></h3>
 <p>A cross-function reentrancy attack is a more complex version of the same process. Cross-function reentrancy occurs when a vulnerable function shares state with a function that an attacker can exploit.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 function transfer(address to, uint amount) external {
   if (balances[msg.sender] &gt;= amount) {
     balances[to] += amount;
@@ -302,7 +302,7 @@ function withdraw() external {
 <p>In this example, a hacker can exploit this contract by having a fallback function call <code>transfer()</code> to transfer spent funds before the balance is set to 0 in the <code>withdraw()</code> function.</p>
 <h3 id="read-only-reentrancy"><a class="header" href="#read-only-reentrancy">Read-only Reentrancy</a></h3>
 <p>Read-only reentrancy is a novel attack vector in which instead of reentering into the same contract in which state changes have yet to be made, an attacker reenters into another contract which reads from the state of the original contract.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 contract A {
 	// Has a reentrancy guard to prevent reentrancy
 	// but makes state change only after external call to sender
@@ -331,7 +331,7 @@ contract B {
 <p>Next, the <em>effects</em> of the contract should be performed, i.e. state modifications.</p>
 <p>Finally, we can perform <em>interactions</em> with other smart contracts, e.g. external function calls.</p>
 <p>This structure is effective against reentrancy because when an attacker reenters the function, the state changes have already been made. For example:</p>
-<pre><code>function withdraw() external {
+<pre><code class="language-solidity">function withdraw() external {
   uint256 amount = balances[msg.sender];
   balances[msg.sender] = 0;
   (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
@@ -423,7 +423,7 @@ function uncheck() public{
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="authorization-through-txorigin"><a class="header" href="#authorization-through-txorigin">Authorization Through tx.origin</a></h2>
 <p><code>tx.origin</code> is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use <code>tx.origin</code> for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in <code>tx.origin</code>. Consider this example:</p>
-<pre><code>pragma solidity &gt;=0.5.0 &lt;0.7.0;
+<pre><code class="language-solidity">pragma solidity &gt;=0.5.0 &lt;0.7.0;
 
 // THIS CONTRACT CONTAINS A BUG - DO NOT USE
 contract TxUserWallet {
@@ -440,7 +440,7 @@ contract TxUserWallet {
 }
 </code></pre>
 <p>Here we can see that the <code>TxUserWallet</code> contract authorizes the <code>transferTo()</code> function with <code>tx.origin</code>.</p>
-<pre><code>pragma solidity &gt;=0.5.0 &lt;0.7.0;
+<pre><code class="language-solidity">pragma solidity &gt;=0.5.0 &lt;0.7.0;
 
 interface TxUserWallet {
     function transferTo(address payable dest, uint amount) external;
@@ -491,7 +491,7 @@ contract TxAttackWallet {
 <h3 id="unchecked-call-return-value"><a class="header" href="#unchecked-call-return-value">Unchecked call return value</a></h3>
 <p>Low-level calls will never throw an exception, instead they will return <code>false</code> if they encounter an exception, whereas contract calls will automatically throw. Thus if the return value of a low-level call is not checked, the execution may resume even if the function call throws an error. This can lead to unexpected behaviour and break the program logic. A failed call can even be caused intentionally by an attacker, who may be able to further exploit the application.</p>
 <p>In the case that you use low-level calls, be sure to check the return value to handle possible failed calls, e.g.:</p>
-<pre><code>// Simple transfer of 1 ether
+<pre><code class="language-solidity">// Simple transfer of 1 ether
 (bool success,) = to.call{value: 1 ether}("");
 // Revert if unsuccessful
 require(success);
@@ -500,7 +500,7 @@ require(success);
 <p>As noted in the <a href="https://docs.soliditylang.org/en/v0.8.15/control-structures.html?highlight=low%20level%20calls#external-function-calls">Solidity docs</a>: "Due to the fact that the EVM considers a call to a non-existing contract to always succeed, Solidity uses the <code>extcodesize</code> opcode to check that the contract that is about to be called actually exists (it contains code) and causes an exception if it does not. This check is skipped if the return data will be decoded after the call and thus the ABI decoder will catch the case of a non-existing contract.</p>
 <p>Note that this check is not performed in case of <a href="https://docs.soliditylang.org/en/v0.8.15/units-and-global-variables.html#address-related">low-level calls</a> which operate on addresses rather than contract instances."</p>
 <p>It's imperative that we do not simply assume that a contract to be called via a low-level call actually exists, since if it doesn't our logic will proceed even though our external call effectively failed. This can lead to loss of funds and/or an invalid contract state. Instead, we must verify that the contract being called exists, either immediately before being called with an <code>extcodesize</code> check, or by verifying during contract deployment and using a <code>constant</code>/<code>immutable</code> value if the contract can be fully trusted.</p>
-<pre><code>// Verify address is a contract
+<pre><code class="language-solidity">// Verify address is a contract
 require(to.code.length &gt; 0);
 // Simple transfer of 1 ether
 (bool success,) = to.call{value: 1 ether}("");
@@ -719,7 +719,7 @@ contract Attack {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="signature-malleability"><a class="header" href="#signature-malleability">Signature Malleability</a></h2>
 <p>It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, it is possible to modify and signature and maintain validity. One example of a system which is vulnerable to signature malleability is one in which validation as to whether an action can be executed is determined based on whether the signature has been previously used.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 require(!signatureUsed[signature]);
 
 // Validate signer and perform state modifying logic
@@ -764,7 +764,7 @@ This vulnerability is relevant to older contracts using Solidity versions before
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="shadowing-state-variables"><a class="header" href="#shadowing-state-variables">Shadowing State Variables</a></h2>
 <p>It is possible to use the same variable twice in Solidity, but it can lead to unintended side effects. This is especially difficult regarding working with multiple contracts. Take the following example:</p>
-<pre><code>contract SuperContract {
+<pre><code class="language-solidity">contract SuperContract {
   uint a = 1;
 }
 
@@ -831,13 +831,13 @@ contract SubContract is SuperContract {
 <h2 id="understanding-the-vulnerability"><a class="header" href="#understanding-the-vulnerability">Understanding the vulnerability</a></h2>
 <p>When <code>abi.encodePacked()</code> is used with multiple variable-length arguments (such as arrays and strings), the packed encoding does not include information about the boundaries between different arguments. This can lead to situations where different combinations of arguments result in the same encoded output, causing hash collisions.</p>
 <p>For example, consider the following two calls to <code>abi.encodePacked()</code>:</p>
-<pre><code>abi.encodePacked(["a", "b"], ["c", "d"])
+<pre><code class="language-solidity">abi.encodePacked(["a", "b"], ["c", "d"])
 </code></pre>
-<pre><code>abi.encodePacked(["a"], ["b", "c", "d"])
+<pre><code class="language-solidity">abi.encodePacked(["a"], ["b", "c", "d"])
 </code></pre>
 <p>Both calls could potentially produce the same packed encoding because <code>abi.encodePacked()</code> simply concatenates the elements without any delimiters!</p>
 <p>Consider the below example for strings:</p>
-<pre><code>abi.encodePacked("foo", "bar") == abi.encodePacked("fo", "obar")
+<pre><code class="language-solidity">abi.encodePacked("foo", "bar") == abi.encodePacked("fo", "obar")
 </code></pre>
 <p>Strings in Solidity are dynamic types and when they are concatenated using <code>abi.encodePacked()</code>, there is no delimiter between them to mark their boundaries, which can lead to hash collisions.</p>
 <p>As a matter of fact, the below warning is taken as it is straight from the <a href="https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode">official solidity language documentation</a> regarding the same.</p>
@@ -871,10 +871,10 @@ function verifyMessage(string calldata message1, string calldata message2, bytes
 }
 </code></pre>
 <p>The above function <code>verifyMessage()</code> could easily be exploited as below:-</p>
-<pre><code>verifyMessage("hello", "world", signature);
+<pre><code class="language-solidity">verifyMessage("hello", "world", signature);
 </code></pre>
 <p>or</p>
-<pre><code>verifyMessage("hell", "oworld", signature);
+<pre><code class="language-solidity">verifyMessage("hell", "oworld", signature);
 </code></pre>
 <p>or a variation of the string <code>hello</code> <code>world</code></p>
 <p>All variations of the string <code>hello</code> <code>world</code> passed to <code>verifyMessage()</code> would produce the same hash, potentially allowing an attacker to bypass the authorization check if they can provide a valid signature for their manipulated inputs.</p>
@@ -1017,7 +1017,7 @@ contract OddEven {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="asserting-contract-from-code-size"><a class="header" href="#asserting-contract-from-code-size">Asserting contract from Code Size</a></h2>
 <p>A common method for asserting whether a sender is a contract or EOA has been to check the code size of the sender. This check asserts that if the sender has a code size &gt; 0 that it must be a contract and if not then it must be an EOA. For example:</p>
-<pre><code>function mint(uint256 amount) public {
+<pre><code class="language-solidity">function mint(uint256 amount) public {
   if (msg.sender.code.length != 0) revert CallerNotEOA();
 }
 </code></pre>
@@ -1046,7 +1046,7 @@ contract OddEven {
 <p>This situation can also lead to an attack. Say a bad actor decides to create a significant amount of addresses, with each address being paid a small amount of funds from the smart contract. If done effectively, the transaction can be blocked indefinitely, possibly even preventing further transactions from going through.</p>
 <p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.</p>
 <p>If, for some reason, you really need to loop through an array of unspecified length, at least expect it to potentially take multiple blocks, and allow it to be performed in multiple transactions - as seen in this example:</p>
-<pre><code>struct Payee {
+<pre><code class="language-solidity">struct Payee {
     address addr;
     uint256 value;
 }
@@ -1080,7 +1080,7 @@ function payOut() {
 <p>DoS (Denial of Service) attacks can occur in functions when you try to send funds to a user and the functionality relies on that fund transfer being successful.</p>
 <p>This can be problematic in the case that the funds are sent to a smart contract created by a bad actor, since they can simply create a fallback function that reverts all payments.</p>
 <p>For example:</p>
-<pre><code>// INSECURE
+<pre><code class="language-solidity">// INSECURE
 contract Auction {
     address currentLeader;
     uint highestBid;
@@ -1097,7 +1097,7 @@ contract Auction {
 </code></pre>
 <p>As you can see in this example, if an attacker bids from a smart contract with a fallback function reverting all payments, they can never be refunded, and thus no one can ever make a higher bid.</p>
 <p>This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the function is reverted and no one is paid.</p>
-<pre><code>address[] private refundAddresses;
+<pre><code class="language-solidity">address[] private refundAddresses;
 mapping (address =&gt; uint) public refunds;
 
 // bad
@@ -1108,7 +1108,7 @@ function refundAll() public {
 }
 </code></pre>
 <p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.</p>
-<pre><code>contract auction {
+<pre><code class="language-solidity">contract auction {
     address highestBidder;
     uint highestBid;
     mapping(address =&gt; uint) refunds;
@@ -1158,7 +1158,7 @@ https://consensys.github.io/smart-contract-best-practices/development-recommenda
 <blockquote>
 <p><strong>NOTE:</strong> The default value for addresses in solidity is <code>address(0)</code>. As such, in case important storage variables, e.g. owner/admin, are unset, it's possible to spoof a signature from one of these unset addresses, executing authorized-only logic.</p>
 </blockquote>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
 	address recoveredSigner = ecrecover(message, v, r, s);
 	return signer == recoveredSigner;
@@ -1166,7 +1166,7 @@ function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, byt
 </code></pre>
 <p>The above method is intended to only return true if a valid signature is provided. However, as we know, if we set <code>v</code> to any value other than 27 or 28, the <code>recoveredSigner</code> will be the null address and if the provided <code>signer</code> is <code>address(0)</code>, the function will unexpectedly return <code>true</code>.</p>
 <p>We can mitigate this issue by reverting if the <code>recoveredSigner</code> address is null, e.g.:</p>
-<pre><code>function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
+<pre><code class="language-solidity">function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
         address recoveredSigner = ecrecover(message, v, r, s);
         require(recoveredSigner != address(0));
         return signer == recoveredSigner;
@@ -1201,7 +1201,7 @@ function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, byt
 <h3 id="array-lengths"><a class="header" href="#array-lengths">Array lengths</a></h3>
 <p>Properly determining intended array lengths is a common source of off-by-one errors. Particularly since 0-indexing means the final value in an array is <code>array.length - 1</code>.</p>
 <p>Consider for example a function intended to loop over a list of recipients to transfer funds to each user, but the loop length is incorrectly set.</p>
-<pre><code>// Incorrectly sets upper bound to users.length - 1
+<pre><code class="language-solidity">// Incorrectly sets upper bound to users.length - 1
 // Final user in array doesn't receive token transfer
 for (uint256 i; i &lt; users.length - 1; ++i) {
 	token.transfer(users[i], 1 ether);
@@ -1210,7 +1210,7 @@ for (uint256 i; i &lt; users.length - 1; ++i) {
 <h3 id="incorrect-comparison-operator"><a class="header" href="#incorrect-comparison-operator">Incorrect comparison operator</a></h3>
 <p>It's common for comparison operators to be off by one when, e.g. <code>&gt;</code> should be used in place of <code>&gt;=</code>. This is especially common when the logic includes some kind of negation, leading to mental friction in deciphering the intended vs implemented bounds.</p>
 <p>Consider for example a Defi protocol with liquidation logic documented to liquidate a user only if their collateralization ratio is <em>below</em> 1e18.</p>
-<pre><code>// Incorrectly liquidates if collateralizationRatio is == 1 ether
+<pre><code class="language-solidity">// Incorrectly liquidates if collateralizationRatio is == 1 ether
 if (collateralizationRatio &gt; 1 ether) {
 	...
 } else {
@@ -1224,7 +1224,7 @@ if (collateralizationRatio &gt; 1 ether) {
 <div style="break-before: page; page-break-before: always;"></div><h2 id="lack-of-precision"><a class="header" href="#lack-of-precision">Lack of Precision</a></h2>
 <p>In Solidity, there are a limited variety of number types. Differently from many programming languages, floating point numbers are unsupported. Fixed point numbers are partially supported, but cannot be assigned to or from. The primary number type in Solidity are integers, of which resulting values of calculations are always rounded down.</p>
 <p>Since division often results in a remainder, performing division with integers generally requires a lack of precision to some degree. To see how a lack of precision may cause a serious flaw, consider the following example in which we charge a fee for early withdrawals denominated in the number of days early that the withdrawal is made:</p>
-<pre><code>uint256 daysEarly = withdrawalsOpenTimestamp - block.timestamp / 1 days
+<pre><code class="language-solidity">uint256 daysEarly = withdrawalsOpenTimestamp - block.timestamp / 1 days
 uint256 fee = amount / daysEarly * dailyFee
 </code></pre>
 <p>The problem with this is that in the case that a user withdraws 1.99 days early, since 1.99 will round down to 1, the user only pays about half the intended fee.</p>

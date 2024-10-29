@@ -180,7 +180,7 @@
 <blockquote>
 <p><strong>NOTE:</strong> The default value for addresses in solidity is <code>address(0)</code>. As such, in case important storage variables, e.g. owner/admin, are unset, it's possible to spoof a signature from one of these unset addresses, executing authorized-only logic.</p>
 </blockquote>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
 	address recoveredSigner = ecrecover(message, v, r, s);
 	return signer == recoveredSigner;
@@ -188,7 +188,7 @@ function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, byt
 </code></pre>
 <p>The above method is intended to only return true if a valid signature is provided. However, as we know, if we set <code>v</code> to any value other than 27 or 28, the <code>recoveredSigner</code> will be the null address and if the provided <code>signer</code> is <code>address(0)</code>, the function will unexpectedly return <code>true</code>.</p>
 <p>We can mitigate this issue by reverting if the <code>recoveredSigner</code> address is null, e.g.:</p>
-<pre><code>function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
+<pre><code class="language-solidity">function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
         address recoveredSigner = ecrecover(message, v, r, s);
         require(recoveredSigner != address(0));
         return signer == recoveredSigner;

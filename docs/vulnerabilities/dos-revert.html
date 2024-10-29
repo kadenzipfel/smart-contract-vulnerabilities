@@ -179,7 +179,7 @@
 <p>DoS (Denial of Service) attacks can occur in functions when you try to send funds to a user and the functionality relies on that fund transfer being successful.</p>
 <p>This can be problematic in the case that the funds are sent to a smart contract created by a bad actor, since they can simply create a fallback function that reverts all payments.</p>
 <p>For example:</p>
-<pre><code>// INSECURE
+<pre><code class="language-solidity">// INSECURE
 contract Auction {
     address currentLeader;
     uint highestBid;
@@ -196,7 +196,7 @@ contract Auction {
 </code></pre>
 <p>As you can see in this example, if an attacker bids from a smart contract with a fallback function reverting all payments, they can never be refunded, and thus no one can ever make a higher bid.</p>
 <p>This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the function is reverted and no one is paid.</p>
-<pre><code>address[] private refundAddresses;
+<pre><code class="language-solidity">address[] private refundAddresses;
 mapping (address =&gt; uint) public refunds;
 
 // bad
@@ -207,7 +207,7 @@ function refundAll() public {
 }
 </code></pre>
 <p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.</p>
-<pre><code>contract auction {
+<pre><code class="language-solidity">contract auction {
     address highestBidder;
     uint highestBid;
     mapping(address =&gt; uint) refunds;

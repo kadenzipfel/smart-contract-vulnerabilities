@@ -181,7 +181,7 @@
 <p>When Ether is transferred to a contract address, it will trigger the <code>receive</code> or <code>fallback</code> function, as implemented in the contract. An attacker can write any arbitrary logic into the <code>fallback</code> method, such that anytime the contract receives a transfer, that logic is executed.</p>
 <h5 id="safemint"><a class="header" href="#safemint"><code>safeMint</code></a></h5>
 <p>One example of a hard to spot external call is OpenZeppelin's <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L244"><code>ERC721._safeMint</code></a> &amp; <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/3f610ebc25480bf6145e519c96e2f809996db8ed/contracts/token/ERC721/ERC721.sol#L190"><code>ERC721._safeTransfer</code></a> functions.</p>
-<pre><code>/**
+<pre><code class="language-solidity">/**
   * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
   * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
   */
@@ -200,7 +200,7 @@ function _safeMint(
 <p>The function is titled <code>_safeMint</code> because it prevents tokens from being unintentionally minted to a contract by checking first whether that contract has implemented ERC721Receiver, i.e. marking itself as a willing recipient of NFTs. This all seems fine, but <code>_checkOnERC721Received</code> is an external call to the receiving contract, allowing arbitrary execution.</p>
 <h3 id="single-function-reentrancy"><a class="header" href="#single-function-reentrancy">Single function reentrancy</a></h3>
 <p>A single function reentrancy attack occurs when a vulnerable function is the same function that an attacker is trying to recursively call.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 function withdraw() external {
     uint256 amount = balances[msg.sender];
     (bool success,) = msg.sender.call{value: balances[msg.sender]}("");
@@ -211,7 +211,7 @@ function withdraw() external {
 <p>Here we can see that the balance is only modified after the funds have been transferred. This can allow a hacker to call the function many times before the balance is set to 0, effectively draining the smart contract.</p>
 <h3 id="cross-function-reentrancy"><a class="header" href="#cross-function-reentrancy">Cross-function reentrancy</a></h3>
 <p>A cross-function reentrancy attack is a more complex version of the same process. Cross-function reentrancy occurs when a vulnerable function shares state with a function that an attacker can exploit.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 function transfer(address to, uint amount) external {
   if (balances[msg.sender] &gt;= amount) {
     balances[to] += amount;
@@ -229,7 +229,7 @@ function withdraw() external {
 <p>In this example, a hacker can exploit this contract by having a fallback function call <code>transfer()</code> to transfer spent funds before the balance is set to 0 in the <code>withdraw()</code> function.</p>
 <h3 id="read-only-reentrancy"><a class="header" href="#read-only-reentrancy">Read-only Reentrancy</a></h3>
 <p>Read-only reentrancy is a novel attack vector in which instead of reentering into the same contract in which state changes have yet to be made, an attacker reenters into another contract which reads from the state of the original contract.</p>
-<pre><code>// UNSECURE
+<pre><code class="language-solidity">// UNSECURE
 contract A {
 	// Has a reentrancy guard to prevent reentrancy
 	// but makes state change only after external call to sender
@@ -258,7 +258,7 @@ contract B {
 <p>Next, the <em>effects</em> of the contract should be performed, i.e. state modifications.</p>
 <p>Finally, we can perform <em>interactions</em> with other smart contracts, e.g. external function calls.</p>
 <p>This structure is effective against reentrancy because when an attacker reenters the function, the state changes have already been made. For example:</p>
-<pre><code>function withdraw() external {
+<pre><code class="language-solidity">function withdraw() external {
   uint256 amount = balances[msg.sender];
   balances[msg.sender] = 0;
   (bool success,) = msg.sender.call{value: balances[msg.sender]}("");

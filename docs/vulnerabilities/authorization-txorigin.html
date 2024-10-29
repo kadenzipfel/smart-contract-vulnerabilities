@@ -175,7 +175,7 @@
                     <main>
                         <h2 id="authorization-through-txorigin"><a class="header" href="#authorization-through-txorigin">Authorization Through tx.origin</a></h2>
 <p><code>tx.origin</code> is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use <code>tx.origin</code> for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in <code>tx.origin</code>. Consider this example:</p>
-<pre><code>pragma solidity &gt;=0.5.0 &lt;0.7.0;
+<pre><code class="language-solidity">pragma solidity &gt;=0.5.0 &lt;0.7.0;
 
 // THIS CONTRACT CONTAINS A BUG - DO NOT USE
 contract TxUserWallet {
@@ -192,7 +192,7 @@ contract TxUserWallet {
 }
 </code></pre>
 <p>Here we can see that the <code>TxUserWallet</code> contract authorizes the <code>transferTo()</code> function with <code>tx.origin</code>.</p>
-<pre><code>pragma solidity &gt;=0.5.0 &lt;0.7.0;
+<pre><code class="language-solidity">pragma solidity &gt;=0.5.0 &lt;0.7.0;
 
 interface TxUserWallet {
     function transferTo(address payable dest, uint amount) external;

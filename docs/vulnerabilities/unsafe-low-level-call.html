@@ -179,7 +179,7 @@
 <h3 id="unchecked-call-return-value"><a class="header" href="#unchecked-call-return-value">Unchecked call return value</a></h3>
 <p>Low-level calls will never throw an exception, instead they will return <code>false</code> if they encounter an exception, whereas contract calls will automatically throw. Thus if the return value of a low-level call is not checked, the execution may resume even if the function call throws an error. This can lead to unexpected behaviour and break the program logic. A failed call can even be caused intentionally by an attacker, who may be able to further exploit the application.</p>
 <p>In the case that you use low-level calls, be sure to check the return value to handle possible failed calls, e.g.:</p>
-<pre><code>// Simple transfer of 1 ether
+<pre><code class="language-solidity">// Simple transfer of 1 ether
 (bool success,) = to.call{value: 1 ether}("");
 // Revert if unsuccessful
 require(success);
@@ -188,7 +188,7 @@ require(success);
 <p>As noted in the <a href="https://docs.soliditylang.org/en/v0.8.15/control-structures.html?highlight=low%20level%20calls#external-function-calls">Solidity docs</a>: "Due to the fact that the EVM considers a call to a non-existing contract to always succeed, Solidity uses the <code>extcodesize</code> opcode to check that the contract that is about to be called actually exists (it contains code) and causes an exception if it does not. This check is skipped if the return data will be decoded after the call and thus the ABI decoder will catch the case of a non-existing contract.</p>
 <p>Note that this check is not performed in case of <a href="https://docs.soliditylang.org/en/v0.8.15/units-and-global-variables.html#address-related">low-level calls</a> which operate on addresses rather than contract instances."</p>
 <p>It's imperative that we do not simply assume that a contract to be called via a low-level call actually exists, since if it doesn't our logic will proceed even though our external call effectively failed. This can lead to loss of funds and/or an invalid contract state. Instead, we must verify that the contract being called exists, either immediately before being called with an <code>extcodesize</code> check, or by verifying during contract deployment and using a <code>constant</code>/<code>immutable</code> value if the contract can be fully trusted.</p>
-<pre><code>// Verify address is a contract
+<pre><code class="language-solidity">// Verify address is a contract
 require(to.code.length &gt; 0);
 // Simple transfer of 1 ether
 (bool success,) = to.call{value: 1 ether}("");

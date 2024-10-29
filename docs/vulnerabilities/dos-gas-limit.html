@@ -180,7 +180,7 @@
 <p>This situation can also lead to an attack. Say a bad actor decides to create a significant amount of addresses, with each address being paid a small amount of funds from the smart contract. If done effectively, the transaction can be blocked indefinitely, possibly even preventing further transactions from going through.</p>
 <p>An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.</p>
 <p>If, for some reason, you really need to loop through an array of unspecified length, at least expect it to potentially take multiple blocks, and allow it to be performed in multiple transactions - as seen in this example:</p>
-<pre><code>struct Payee {
+<pre><code class="language-solidity">struct Payee {
     address addr;
     uint256 value;
 }

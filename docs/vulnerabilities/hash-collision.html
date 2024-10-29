@@ -180,13 +180,13 @@
 <h2 id="understanding-the-vulnerability"><a class="header" href="#understanding-the-vulnerability">Understanding the vulnerability</a></h2>
 <p>When <code>abi.encodePacked()</code> is used with multiple variable-length arguments (such as arrays and strings), the packed encoding does not include information about the boundaries between different arguments. This can lead to situations where different combinations of arguments result in the same encoded output, causing hash collisions.</p>
 <p>For example, consider the following two calls to <code>abi.encodePacked()</code>:</p>
-<pre><code>abi.encodePacked(["a", "b"], ["c", "d"])
+<pre><code class="language-solidity">abi.encodePacked(["a", "b"], ["c", "d"])
 </code></pre>
-<pre><code>abi.encodePacked(["a"], ["b", "c", "d"])
+<pre><code class="language-solidity">abi.encodePacked(["a"], ["b", "c", "d"])
 </code></pre>
 <p>Both calls could potentially produce the same packed encoding because <code>abi.encodePacked()</code> simply concatenates the elements without any delimiters!</p>
 <p>Consider the below example for strings:</p>
-<pre><code>abi.encodePacked("foo", "bar") == abi.encodePacked("fo", "obar")
+<pre><code class="language-solidity">abi.encodePacked("foo", "bar") == abi.encodePacked("fo", "obar")
 </code></pre>
 <p>Strings in Solidity are dynamic types and when they are concatenated using <code>abi.encodePacked()</code>, there is no delimiter between them to mark their boundaries, which can lead to hash collisions.</p>
 <p>As a matter of fact, the below warning is taken as it is straight from the <a href="https://docs.soliditylang.org/en/latest/abi-spec.html#non-standard-packed-mode">official solidity language documentation</a> regarding the same.</p>
@@ -220,10 +220,10 @@ function verifyMessage(string calldata message1, string calldata message2, bytes
 }
 </code></pre>
 <p>The above function <code>verifyMessage()</code> could easily be exploited as below:-</p>
-<pre><code>verifyMessage("hello", "world", signature);
+<pre><code class="language-solidity">verifyMessage("hello", "world", signature);
 </code></pre>
 <p>or</p>
-<pre><code>verifyMessage("hell", "oworld", signature);
+<pre><code class="language-solidity">verifyMessage("hell", "oworld", signature);
 </code></pre>
 <p>or a variation of the string <code>hello</code> <code>world</code></p>
 <p>All variations of the string <code>hello</code> <code>world</code> passed to <code>verifyMessage()</code> would produce the same hash, potentially allowing an attacker to bypass the authorization check if they can provide a valid signature for their manipulated inputs.</p>
