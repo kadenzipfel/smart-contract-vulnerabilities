@@ -104,7 +104,7 @@ As we can see in the above example, although both functions have a nonReentrant 
 
 ### Reentrancy prevention
 
-The simplest reentrancy prevention mechanism is to use a [`ReentrancyGuard`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol), which allows you to add a modifier, e.g. `nonReentrant`, to functions which may otherwise be vulnerable. Although effective against most forms of reentrancy, it's important to understand how read-only reentrancy may be used to get around this and to always use the **checks-effects-interactions pattern**.
+The simplest reentrancy prevention mechanism is to use a [`ReentrancyGuard`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol), which allows you to add a modifier, e.g. `nonReentrant`, to functions which may otherwise be vulnerable. Although effective against most forms of reentrancy, it's important to understand how read-only reentrancy may be used to get around this and to always use the **checks-effects-interactions pattern**.
 
 For optimum security, use the **checks-effects-interactions pattern**. This is a simple rule of thumb for ordering smart contract functions.
 

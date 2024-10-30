@@ -19,7 +19,6 @@ The most common way in which integer over/underflow is possible when you convert
 uint256 public a = 258;
 uint8 public b = uint8(a); // typecasting uint256 to uint8
 ```
-
 The above code snippet will overflow and the ``2`` will be stored in the variable ``b`` due to the fact that maximum value in uint8 data type is ``255``. So, it will overflow and reset to ``0`` without reverting.
 
 ### Using Shift Operators
