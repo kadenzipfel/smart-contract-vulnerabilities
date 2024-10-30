@@ -2,7 +2,7 @@
 
 A collection of smart contract vulnerabilities along with prevention methods
 
-## Access Control
+### Access Control
 
 - [Authorization Through tx.origin](./vulnerabilities/authorization-txorigin.md)
 - [Insufficient Access Control](./vulnerabilities/insufficient-access-control.md)
@@ -10,13 +10,13 @@ A collection of smart contract vulnerabilities along with prevention methods
 - [Signature Malleability](./vulnerabilities/signature-malleability.md)
 - [Missing Protection against Signature Replay Attacks](./vulnerabilities/missing-protection-signature-replay.md)
 
-## Math
+### Math
 
 - [Integer Overflow and Underflow](./vulnerabilities/overflow-underflow.md)
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 
-## Control Flow
+### Control Flow
 
 - [Reentrancy](./vulnerabilities/reentrancy.md)
 - [DoS with Block Gas Limit](./vulnerabilities/dos-gas-limit.md)
@@ -25,7 +25,7 @@ A collection of smart contract vulnerabilities along with prevention methods
 - [Transaction-Ordering Dependence](./vulnerabilities/transaction-ordering-dependence.md)
 - [Insufficient Gas Griefing](./vulnerabilities/insufficient-gas-griefing.md)
 
-## Data Handling
+### Data Handling
 
 - [Unchecked Return Value](./vulnerabilities/unchecked-return-values.md)
 - [Write to Arbitrary Storage Location](./vulnerabilities/arbitrary-storage-location.md)
@@ -33,7 +33,7 @@ A collection of smart contract vulnerabilities along with prevention methods
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
 - [Unexpected `ecrecover` null address](./vulnerabilities/unexpected-ecrecover-null-address.md)
 
-## Unsafe Logic
+### Unsafe Logic
 
 - [Weak Sources of Randomness from Chain Attributes](./vulnerabilities/weak-sources-randomness.md)
 - [Hash Collision when using abi.encodePacked() with Multiple Variable-Length Arguments](./vulnerabilities/hash-collision.md)
@@ -43,7 +43,7 @@ A collection of smart contract vulnerabilities along with prevention methods
 - [Unencrypted Private Data On-Chain](./vulnerabilities/unencrypted-private-data-on-chain.md)
 - [Asserting Contract from Code Size](./vulnerabilities/asserting-contract-from-code-size.md)
 
-## Code Quality
+### Code Quality
 
 - [Floating Pragma](./vulnerabilities/floating-pragma.md)
 - [Outdated Compiler Version](./vulnerabilities/outdated-compiler-version.md)
