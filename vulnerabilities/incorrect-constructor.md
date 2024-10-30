@@ -9,5 +9,5 @@ Now with modern versions of Solidity, the constructor is defined with the `const
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-118
-- https://blog.sigmaprime.io/solidity-security.html#constructors
+- [SWC-118](https://swcregistry.io/docs/SWC-118)
+- [Sigma Prime Blog - Solidity Security Constructors](https://blog.sigmaprime.io/solidity-security.html#constructors)

@@ -43,7 +43,8 @@ It is for this exact reason that the Gemholic project on zkSync Era locked its 9
 
 This was because the contract deployment did not account for zkSync Era's handling of the `.transfer()` function.
 
-## Sources
+### Sources
+
 - [zkSync Era docs](https://docs.zksync.io/build/developer-reference/differences-with-ethereum.html#create-create2)
 - [CodeHawks first flight submission: The TokenFactory.sol can't deploy on the ZKSync Era](https://www.codehawks.com/submissions/clomptuvr0001ie09bzfp4nqw/4)
 - [GemstoneIDO Contract Issue Analysis on Medium](https://medium.com/coinmonks/gemstoneido-contract-stuck-with-921-eth-an-analysis-of-why-transfer-does-not-work-on-zksync-era-d5a01807227d)

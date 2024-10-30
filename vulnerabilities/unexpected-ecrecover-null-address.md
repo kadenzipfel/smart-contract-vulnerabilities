@@ -4,30 +4,31 @@
 
 As noted above, `ecrecover` will return zero on error. It's possible to do this deterministically by setting `v` as any positive number other than 27 or 28.
 
-`ecrecover` is often used to verify that the signer is an authorized account. The problem with this is that uninitialized or renounced authorization logic often sets the owner/admin address as `address(0)`, the same value which may be deterministically returned by `ecrecover`. This means that an unsecure contract may allow an attacker to spoof an authorized-only method into executing as though the authorized account is the signer.
+This can be manipulated by attackers to make it seem like a valid message has been signed by `address(0)`. 
 
-```
+> **NOTE:** The default value for addresses in solidity is `address(0)`. As such, in case important storage variables, e.g. owner/admin, are unset, it's possible to spoof a signature from one of these unset addresses, executing authorized-only logic.
+
+```solidity
 // UNSECURE
-function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
-	address signer = ecrecover(newOwner, v, r, s);
-	require(signer == owner);
-	owner = address(newOwner);
+function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
+	address recoveredSigner = ecrecover(message, v, r, s);
+	return signer == recoveredSigner;
 }
 ```
 
-The above method is intended to only set a new `owner` if a valid signature from the existing `owner` is provided. However, as we know, if we set `v` to any value other than 27 or 28, the `signer` will be the null address and if the current owner is uninitialized or renounced, the `require` statement will succeed allowing an attacker to set themselves as `owner`.
+The above method is intended to only return true if a valid signature is provided. However, as we know, if we set `v` to any value other than 27 or 28, the `recoveredSigner` will be the null address and if the provided `signer` is `address(0)`, the function will unexpectedly return `true`.
 
-We can mitigate this issue by reverting if the recovered `signer` address is null, e.g.:
+We can mitigate this issue by reverting if the `recoveredSigner` address is null, e.g.:
 
-```
-function setOwner(bytes32 newOwner, uint8 v, bytes32 r, bytes32 s) external {
-	address signer = ecrecover(newOwnerHash, v, r, s);
-	require(signer == owner && signer != address(0));
-	owner = address(newOwner);
+```solidity
+function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, bytes32 s) internal pure returns (bool) {
+        address recoveredSigner = ecrecover(message, v, r, s);
+        require(recoveredSigner != address(0));
+        return signer == recoveredSigner;
 }
 ```
 
 ### Sources
 
-- https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions
-- https://ethereum.stackexchange.com/a/69329
+- [Solidity Documentation: Mathematical and Cryptographic Functions](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#mathematical-and-cryptographic-functions)
+- [Ethereum Stack Exchange Answer](https://ethereum.stackexchange.com/a/69329)

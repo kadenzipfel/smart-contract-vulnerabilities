@@ -6,5 +6,7 @@ The solution Solidity provides to the Diamond Problem is by using reverse C3 lin
 
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/complex-inheritance/
-- https://solidity.readthedocs.io/en/v0.4.25/contracts.html#multiple-inheritance-and-linearization
+- [Consensys: Smart Contract Best Practices - Complex Inheritance](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/complex-inheritance/)
+- [Solidity Documentation: Multiple Inheritance and Linearization](https://solidity.readthedocs.io/en/v0.4.25/contracts.html#multiple-inheritance-and-linearization)
+- [Wikipedia: The Diamond Problem](https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem)
+- [Wikipedia: C3 Linearization](https://en.wikipedia.org/wiki/C3_linearization)

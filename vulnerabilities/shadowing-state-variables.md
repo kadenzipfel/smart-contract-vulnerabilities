@@ -2,7 +2,7 @@
 
 It is possible to use the same variable twice in Solidity, but it can lead to unintended side effects. This is especially difficult regarding working with multiple contracts. Take the following example:
 
-```
+```solidity
 contract SuperContract {
   uint a = 1;
 }
@@ -18,6 +18,6 @@ To avoid this vulnerability, it's important we check the entire smart contract s
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-119
-- https://github.com/ethereum/solidity/issues/2563
-- https://github.com/ethereum/solidity/issues/973
+- [SWC-119](https://swcregistry.io/docs/SWC-119)
+- [Solidity Issue #2563](https://github.com/ethereum/solidity/issues/2563)
+- [Solidity Issue #973](https://github.com/ethereum/solidity/issues/973)

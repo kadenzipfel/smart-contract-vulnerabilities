@@ -6,5 +6,5 @@ The exception in which it is acceptable to use a floating pragma, is in the case
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-103
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/locking-pragmas/
+- [SWC-103](https://swcregistry.io/docs/SWC-103)
+- [Consensys Smart Contract Best Practices - Locking Pragmas](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/locking-pragmas/)

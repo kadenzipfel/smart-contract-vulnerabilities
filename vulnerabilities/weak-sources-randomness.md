@@ -6,7 +6,7 @@ A common solution is to use an oracle solution such as [Chainlink VRF](https://d
 
 ### Sources
 
-- https://swcregistry.io/docs/SWC-120
-- https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe
-- https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract
-- https://fravoll.github.io/solidity-patterns/randomness.html
+- [SWC Registry: SWC-120](https://swcregistry.io/docs/SWC-120)
+- [When can blockhash be safely used for a random number? When would it be unsafe?](https://ethereum.stackexchange.com/questions/419/when-can-blockhash-be-safely-used-for-a-random-number-when-would-it-be-unsafe)
+- [How can I securely generate a random number in my smart contract?](https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract)
+- [Solidity Patterns: Randomness](https://fravoll.github.io/solidity-patterns/randomness.html)

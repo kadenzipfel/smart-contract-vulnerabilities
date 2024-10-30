@@ -67,6 +67,7 @@ function uncheck() public{
 ```
 The unchecked code block is only recommended if you are sure that there is no possible way for the arithmetic to overflow or underflow.
 
-## Sources
-1. https://docs.soliditylang.org/en/latest/080-breaking-changes.html
-2. https://faizannehal.medium.com/how-solidity-0-8-protect-against-integer-underflow-overflow-and-how-they-can-still-happen-7be22c4ab92f
+### Sources
+
+- [Solidity Documentation - 0.8.0 Breaking Changes](https://docs.soliditylang.org/en/latest/080-breaking-changes.html)
+- [Medium - How Solidity 0.8 Protects Against Integer Underflow/Overflow and How They Can Still Happen](https://faizannehal.medium.com/how-solidity-0-8-protect-against-integer-underflow-overflow-and-how-they-can-still-happen-7be22c4ab92f)

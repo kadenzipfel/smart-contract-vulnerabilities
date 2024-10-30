@@ -2,7 +2,7 @@
 
 A common method for asserting whether a sender is a contract or EOA has been to check the code size of the sender. This check asserts that if the sender has a code size > 0 that it must be a contract and if not then it must be an EOA. For example:
 
-```
+```solidity
 function mint(uint256 amount) public {
   if (msg.sender.code.length != 0) revert CallerNotEOA();
 }
@@ -16,5 +16,5 @@ As we can see, it's important that we recognize that although we may be certain 
 
 ### Sources
 
-- https://ethereum.github.io/yellowpaper/paper.pdf
-- https://github.com/0xKitsune/Ghost-Contract
+- [Ethereum Yellow Paper](https://ethereum.github.io/yellowpaper/paper.pdf)
+- [Ghost Contract on GitHub](https://github.com/0xKitsune/Ghost-Contract)

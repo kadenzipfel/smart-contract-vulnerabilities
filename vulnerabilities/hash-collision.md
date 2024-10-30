@@ -12,11 +12,11 @@ When `abi.encodePacked()` is used with multiple variable-length arguments (such 
 
 For example, consider the following two calls to `abi.encodePacked()`:
 
-```
+```solidity
 abi.encodePacked(["a", "b"], ["c", "d"])
 ```
 
-```
+```solidity
 abi.encodePacked(["a"], ["b", "c", "d"])
 ```
 
@@ -24,7 +24,7 @@ Both calls could potentially produce the same packed encoding because `abi.encod
 
 Consider the below example for strings:
 
-```
+```solidity
 abi.encodePacked("foo", "bar") == abi.encodePacked("fo", "obar")
 ```
 
@@ -71,12 +71,12 @@ function verifyMessage(string calldata message1, string calldata message2, bytes
 
 The above function `verifyMessage()` could easily be exploited as below:-
 
-```
+```solidity
 verifyMessage("hello", "world", signature);
 ```
 or
 
-```
+```solidity
 verifyMessage("hell", "oworld", signature);
 ```
 
@@ -138,7 +138,6 @@ To prevent this type of hash collision, the below remediation strategies can be 
 > It is listed here as a defense in depth strategy and SHOULD NOT be solely relied upon to protect against said vulnerability
 
 3. **Replay Protection**: Implement replay protection mechanisms to prevent attackers from reusing valid signatures. This can involve including nonces or timestamps in the signed data. However, this does not completely eliminate the risk of hash collisions but adds an additional layer of security. More on this can be found [here](./missing-protection-signature-replay.md)
-
 
 
 ## Sources

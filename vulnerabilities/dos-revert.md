@@ -10,7 +10,7 @@ This can be problematic in the case that the funds are sent to a smart contract 
 
 For example:
 
-```
+```solidity
 // INSECURE
 contract Auction {
     address currentLeader;
@@ -31,7 +31,7 @@ As you can see in this example, if an attacker bids from a smart contract with a
 
 This can also be problematic without an attacker present. For example, you may want to pay an array of users by iterating through the array, and of course you would want to make sure each user is properly paid. The problem here is that if one payment fails, the function is reverted and no one is paid. 
 
-```
+```solidity
 address[] private refundAddresses;
 mapping (address => uint) public refunds;
 
@@ -45,7 +45,7 @@ function refundAll() public {
 
 An effective solution to this problem would be to use a pull payment system over the above push payment system. To do this, separate each payment into its own transaction, and have the recipient call the function.
 
-```
+```solidity
 contract auction {
     address highestBidder;
     uint highestBid;
@@ -87,7 +87,15 @@ It's important to take caution in enforcing expected contract balances of tokens
 
 Consider, for example, a contract which expects the Ether balance to be 0 for the first deposit to allow for custom accounting logic. An attacker may forcibly send Ether to the contract before the first deposit, causing all deposits to revert. 
 
+### Divide by Zero
+In solidity if the contract attempts to perform division when the denominator is ``zero``, the call reverts. Thus, the denominator should be always checked before division to prevent DoS revert.
+```solidity
+function foo(uint num, uint den) public pure returns(uint result) {
+  result = num / den; // if den = 0, the execution reverts
+}
+```
+
 ### Sources
 
-- https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/
-- https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/
+- [Consensys Smart Contract Best Practices - Denial of Service](https://consensys.github.io/smart-contract-best-practices/attacks/denial-of-service/)
+- [Consensys Smart Contract Best Practices - External Calls](https://consensys.github.io/smart-contract-best-practices/development-recommendations/general/external-calls/)
