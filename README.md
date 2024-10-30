@@ -37,4 +37,3 @@
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 - [Unbounded Return Data](./vulnerabilities/unbounded-return-data.md)
 - [Using ``msg.value`` in a Loop](./vulnerabilities/msgvalue-loop.md)
-- [Deleting a Mapping Within a Struct](./vulnerabilities/mapping-within-struct.md)
