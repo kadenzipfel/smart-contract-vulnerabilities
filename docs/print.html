@@ -1238,7 +1238,30 @@ function validateSigner(address signer, bytes32 message, uint8 v, bytes32 r, byt
 <li><a href="https://github.com/sigp/solidity-security-blog#visibility">SigP Solidity Security Blog - Visibility</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="insufficient-access-control"><a class="header" href="#insufficient-access-control">Insufficient Access Control</a></h2>
-<p>Access control is often imperative in management and ownership of smart contracts. It's important to consider ways in which access control may be circumvented, or insufficiently implemented and the corresponding consequences.</p>
+<p>Access control is often imperative in management and ownership of smart contracts. It's important to consider ways in which access control may be circumvented, or insufficiently implemented and the corresponding consequences. Contracts may allow any user to execute sensitive functions without verifying their authorization status. For example, a contract may have functions that transfer ownership, mint tokens, or modify critical state variables without checking if the caller has the appropriate permissions.</p>
+<p>Improper implementation of access control can lead to severe vulnerabilities, allowing unauthorized users to manipulate the contract’s state or even drain its funds. For example:</p>
+<pre><code class="language-solidity">// UNSECURE
+function setInterestRate(uint256 _interestRate) public {
+    // No access modifier, so anyone can change the interestRate
+    interestRate = _interestRate;
+}
+</code></pre>
+<p>The <code>setInterestRate</code> function doesn’t have any access control which means anyone can call it to change the <code>interestRate</code>  which can lead to severe consequences. We can resolve this by adding authorization logic, e.g.:</p>
+<pre><code class="language-solidity">modifier onlyOwner() {
+    require(msg.sender == owner, "Only the owner can call this function");
+    _;
+}
+
+function setInterestRate(uint256 _interestRate) public onlyOwner {
+    interestRate = _interestRate;
+}
+</code></pre>
+<p>Now, the <code>onlyOwner</code> modifier has been added. This modifier checks if the caller of a function is the contract owner before allowing the function to proceed, ensuring that only the owner of the contract can change the <code>interestRate</code>. Similarly, role based access control mechanisms and whitelisting mechanisms can be implemented for proper access control.</p>
+<h3 id="sources-31"><a class="header" href="#sources-31">Sources</a></h3>
+<ul>
+<li><a href="https://metaschool.so/articles/access-control-vulnerabilities-in-smart-contracts/">Access Control Vulnerabilities in Smart Contracts</a></li>
+<li><a href="https://medium.com/rektify-ai/how-to-mitigate-access-control-vulnerability-6df74c82af98">Mitigate Access Control Vulnerability</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="off-by-one"><a class="header" href="#off-by-one">Off-By-One</a></h2>
 <p>Off-by-one errors are a common mistake made by programmers in which the intended boundaries are incorrect by only one, though these errors may seem insignificant, the effect can easily be quite severe.</p>
 <h3 id="array-lengths"><a class="header" href="#array-lengths">Array lengths</a></h3>
@@ -1260,7 +1283,7 @@ if (collateralizationRatio &gt; 1 ether) {
 	liquidate();
 }
 </code></pre>
-<h3 id="sources-31"><a class="header" href="#sources-31">Sources</a></h3>
+<h3 id="sources-32"><a class="header" href="#sources-32">Sources</a></h3>
 <ul>
 <li><a href="https://github.com/OpenCoreCH/smart-contract-auditing-heuristics#off-by-one-errors">OpenCoreCH - Smart Contract Auditing Heuristics: Off-by-One Errors</a></li>
 </ul>
@@ -1340,7 +1363,7 @@ contract Victim {
         }
     }
 </code></pre>
-<h3 id="sources-32"><a class="header" href="#sources-32">Sources</a></h3>
+<h3 id="sources-33"><a class="header" href="#sources-33">Sources</a></h3>
 <ul>
 <li><a href="https://github.com/ethereum/solidity/issues/12306">Solidity Issue #12306</a></li>
 <li><a href="https://github.com/nomad-xyz/ExcessivelySafeCall">ExcessivelySafeCall Repository</a></li>
@@ -1380,7 +1403,7 @@ contract Victim {
 </code></pre>
 <p>Thus, using <code>msg.value</code> inside a loop is dangerous because this might allow the sender to <code>re-use</code> the <code>msg.value</code>.</p>
 <p>Reuse of <code>msg.value</code> can also show up with payable multicalls. Multicalls enable a user to submit a list of transactions to avoid paying the 21,000 gas transaction fee over and over. However, If <code>msg.value</code> gets <code>re-used</code> while looping through the functions to execute, it can cause a serious issue like the <a href="https://peckshield.medium.com/opyn-hacks-root-cause-analysis-c65f3fe249db">Opyn Hack</a>.</p>
-<h3 id="sources-33"><a class="header" href="#sources-33">Sources</a></h3>
+<h3 id="sources-34"><a class="header" href="#sources-34">Sources</a></h3>
 <ul>
 <li><a href="https://www.rareskills.io/post/smart-contract-security#:~:text=Using%20msg.,show%20up%20with%20payable%20multicalls.">Rare Skills - Smart Contract Security</a></li>
 <li><a href="https://trustchain.medium.com/ethereum-msg-value-reuse-vulnerability-5afd0aa2bcef">TrustChain - Ethereum msg.value Reuse Vulnerability</a></li>
@@ -1400,7 +1423,7 @@ contract Victim {
     }
 </code></pre>
 <p><code>remove()</code> function above deletes an item of <code>stackBalance</code>. But the mapping <code>balances</code> inside <code>BalancesStruct</code> won't reset. Only individual keys and what they map to can be deleted. Example: <code>delete stackBalance[msg.sender].balances[x]</code> will delete the data stored at address <code>x</code> in the balances mapping.</p>
-<h3 id="sources-34"><a class="header" href="#sources-34">Sources</a></h3>
+<h3 id="sources-35"><a class="header" href="#sources-35">Sources</a></h3>
 <ul>
 <li><a href="https://docs.soliditylang.org/en/latest/types.html#delete">Solidity Documentation - Delete</a></li>
 </ul>
