@@ -19,6 +19,7 @@
 - [Shadowing State Variables](./vulnerabilities/shadowing-state-variables.md)
 - [Weak Sources of Randomness from Chain Attributes](./vulnerabilities/weak-sources-randomness.md)
 - [Missing Protection against Signature Replay Attacks](./vulnerabilities/missing-protection-signature-replay.md)
+- [Data Corruption Due To Insufficient Memory Allocation](./vulnerabilities/data-corruption-due-to-insufficient-memory-allocation.md)
 - [Requirement Validation](./vulnerabilities/requirement-violation.md)
 - [Write to Arbitrary Storage Location](./vulnerabilities/arbitrary-storage-location.md)
 - [Hash Collision when using abi.encodePacked() with Multiple Variable-Length Arguments](./vulnerabilities/hash-collision.md)
