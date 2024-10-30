@@ -1,5 +1,7 @@
 # Smart Contract Vulnerabilities
 
+A collection of smart contract vulnerabilities along with prevention methods
+
 - [Insufficient Gas Griefing](./vulnerabilities/insufficient-gas-griefing.md)
 - [Reentrancy](./vulnerabilities/reentrancy.md)
 - [Integer Overflow and Underflow](./vulnerabilities/overflow-underflow.md)
@@ -36,4 +38,4 @@
 - [Off-By-One](./vulnerabilities/off-by-one.md)
 - [Lack of Precision](./vulnerabilities/lack-of-precision.md)
 - [Unbounded Return Data](./vulnerabilities/unbounded-return-data.md)
-- [Using ``msg.value`` in a Loop](./vulnerabilities/msgvalue-loop.md)
+- [Using `msg.value` in a Loop](./vulnerabilities/msgvalue-loop.md)
