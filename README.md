@@ -32,6 +32,7 @@ A collection of smart contract vulnerabilities along with prevention methods
 - [Unbounded Return Data](./vulnerabilities/unbounded-return-data.md)
 - [Uninitialized Storage Pointer](./vulnerabilities/uninitialized-storage-pointer.md)
 - [Unexpected `ecrecover` null address](./vulnerabilities/unexpected-ecrecover-null-address.md)
+- [Caching Storage in Memory](./vulnerabilities/caching-storage-in-memory.md)
 
 ### Unsafe Logic
 
