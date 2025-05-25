@@ -36,23 +36,24 @@ interface TxUserWallet {
 }
 
 contract TxAttackWallet {
-    address  private  owner;
+    address payable private immutable owner;
 
     // Constructor sets the contract deployer as the owner
     constructor() {
-        owner = msg.sender;
+        owner = payable(msg.sender);
     }
 
     // fallback function to receive Ether and trigger transfer
 
     fallback() external payable {
-        // Call transferTo on the sender's TxUserWallet to send its balance to owner
+        // Call transferTo on TxUserWallet (msg.sender) to send its balance to owner
+
         TxUserWallet(msg.sender).transferTo(owner, msg.sender.balance);
     }
 }
 ```
 
-Now if someone were to trick you into sending ether to the `TxAttackWallet` contract address, they can steal your funds by checking `tx.origin` to find the address that sent the transaction.
+Now if someone were to trick your 'TxUserWallet' contract into sending ether to the `TxAttackWallet` contract, they can steal all funds from  'TxUserWallet'  by passing the `tx.origin` check.
 
 To prevent this kind of attack, use `msg.sender` for authorization.
 
