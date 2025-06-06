@@ -41,6 +41,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -118,7 +129,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -157,7 +168,10 @@
                     <main>
                         <h2 id="authorization-through-txorigin"><a class="header" href="#authorization-through-txorigin">Authorization Through tx.origin</a></h2>
 <p><code>tx.origin</code> is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use <code>tx.origin</code> for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in <code>tx.origin</code>. Consider this example:</p>
-<pre><code class="language-solidity">pragma solidity &gt;=0.5.0 &lt;0.7.0;
+<pre><code class="language-solidity">
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
 
 // THIS CONTRACT CONTAINS A BUG - DO NOT USE
 contract TxUserWallet {
@@ -174,25 +188,33 @@ contract TxUserWallet {
 }
 </code></pre>
 <p>Here we can see that the <code>TxUserWallet</code> contract authorizes the <code>transferTo()</code> function with <code>tx.origin</code>.</p>
-<pre><code class="language-solidity">pragma solidity &gt;=0.5.0 &lt;0.7.0;
+<pre><code class="language-solidity">
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
 
 interface TxUserWallet {
     function transferTo(address payable dest, uint amount) external;
 }
 
 contract TxAttackWallet {
-    address payable owner;
+    address payable private immutable owner;
 
-    constructor() public {
-        owner = msg.sender;
+    // Constructor sets the contract deployer as the owner
+    constructor() {
+        owner = payable(msg.sender);
     }
 
-    function() external {
+    // fallback function to receive Ether and trigger transfer
+
+    fallback() external payable {
+        // Call transferTo on TxUserWallet (msg.sender) to send its balance to owner
+
         TxUserWallet(msg.sender).transferTo(owner, msg.sender.balance);
     }
 }
 </code></pre>
-<p>Now if someone were to trick you into sending ether to the <code>TxAttackWallet</code> contract address, they can steal your funds by checking <code>tx.origin</code> to find the address that sent the transaction.</p>
+<p>Now if someone were to trick your 'TxUserWallet' contract into sending ether to the <code>TxAttackWallet</code> contract, they can steal all funds from  'TxUserWallet'  by passing the <code>tx.origin</code> check.</p>
 <p>To prevent this kind of attack, use <code>msg.sender</code> for authorization.</p>
 <p>Examples from: https://solidity.readthedocs.io/en/develop/security-considerations.html#tx-origin</p>
 <h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
