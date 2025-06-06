@@ -3,7 +3,10 @@
 `tx.origin` is a global variable in Solidity which returns the address that sent a transaction. It's important that you never use `tx.origin` for authorization since another contract can use a fallback function to call your contract and gain authorization since the authorized address is stored in `tx.origin`. Consider this example:
 
 ```solidity
-pragma solidity >=0.5.0 <0.7.0;
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
 
 // THIS CONTRACT CONTAINS A BUG - DO NOT USE
 contract TxUserWallet {
@@ -23,26 +26,34 @@ contract TxUserWallet {
 Here we can see that the `TxUserWallet` contract authorizes the `transferTo()` function with `tx.origin`. 
 
 ```solidity
-pragma solidity >=0.5.0 <0.7.0;
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
 
 interface TxUserWallet {
     function transferTo(address payable dest, uint amount) external;
 }
 
 contract TxAttackWallet {
-    address payable owner;
+    address payable private immutable owner;
 
-    constructor() public {
-        owner = msg.sender;
+    // Constructor sets the contract deployer as the owner
+    constructor() {
+        owner = payable(msg.sender);
     }
 
-    function() external {
+    // fallback function to receive Ether and trigger transfer
+
+    fallback() external payable {
+        // Call transferTo on TxUserWallet (msg.sender) to send its balance to owner
+
         TxUserWallet(msg.sender).transferTo(owner, msg.sender.balance);
     }
 }
 ```
 
-Now if someone were to trick you into sending ether to the `TxAttackWallet` contract address, they can steal your funds by checking `tx.origin` to find the address that sent the transaction.
+Now if someone were to trick your 'TxUserWallet' contract into sending ether to the `TxAttackWallet` contract, they can steal all funds from  'TxUserWallet'  by passing the `tx.origin` check.
 
 To prevent this kind of attack, use `msg.sender` for authorization.
 
