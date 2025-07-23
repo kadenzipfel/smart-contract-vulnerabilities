@@ -175,11 +175,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="unsupported-opcodes"><a class="header" href="#unsupported-opcodes">Unsupported Opcodes</a></h1>
+                        <h2 id="unsupported-opcodes"><a class="header" href="#unsupported-opcodes">Unsupported Opcodes</a></h2>
 <p>EVM-compatible chains, such as zkSync Era, BNB Chain, Polygon, Optimism and Arbitrum implement the Ethereum Virtual Machine (EVM) and its opcodes. However, opcode support can vary across these chains, which can lead to bugs and issues if not considered during smart contract development and deployment.</p>
-<h2 id="push0-opcode-compatibility"><a class="header" href="#push0-opcode-compatibility">PUSH0 Opcode Compatibility</a></h2>
+<h3 id="push0-opcode-compatibility"><a class="header" href="#push0-opcode-compatibility">PUSH0 Opcode Compatibility</a></h3>
 <p>The <code>PUSH0</code> opcode was introduced during the Shanghai hard fork of the Shapella upgrade (Solidity v0.8.20) and is available in certain EVM-compatible chains. However, not all chains have implemented support for this opcode yet.</p>
-<h3 id="is-push0-supported"><a class="header" href="#is-push0-supported">Is <code>PUSH0</code> supported:</a></h3>
+<h4 id="is-push0-supported"><a class="header" href="#is-push0-supported">Is <code>PUSH0</code> supported:</a></h4>
 <ol>
 <li>Ethereum: YES</li>
 <li>Arbitrum One: YES</li>
@@ -191,7 +191,7 @@
 <pre><code class="language-bash">cast call --rpc-url $ARBITRUM_RPC_URL --create 0x5f
 </code></pre>
 <p>Getting a <code>0x</code> response from running the above command means the opcode is supported; an error indicates the opcode isn't supported on that chain.</p>
-<h2 id="create-and-create2-on-zksync-era"><a class="header" href="#create-and-create2-on-zksync-era">CREATE and CREATE2 on zkSync Era</a></h2>
+<h3 id="create-and-create2-on-zksync-era"><a class="header" href="#create-and-create2-on-zksync-era">CREATE and CREATE2 on zkSync Era</a></h3>
 <p>On zkSync Era, contract deployment uses the hash of the bytecode and the <code>factoryDeps</code> field of EIP712 transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the <code>ContractDeployer</code> system contract.</p>
 <p>To ensure that <code>create</code> and <code>create2</code> functions operate correctly, the compiler MUST be aware of the bytecode of the deployed contract in advance. The compiler interprets the calldata arguments as incomplete input for <code>ContractDeployer</code>, with the remaining part filled in by the compiler internally. The Yul <code>datasize</code> and <code>dataoffset</code> instructions have been adjusted to return the constant size and bytecode hash rather than the bytecode itself.</p>
 <p>The following code will not function correctly because the compiler is not aware of the bytecode beforehand but will work fine on Ethereum Mainnet:</p>
@@ -201,7 +201,7 @@
    }
 }
 </code></pre>
-<h2 id="transfer-on-zksync-era"><a class="header" href="#transfer-on-zksync-era"><code>.transfer()</code> on zkSync Era</a></h2>
+<h3 id="transfer-on-zksync-era"><a class="header" href="#transfer-on-zksync-era"><code>.transfer()</code> on zkSync Era</a></h3>
 <p>The <code>transfer()</code> function in Solidity is limited to 2300 gas, which can be insufficient if the receiving contract's fallback or receive function involves more complex logic. This can lead to the transaction reverting if the gas limit is exceeded.</p>
 <p>It is for this exact reason that the Gemholic project on zkSync Era locked its 921 ETH that was raised during the Gemholic token sale making the funds inaccessible.</p>
 <p>This was because the contract deployment did not account for zkSync Era's handling of the <code>.transfer()</code> function.</p>
