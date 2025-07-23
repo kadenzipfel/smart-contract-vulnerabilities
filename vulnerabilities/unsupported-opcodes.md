@@ -1,11 +1,11 @@
-# Unsupported Opcodes
+## Unsupported Opcodes
 
 EVM-compatible chains, such as zkSync Era, BNB Chain, Polygon, Optimism and Arbitrum implement the Ethereum Virtual Machine (EVM) and its opcodes. However, opcode support can vary across these chains, which can lead to bugs and issues if not considered during smart contract development and deployment.
 
-## PUSH0 Opcode Compatibility
+### PUSH0 Opcode Compatibility
 The `PUSH0` opcode was introduced during the Shanghai hard fork of the Shapella upgrade (Solidity v0.8.20) and is available in certain EVM-compatible chains. However, not all chains have implemented support for this opcode yet.
 
-### Is `PUSH0` supported:
+#### Is `PUSH0` supported:
 1. Ethereum: YES
 2. Arbitrum One: YES
 3. Optimism: YES
@@ -21,7 +21,7 @@ cast call --rpc-url $ARBITRUM_RPC_URL --create 0x5f
 
 Getting a `0x` response from running the above command means the opcode is supported; an error indicates the opcode isn't supported on that chain.
 
-## CREATE and CREATE2 on zkSync Era
+### CREATE and CREATE2 on zkSync Era
 On zkSync Era, contract deployment uses the hash of the bytecode and the `factoryDeps` field of EIP712 transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the `ContractDeployer` system contract.
 
 To ensure that `create` and `create2` functions operate correctly, the compiler MUST be aware of the bytecode of the deployed contract in advance. The compiler interprets the calldata arguments as incomplete input for `ContractDeployer`, with the remaining part filled in by the compiler internally. The Yul `datasize` and `dataoffset` instructions have been adjusted to return the constant size and bytecode hash rather than the bytecode itself.
@@ -36,7 +36,7 @@ function myFactory(bytes memory bytecode) public {
 }
 ```
 
-## `.transfer()` on zkSync Era
+### `.transfer()` on zkSync Era
 The `transfer()` function in Solidity is limited to 2300 gas, which can be insufficient if the receiving contract's fallback or receive function involves more complex logic. This can lead to the transaction reverting if the gas limit is exceeded.
 
 It is for this exact reason that the Gemholic project on zkSync Era locked its 921 ETH that was raised during the Gemholic token sale making the funds inaccessible. 
