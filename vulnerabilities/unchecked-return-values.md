@@ -1,4 +1,4 @@
-### Unchecked Return Values
+## Unchecked Return Values
 
 The main idea behind this type of vulnerability is the failure to properly handle the return values of external function calls. This can have significant consequences, including fund loss and unexpected behavior in the contract's logic.
 
