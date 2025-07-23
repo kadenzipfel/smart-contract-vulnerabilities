@@ -37,6 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -93,10 +94,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -147,7 +151,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -796,7 +805,7 @@ contract Executor {
 <li><a href="https://ethereum.stackexchange.com/questions/73261/griefing-attacks-are-they-profitable-for-the-attacker">Ethereum Stack Exchange - Griefing attacks: Are they profitable for the attacker?</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Griefer">Wikipedia - Griefer</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h3 id="unchecked-return-values"><a class="header" href="#unchecked-return-values">Unchecked Return Values</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="unchecked-return-values"><a class="header" href="#unchecked-return-values">Unchecked Return Values</a></h2>
 <p>The main idea behind this type of vulnerability is the failure to properly handle the return values of external function calls. This can have significant consequences, including fund loss and unexpected behavior in the contract's logic.</p>
 <p>In Solidity, developers can perform external calls using methods like:</p>
 <ol>
@@ -1469,6 +1478,7 @@ contract SubContract is SuperContract {
             window.setTimeout(window.print, 100);
         });
         </script>
+
 
     </div>
     </body>
