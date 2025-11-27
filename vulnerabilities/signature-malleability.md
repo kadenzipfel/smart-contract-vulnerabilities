@@ -1,6 +1,6 @@
 ## Signature Malleability
 
-It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, it is possible to modify and signature and maintain validity. One example of a system which is vulnerable to signature malleability is one in which validation as to whether an action can be executed is determined based on whether the signature has been previously used.
+It's generally assumed that a valid signature cannot be modified without the private key and remain valid. However, it is possible to modify a signature and maintain validity. One example of a system which is vulnerable to signature malleability is one in which validation as to whether an action can be executed is determined based on whether the signature has been previously used.
 
 ```solidity
 // UNSECURE
