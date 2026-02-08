@@ -23,9 +23,3 @@ This style guide outlines the formatting and content expectations for contributi
 ## External References
 - *Links:* Link to relevant resources such as official chain documentation, vulnerability reports, and blog posts for further exploration. 
 - *Citations:* Use clear in-text citations and a dedicated "Sources" section to reference external sources. 
-
-## Additional Considerations
-- *Target Audience:* Tailor the level of technical detail to a broad audience with an interest in smart contract security. 
-- *Concise and Actionable:* Focus on providing actionable information to help developers identify and prevent vulnerabilities.
-- *Community Contributions:* Encourage community contributions and maintain a welcoming environment for pull requests and discussions. 
-- *Versioning:* Maintain a clear versioning system to track updates and changes to vulnerabilities. 
