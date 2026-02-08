@@ -1,6 +1,8 @@
 # Smart Contract Vulnerabilities
 
-A collection of smart contract vulnerabilities along with prevention methods
+A collection of smart contract vulnerabilities along with prevention methods.
+
+See [/references](./references/) for LLM-optimized references.
 
 ### Access Control
 
