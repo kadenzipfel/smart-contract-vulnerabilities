@@ -19,8 +19,8 @@ contract Governance {
     }
 }
 
-// C3 linearization: rightmost (Governance) takes precedence
-// Developer intended Ownable.owner() but gets Governance.owner()
+// C3 linearization: rightmost (Ownable) takes precedence
+// Developer intended Governance.owner() but gets Ownable.owner()
 contract Treasury is Governance, Ownable {
     // owner() resolves to Ownable (rightmost) — may not be intended
     // Should be: is Ownable, Governance (if Governance should win)

@@ -29,7 +29,7 @@ function withdraw() external {
 1. Search for all `assert(` calls in the codebase
 2. For each, determine whether the condition is a true invariant (mathematically impossible to violate in a correct contract) or an input/state validation
 3. If the condition depends on user input, external call results, or mutable external state, flag it — it should be `require()` instead
-4. Check Solidity version: in <0.8.0, failing `assert` consumes all gas (Panic via `0xfe` INVALID opcode); in >=0.8.0, it uses `Panic(uint256)` but still wastes gas
+4. Check Solidity version: in <0.8.0, failing `assert` uses the `0xfe` INVALID opcode and consumes ALL remaining gas; in >=0.8.0, it reverts with `Panic(uint256)` error code `0x01` (refunds remaining gas but provides no custom message)
 5. If an `assert` can be triggered by an attacker, check if the gas consumption creates a griefing vector
 
 ## False Positives

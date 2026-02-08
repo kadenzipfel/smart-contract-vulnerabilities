@@ -13,18 +13,17 @@
 ```solidity
 // Combines multiple signature anti-patterns
 function execute(bytes memory sig, address to, uint256 amount) external {
-    // 1. abi.encodePacked with multiple dynamic types — hash collision risk
-    // 2. No nonce — replay attack
-    // 3. No address(this) — cross-contract replay
-    // 4. No block.chainid — cross-chain replay
+    // 1. No nonce — replay attack
+    // 2. No address(this) — cross-contract replay
+    // 3. No block.chainid — cross-chain replay
     bytes32 hash = keccak256(abi.encodePacked(to, amount));
 
-    // 5. Raw ecrecover — no null address check
+    // 4. Raw ecrecover — no null address check
     address recovered = ecrecover(hash, v, r, s);
-    // 6. No s-value malleability check
+    // 5. No s-value malleability check
     require(recovered == signer);
 
-    // 7. Signature tracked by bytes — malleable bypass
+    // 6. Signature tracked by bytes — malleable bypass
     require(!used[sig]);
     used[sig] = true;
 

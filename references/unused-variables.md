@@ -58,7 +58,7 @@ function onERC721Received(
     return this.onERC721Received.selector;
 }
 
-// Check return values
-(bool success,) = IERC20(token).transfer(recipient, amount);
+// Check return values — use SafeERC20 for non-compliant tokens
+bool success = IERC20(token).transfer(recipient, amount);
 require(success);
 ```

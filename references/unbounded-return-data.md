@@ -47,8 +47,10 @@ function safeCall(address target, bytes memory data) internal returns (bool succ
     assembly {
         success := call(gas(), target, 0, add(data, 0x20), mload(data), 0, 0)
         // Only copy up to 32 bytes of return data
-        if gt(returndatasize(), 0) {
-            returndatacopy(0, 0, min(returndatasize(), 32))
+        let rdsize := returndatasize()
+        if gt(rdsize, 0) {
+            if gt(rdsize, 32) { rdsize := 32 }
+            returndatacopy(0, 0, rdsize)
         }
     }
 }
